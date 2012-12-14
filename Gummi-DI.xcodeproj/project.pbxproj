@@ -1,0 +1,446 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CBFB674F167B4FEF00BF2D02 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBFB674E167B4FEF00BF2D02 /* UIKit.framework */; };
+		CBFB6751167B4FEF00BF2D02 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBFB6750167B4FEF00BF2D02 /* Foundation.framework */; };
+		CBFB6753167B4FEF00BF2D02 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBFB6752167B4FEF00BF2D02 /* CoreGraphics.framework */; };
+		CBFB6759167B4FEF00BF2D02 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBFB6757167B4FEF00BF2D02 /* InfoPlist.strings */; };
+		CBFB675B167B4FEF00BF2D02 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFB675A167B4FEF00BF2D02 /* main.m */; };
+		CBFB675F167B4FEF00BF2D02 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFB675E167B4FEF00BF2D02 /* AppDelegate.m */; };
+		CBFB6761167B4FEF00BF2D02 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB6760167B4FEF00BF2D02 /* Default.png */; };
+		CBFB6763167B4FEF00BF2D02 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB6762167B4FEF00BF2D02 /* Default@2x.png */; };
+		CBFB6765167B4FEF00BF2D02 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB6764167B4FEF00BF2D02 /* Default-568h@2x.png */; };
+		CBFB676D167B4FEF00BF2D02 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBFB676C167B4FEF00BF2D02 /* SenTestingKit.framework */; };
+		CBFB676E167B4FEF00BF2D02 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBFB674E167B4FEF00BF2D02 /* UIKit.framework */; };
+		CBFB676F167B4FEF00BF2D02 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBFB6750167B4FEF00BF2D02 /* Foundation.framework */; };
+		CBFB6777167B4FEF00BF2D02 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBFB6775167B4FEF00BF2D02 /* InfoPlist.strings */; };
+		CBFB677A167B4FEF00BF2D02 /* Gummi_DITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFB6779167B4FEF00BF2D02 /* Gummi_DITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CBFB6770167B4FEF00BF2D02 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CBFB6741167B4FEF00BF2D02 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CBFB6749167B4FEF00BF2D02;
+			remoteInfo = "Gummi-DI";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CBFB674A167B4FEF00BF2D02 /* Gummi-DI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gummi-DI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBFB674E167B4FEF00BF2D02 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CBFB6750167B4FEF00BF2D02 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CBFB6752167B4FEF00BF2D02 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CBFB6756167B4FEF00BF2D02 /* Gummi-DI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Gummi-DI-Info.plist"; sourceTree = "<group>"; };
+		CBFB6758167B4FEF00BF2D02 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CBFB675A167B4FEF00BF2D02 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CBFB675C167B4FEF00BF2D02 /* Gummi-DI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Gummi-DI-Prefix.pch"; sourceTree = "<group>"; };
+		CBFB675D167B4FEF00BF2D02 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CBFB675E167B4FEF00BF2D02 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CBFB6760167B4FEF00BF2D02 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		CBFB6762167B4FEF00BF2D02 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		CBFB6764167B4FEF00BF2D02 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		CBFB676B167B4FEF00BF2D02 /* Gummi-DITests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Gummi-DITests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBFB676C167B4FEF00BF2D02 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		CBFB6774167B4FEF00BF2D02 /* Gummi-DITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Gummi-DITests-Info.plist"; sourceTree = "<group>"; };
+		CBFB6776167B4FEF00BF2D02 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CBFB6778167B4FEF00BF2D02 /* Gummi_DITests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Gummi_DITests.h; sourceTree = "<group>"; };
+		CBFB6779167B4FEF00BF2D02 /* Gummi_DITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Gummi_DITests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CBFB6747167B4FEF00BF2D02 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBFB674F167B4FEF00BF2D02 /* UIKit.framework in Frameworks */,
+				CBFB6751167B4FEF00BF2D02 /* Foundation.framework in Frameworks */,
+				CBFB6753167B4FEF00BF2D02 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBFB6767167B4FEF00BF2D02 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBFB676D167B4FEF00BF2D02 /* SenTestingKit.framework in Frameworks */,
+				CBFB676E167B4FEF00BF2D02 /* UIKit.framework in Frameworks */,
+				CBFB676F167B4FEF00BF2D02 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CBFB673F167B4FEF00BF2D02 = {
+			isa = PBXGroup;
+			children = (
+				CBFB6754167B4FEF00BF2D02 /* Gummi-DI */,
+				CBFB6772167B4FEF00BF2D02 /* Gummi-DITests */,
+				CBFB674D167B4FEF00BF2D02 /* Frameworks */,
+				CBFB674B167B4FEF00BF2D02 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CBFB674B167B4FEF00BF2D02 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CBFB674A167B4FEF00BF2D02 /* Gummi-DI.app */,
+				CBFB676B167B4FEF00BF2D02 /* Gummi-DITests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CBFB674D167B4FEF00BF2D02 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CBFB674E167B4FEF00BF2D02 /* UIKit.framework */,
+				CBFB6750167B4FEF00BF2D02 /* Foundation.framework */,
+				CBFB6752167B4FEF00BF2D02 /* CoreGraphics.framework */,
+				CBFB676C167B4FEF00BF2D02 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CBFB6754167B4FEF00BF2D02 /* Gummi-DI */ = {
+			isa = PBXGroup;
+			children = (
+				CBFB675D167B4FEF00BF2D02 /* AppDelegate.h */,
+				CBFB675E167B4FEF00BF2D02 /* AppDelegate.m */,
+				CBFB6755167B4FEF00BF2D02 /* Supporting Files */,
+			);
+			path = "Gummi-DI";
+			sourceTree = "<group>";
+		};
+		CBFB6755167B4FEF00BF2D02 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CBFB6756167B4FEF00BF2D02 /* Gummi-DI-Info.plist */,
+				CBFB6757167B4FEF00BF2D02 /* InfoPlist.strings */,
+				CBFB675A167B4FEF00BF2D02 /* main.m */,
+				CBFB675C167B4FEF00BF2D02 /* Gummi-DI-Prefix.pch */,
+				CBFB6760167B4FEF00BF2D02 /* Default.png */,
+				CBFB6762167B4FEF00BF2D02 /* Default@2x.png */,
+				CBFB6764167B4FEF00BF2D02 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CBFB6772167B4FEF00BF2D02 /* Gummi-DITests */ = {
+			isa = PBXGroup;
+			children = (
+				CBFB6778167B4FEF00BF2D02 /* Gummi_DITests.h */,
+				CBFB6779167B4FEF00BF2D02 /* Gummi_DITests.m */,
+				CBFB6773167B4FEF00BF2D02 /* Supporting Files */,
+			);
+			path = "Gummi-DITests";
+			sourceTree = "<group>";
+		};
+		CBFB6773167B4FEF00BF2D02 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CBFB6774167B4FEF00BF2D02 /* Gummi-DITests-Info.plist */,
+				CBFB6775167B4FEF00BF2D02 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CBFB6749167B4FEF00BF2D02 /* Gummi-DI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CBFB677D167B4FEF00BF2D02 /* Build configuration list for PBXNativeTarget "Gummi-DI" */;
+			buildPhases = (
+				CBFB6746167B4FEF00BF2D02 /* Sources */,
+				CBFB6747167B4FEF00BF2D02 /* Frameworks */,
+				CBFB6748167B4FEF00BF2D02 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Gummi-DI";
+			productName = "Gummi-DI";
+			productReference = CBFB674A167B4FEF00BF2D02 /* Gummi-DI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CBFB676A167B4FEF00BF2D02 /* Gummi-DITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CBFB6780167B4FEF00BF2D02 /* Build configuration list for PBXNativeTarget "Gummi-DITests" */;
+			buildPhases = (
+				CBFB6766167B4FEF00BF2D02 /* Sources */,
+				CBFB6767167B4FEF00BF2D02 /* Frameworks */,
+				CBFB6768167B4FEF00BF2D02 /* Resources */,
+				CBFB6769167B4FEF00BF2D02 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CBFB6771167B4FEF00BF2D02 /* PBXTargetDependency */,
+			);
+			name = "Gummi-DITests";
+			productName = "Gummi-DITests";
+			productReference = CBFB676B167B4FEF00BF2D02 /* Gummi-DITests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CBFB6741167B4FEF00BF2D02 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Simon Schmid";
+			};
+			buildConfigurationList = CBFB6744167B4FEF00BF2D02 /* Build configuration list for PBXProject "Gummi-DI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CBFB673F167B4FEF00BF2D02;
+			productRefGroup = CBFB674B167B4FEF00BF2D02 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CBFB6749167B4FEF00BF2D02 /* Gummi-DI */,
+				CBFB676A167B4FEF00BF2D02 /* Gummi-DITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CBFB6748167B4FEF00BF2D02 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBFB6759167B4FEF00BF2D02 /* InfoPlist.strings in Resources */,
+				CBFB6761167B4FEF00BF2D02 /* Default.png in Resources */,
+				CBFB6763167B4FEF00BF2D02 /* Default@2x.png in Resources */,
+				CBFB6765167B4FEF00BF2D02 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBFB6768167B4FEF00BF2D02 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBFB6777167B4FEF00BF2D02 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CBFB6769167B4FEF00BF2D02 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CBFB6746167B4FEF00BF2D02 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBFB675B167B4FEF00BF2D02 /* main.m in Sources */,
+				CBFB675F167B4FEF00BF2D02 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBFB6766167B4FEF00BF2D02 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBFB677A167B4FEF00BF2D02 /* Gummi_DITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CBFB6771167B4FEF00BF2D02 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CBFB6749167B4FEF00BF2D02 /* Gummi-DI */;
+			targetProxy = CBFB6770167B4FEF00BF2D02 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CBFB6757167B4FEF00BF2D02 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CBFB6758167B4FEF00BF2D02 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CBFB6775167B4FEF00BF2D02 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CBFB6776167B4FEF00BF2D02 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CBFB677B167B4FEF00BF2D02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CBFB677C167B4FEF00BF2D02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CBFB677E167B4FEF00BF2D02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Gummi-DI/Gummi-DI-Prefix.pch";
+				INFOPLIST_FILE = "Gummi-DI/Gummi-DI-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CBFB677F167B4FEF00BF2D02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Gummi-DI/Gummi-DI-Prefix.pch";
+				INFOPLIST_FILE = "Gummi-DI/Gummi-DI-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		CBFB6781167B4FEF00BF2D02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gummi-DI.app/Gummi-DI";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Gummi-DI/Gummi-DI-Prefix.pch";
+				INFOPLIST_FILE = "Gummi-DITests/Gummi-DITests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		CBFB6782167B4FEF00BF2D02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gummi-DI.app/Gummi-DI";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Gummi-DI/Gummi-DI-Prefix.pch";
+				INFOPLIST_FILE = "Gummi-DITests/Gummi-DITests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CBFB6744167B4FEF00BF2D02 /* Build configuration list for PBXProject "Gummi-DI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBFB677B167B4FEF00BF2D02 /* Debug */,
+				CBFB677C167B4FEF00BF2D02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CBFB677D167B4FEF00BF2D02 /* Build configuration list for PBXNativeTarget "Gummi-DI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBFB677E167B4FEF00BF2D02 /* Debug */,
+				CBFB677F167B4FEF00BF2D02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CBFB6780167B4FEF00BF2D02 /* Build configuration list for PBXNativeTarget "Gummi-DITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBFB6781167B4FEF00BF2D02 /* Debug */,
+				CBFB6782167B4FEF00BF2D02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CBFB6741167B4FEF00BF2D02 /* Project object */;
+}
