@@ -6,27 +6,17 @@
 //  Copyright (c) 2012 Simon Schmid. All rights reserved.
 //
 
-#import "Gummi_DITests.h"
+#import "Kiwi.h"
 
-@implementation Gummi_DITests
+SPEC_BEGIN(Gummi_DITests)
 
-- (void)setUp
-{
-    [super setUp];
-    
-    // Set-up code here.
-}
+        describe(@"Gummi_DITests", ^{
 
-- (void)tearDown
-{
-    // Tear-down code here.
-    
-    [super tearDown];
-}
+            it(@"fails", ^{
+                id o;
+                [o shouldNotBeNil];
+            });
 
-- (void)testExample
-{
-    STFail(@"Unit tests are not implemented yet in Gummi-DITests");
-}
+        });
 
-@end
+        SPEC_END
