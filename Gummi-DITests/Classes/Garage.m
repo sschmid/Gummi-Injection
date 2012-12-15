@@ -7,7 +7,7 @@
 
 #import "Garage.h"
 #import "Car.h"
-#import "GummiDI.h"
+#import "SDInjector.h"
 
 
 @implementation Garage

@@ -6,8 +6,7 @@
 
 
 #import "Car.h"
-#import "GummiDI.h"
-#import "Motor.h"
+#import "SDInjector.h"
 
 
 @implementation Car
