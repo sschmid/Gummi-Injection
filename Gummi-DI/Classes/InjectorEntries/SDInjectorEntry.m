@@ -9,15 +9,8 @@
 #import "SDInjector.h"
 
 
-@interface SDInjectorEntry ()
-@property(nonatomic, strong) SDInjector *injector;
-
-@end
-
 @implementation SDInjectorEntry
 @synthesize object = _object;
-@synthesize injector = _injector;
-
 
 + (id)entryWithObject:(id)object injector:(SDInjector *)injector {
     return [[self alloc] initWithObject:object injector:injector];
@@ -27,7 +20,7 @@
     self = [super init];
     if (self) {
         self.object = object;
-        self.injector = injector;
+        _injector = injector;
     }
 
     return self;

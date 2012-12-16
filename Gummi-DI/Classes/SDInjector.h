@@ -12,7 +12,7 @@
 @interface SDInjector : NSObject
 + (SDInjector *)sharedInjector;
 
-- (id)getObject:(id)classOrProtocol;
+- (id)getObject:(id)type;
 - (void)injectIntoObject:(id)object;
 
 - (void)map:(id)whenAskedFor to:(id)use;

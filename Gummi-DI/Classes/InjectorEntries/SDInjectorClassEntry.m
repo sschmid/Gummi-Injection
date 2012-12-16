@@ -35,13 +35,17 @@
 
 - (id)extractObject {
     if (self.asSingleton) {
-        if (!self.objectCache)
+        if (!self.objectCache) {
             self.objectCache = [[self.object alloc] init];
+            [_injector injectIntoObject:self.objectCache];
+        }
 
         return self.objectCache;
     }
 
-    return [[self.object alloc] init];
+    id instance = [[self.object alloc] init];
+    [_injector injectIntoObject:instance];
+    return instance;
 }
 
 @end

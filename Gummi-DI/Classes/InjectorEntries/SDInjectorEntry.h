@@ -10,7 +10,10 @@
 @class SDInjector;
 
 
-@interface SDInjectorEntry : NSObject
+@interface SDInjectorEntry : NSObject {
+    SDInjector *_injector;
+}
+
 @property(nonatomic, strong) id object;
 
 + (id)entryWithObject:(id)object injector:(SDInjector *)injector;

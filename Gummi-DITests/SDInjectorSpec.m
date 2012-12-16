@@ -10,6 +10,8 @@
 #import "Car.h"
 #import "Wheel.h"
 #import "Garage.h"
+#import "SingletonFoo.h"
+#import "SingletonBar.h"
 
 SPEC_BEGIN(SDInjectorSpec)
 
@@ -82,9 +84,6 @@ SPEC_BEGIN(SDInjectorSpec)
                     [[car.frontLeftWheel should] beKindOfClass:[Wheel class]];
                     [[car.backLeftWheel should] beKindOfClass:[Wheel class]];
                     [[car.backRightWheel should] beKindOfClass:[Wheel class]];
-                });
-
-                it(@"pulls object with all its dependecies set", ^{
                     [[garage.audi should] beKindOfClass:[Car class]];
                     [[garage.bmw should] beKindOfClass:[Car class]];
                     [[garage.mercedes should] beKindOfClass:[Car class]];
@@ -112,7 +111,6 @@ SPEC_BEGIN(SDInjectorSpec)
 
             });
 
-
             context(@"when context has protocols mapped", ^{
 
                 __block Car *car;
@@ -135,9 +133,6 @@ SPEC_BEGIN(SDInjectorSpec)
                     [[car.frontLeftWheel should] beKindOfClass:[Wheel class]];
                     [[car.backLeftWheel should] beKindOfClass:[Wheel class]];
                     [[car.backRightWheel should] beKindOfClass:[Wheel class]];
-                });
-
-                it(@"pulls object with all its dependecies set", ^{
                     [[garage.audi should] beKindOfClass:[Car class]];
                     [[garage.bmw should] beKindOfClass:[Car class]];
                     [[garage.mercedes should] beKindOfClass:[Car class]];
@@ -167,19 +162,97 @@ SPEC_BEGIN(SDInjectorSpec)
 
             context(@"when context has singletons mapped", ^{
 
+                __block Car *car;
+                __block Garage *garage;
                 beforeEach(^{
-                    //[injector map:[Car class] to:[Car class] asSingleton:YES];
-                    [injector mapSingleton:[Car class]];
+                    [injector map:@protocol(Vehicle) to:[Car class] asSingleton:YES];
+                    [injector mapSingleton:[Garage class]];
+                    car = [injector getObject:@protocol(Vehicle)];
+                    garage = [injector getObject:[Garage class]];
                 });
 
                 it(@"pulls object from context", ^{
-                    Car *car = [injector getObject:[Car class]];
-
                     [[car should] beKindOfClass:[Car class]];
                 });
 
                 it(@"always returns same instance", ^{
-                    [[[injector getObject:[Car class]] should] equal:[injector getObject:[Car class]]];
+                    [[[injector getObject:@protocol(Vehicle)] should] equal:[injector getObject:@protocol(Vehicle)]];
+                    [[[injector getObject:[Garage class]] should] equal:[injector getObject:[Garage class]]];
+                });
+
+                it(@"pulls object with all its dependecies set", ^{
+                    [[theValue(car.numWheels) should] equal:theValue(4)];
+                    [[car.frontRightWheel should] beKindOfClass:[Wheel class]];
+                    [[car.frontLeftWheel should] beKindOfClass:[Wheel class]];
+                    [[car.backLeftWheel should] beKindOfClass:[Wheel class]];
+                    [[car.backRightWheel should] beKindOfClass:[Wheel class]];
+                    [[garage.audi should] beKindOfClass:[Car class]];
+                    [[garage.bmw should] beKindOfClass:[Car class]];
+                    [[garage.mercedes should] beKindOfClass:[Car class]];
+                });
+
+                it(@"sets dependencies of dependencies", ^{
+                    [[theValue(garage.audi.numWheels) should] equal:theValue(4)];
+                    [[garage.audi.frontRightWheel should] beKindOfClass:[Wheel class]];
+                    [[garage.audi.frontLeftWheel should] beKindOfClass:[Wheel class]];
+                    [[garage.audi.backLeftWheel should] beKindOfClass:[Wheel class]];
+                    [[garage.audi.backRightWheel should] beKindOfClass:[Wheel class]];
+
+                    [[theValue(garage.bmw.numWheels) should] equal:theValue(4)];
+                    [[garage.bmw.frontRightWheel should] beKindOfClass:[Wheel class]];
+                    [[garage.bmw.frontLeftWheel should] beKindOfClass:[Wheel class]];
+                    [[garage.bmw.backLeftWheel should] beKindOfClass:[Wheel class]];
+                    [[garage.bmw.backRightWheel should] beKindOfClass:[Wheel class]];
+
+                    [[theValue(garage.mercedes.numWheels) should] equal:theValue(4)];
+                    [[garage.mercedes.frontRightWheel should] beKindOfClass:[Wheel class]];
+                    [[garage.mercedes.frontLeftWheel should] beKindOfClass:[Wheel class]];
+                    [[garage.mercedes.backLeftWheel should] beKindOfClass:[Wheel class]];
+                    [[garage.mercedes.backRightWheel should] beKindOfClass:[Wheel class]];
+                });
+            });
+
+            context(@"when circular dependency", ^{
+
+                it(@"will be resolved for singletons", ^{
+                    [injector mapSingleton:[SingletonFoo class]];
+                    [injector mapSingleton:[SingletonBar class]];
+                    SingletonFoo *foo = [injector getObject:[SingletonFoo class]];
+                    SingletonBar *bar = [injector getObject:[SingletonBar class]];
+
+                    [[foo.bar should] equal:bar];
+                    [[bar.foo should] equal:foo];
+                });
+
+            });
+
+
+            context(@"when context has instance mapped", ^{
+
+                __block Car *car1;
+                __block Car *car2;
+                beforeEach(^{
+                    car1 = [Car car];
+                    [injector map:@protocol(Vehicle) to:car1];
+                    car2 = [injector getObject:@protocol(Vehicle)];
+                });
+
+                it(@"returns instance", ^{
+                    [[car2 should] equal:car1];
+                });
+
+                it(@"pulls object with all its dependecies set", ^{
+                    [[theValue(car1.numWheels) should] equal:theValue(4)];
+                    [[car1.frontRightWheel should] beKindOfClass:[Wheel class]];
+                    [[car1.frontLeftWheel should] beKindOfClass:[Wheel class]];
+                    [[car1.backLeftWheel should] beKindOfClass:[Wheel class]];
+                    [[car1.backRightWheel should] beKindOfClass:[Wheel class]];
+
+                    [[theValue(car2.numWheels) should] equal:theValue(4)];
+                    [[car2.frontRightWheel should] beKindOfClass:[Wheel class]];
+                    [[car2.frontLeftWheel should] beKindOfClass:[Wheel class]];
+                    [[car2.backLeftWheel should] beKindOfClass:[Wheel class]];
+                    [[car2.backRightWheel should] beKindOfClass:[Wheel class]];
                 });
 
             });
