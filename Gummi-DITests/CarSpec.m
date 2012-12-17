@@ -41,7 +41,7 @@ SPEC_BEGIN(CarSpec)
                 [[[Wheel wheel] should] beKindOfClass:[Wheel class]];
             });
 
-            it(@"creates a wheel", ^{
+            it(@"creates a motor", ^{
                 [[[HybridMotor motor] should] beKindOfClass:[HybridMotor class]];
                 [[[HybridMotor motor] should] conformsToProtocol:@protocol(Motor)];
             });
@@ -61,7 +61,7 @@ SPEC_BEGIN(CarSpec)
                 [[theValue(hasAllWheels && hasBLW && hasFLW && hasFRW && hasBRW) should] beYes];
             });
 
-            it(@"can not drive", ^{
+            it(@"can not drive without motor", ^{
                 car.frontLeftWheel = [Wheel wheel];
                 car.frontRightWheel = [Wheel wheel];
                 car.backLeftWheel = [Wheel wheel];
@@ -77,7 +77,7 @@ SPEC_BEGIN(CarSpec)
                 [[theValue(hasMotor) should] beYes];
             });
 
-            it(@"can not drive", ^{
+            it(@"can not drive without wheels", ^{
                 car.motor = [HybridMotor motor];
                 [[theValue(car.canDrive) should] beNo];
             });

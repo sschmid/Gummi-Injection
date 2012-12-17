@@ -26,6 +26,10 @@ SPEC_BEGIN(SDInjectorSpec)
                 [[injector should] beKindOfClass:[SDInjector class]];
             });
 
+            it(@"has no mappings", ^{
+                [[theValue([injector is:[Car class] mappedTo:[Car class]]) should] beNo];
+            });
+
             it(@"has no objects in context", ^{
                 Car *car = [injector getObject:[Car class]];
 
@@ -45,7 +49,7 @@ SPEC_BEGIN(SDInjectorSpec)
                 beforeEach(^{
                     [injector map:[Car class] to:[Car class]];
                     [injector map:[Garage class] to:[Garage class]];
-                    [injector map:@protocol(Motor) to:[HybridMotor motor]];
+                    [injector map:@protocol(Motor) to:[HybridMotor class]];
                     car = [injector getObject:[Car class]];
                     garage = [injector getObject:[Garage class]];
                 });
@@ -53,7 +57,7 @@ SPEC_BEGIN(SDInjectorSpec)
                 it(@"has mapping", ^{
                     BOOL m1 = [injector is:[Car class] mappedTo:[Car class]];
                     BOOL m2 = [injector is:[Garage class] mappedTo:[Garage class]];
-                    BOOL m3 = [injector is:@protocol(Motor) mappedTo:[HybridMotor motor]];
+                    BOOL m3 = [injector is:@protocol(Motor) mappedTo:[HybridMotor class]];
 
                     [[theValue(m1) should] beYes];
                     [[theValue(m2) should] beYes];
@@ -179,7 +183,6 @@ SPEC_BEGIN(SDInjectorSpec)
                 });
 
             });
-
 
             context(@"when context has instance mapped", ^{
 

@@ -10,15 +10,22 @@
 #import "SDReflector.h"
 #import "Car.h"
 #import "Wheel.h"
+#import "Motor.h"
 
 SPEC_BEGIN(SDReflectorSpec)
 
         describe(@"Reflection", ^{
 
-            it(@"gets the class of a property", ^{
-                id wheelClass = [SDReflector getTypeForProperty:@"frontLeftWheel" ofClass:[Car class]];
+            it(@"gets the type of a property class", ^{
+                id class = [SDReflector getTypeForProperty:@"frontLeftWheel" ofClass:[Car class]];
 
-                [[wheelClass should] equal:[Wheel class]];
+                [[class should] equal:[Wheel class]];
+            });
+
+            it(@"gets the type of a property protocol", ^{
+                id protocol = [SDReflector getTypeForProperty:@"motor" ofClass:[Car class]];
+
+                [[protocol should] equal:@protocol(Motor)];
             });
 
             it(@"raises exeption for unknown property names", ^{
@@ -51,7 +58,7 @@ SPEC_BEGIN(SDReflectorSpec)
                 [[theValue([SDReflector isInstance:o]) should] beYes];
             });
 
-            it(@"nil is nothing", ^{
+            it(@"nil is handled correctly", ^{
                 id o = nil;
 
                 [[theValue([SDReflector isClass:o]) should] beNo];

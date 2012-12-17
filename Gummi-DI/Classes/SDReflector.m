@@ -39,7 +39,7 @@ static NSString *const SDReflectorException = @"SDReflectorException";
     if (!object)
         return NO;
 
-    return object_getClass(object) == object_getClass(@protocol(NSObject));
+    return [object_getClass(object) isEqual:object_getClass(@protocol(NSObject))];
 }
 
 + (BOOL)isClass:(id)object {

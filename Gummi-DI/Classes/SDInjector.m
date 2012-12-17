@@ -5,7 +5,6 @@
 //
 
 
-#import <objc/runtime.h>
 #import "SDInjector.h"
 #import "SDInjectorEntry.h"
 #import "SDInjectorClassEntry.h"
@@ -90,11 +89,11 @@ static SDInjector *sInjector;
 }
 
 - (void)map:(id)whenAskedFor to:(id)use {
-    [self map:whenAskedFor to:use asSingleton:NO];
+    return [self map:whenAskedFor to:use asSingleton:NO];
 }
 
 - (void)mapSingleton:(Class)aClass {
-    [self map:aClass to:aClass asSingleton:YES];
+    return [self map:aClass to:aClass asSingleton:YES];
 }
 
 - (void)mapEagerSingleton:(Class)aClass {
@@ -104,10 +103,7 @@ static SDInjector *sInjector;
 
 - (BOOL)is:(id)whenAskedFor mappedTo:(id)use {
     SDInjectorEntry *entry = self.context[[self keyForObject:whenAskedFor]];
-    if ([SDReflector isProtocol:whenAskedFor])
-        return [object_getClass(entry.object) isEqual:object_getClass(use)];
-    else
-        return [entry.object isEqual:use];
+    return [entry.object isEqual:use];
 }
 
 - (NSString *)keyForObject:(id)object {

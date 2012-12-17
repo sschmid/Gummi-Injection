@@ -10,6 +10,7 @@
 #define inject(args...) +(NSSet *)desiredProperties {return [NSSet setWithObjects: args, nil];}
 
 @interface SDInjector : NSObject
+
 + (SDInjector *)sharedInjector;
 
 - (id)getObject:(id)type;
@@ -17,6 +18,7 @@
 
 - (void)map:(id)whenAskedFor to:(id)use asSingleton:(BOOL)asSingleton;
 - (void)map:(id)whenAskedFor to:(id)use;
+
 - (void)mapSingleton:(Class)aClass;
 - (void)mapEagerSingleton:(Class)aClass;
 
