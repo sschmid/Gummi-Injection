@@ -11,17 +11,15 @@
 
 @interface SDInjectorClassEntry ()
 @property(nonatomic) BOOL asSingleton;
-@property(nonatomic, strong) id objectCache;
-
+@property(nonatomic, strong) id singletonCache;
 
 @end
 
 @implementation SDInjectorClassEntry
 @synthesize asSingleton = _asSingleton;
-@synthesize objectCache = _objectCache;
+@synthesize singletonCache = _singletonCache;
 
-
-+ (id)entryWithObject:(id)object injector:(SDInjector *)injector asSingleton:(BOOL)asSingleton{
++ (id)entryWithObject:(id)object injector:(SDInjector *)injector asSingleton:(BOOL)asSingleton {
     return [[self alloc] initWithObject:object injector:injector asSingleton:asSingleton];
 }
 
@@ -31,16 +29,17 @@
         self.asSingleton = asSingleton;
     }
 
-    return self;}
+    return self;
+}
 
 - (id)extractObject {
     if (self.asSingleton) {
-        if (!self.objectCache) {
-            self.objectCache = [[self.object alloc] init];
-            [_injector injectIntoObject:self.objectCache];
+        if (!self.singletonCache) {
+            self.singletonCache = [[self.object alloc] init];
+            [_injector injectIntoObject:self.singletonCache];
         }
 
-        return self.objectCache;
+        return self.singletonCache;
     }
 
     id instance = [[self.object alloc] init];

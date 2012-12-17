@@ -9,6 +9,7 @@
 #import "Kiwi.h"
 #import "Car.h"
 #import "Wheel.h"
+#import "HybridMotor.h"
 
 SPEC_BEGIN(CarSpec)
 
@@ -27,8 +28,22 @@ SPEC_BEGIN(CarSpec)
                 [[theValue(car.numWheels) should] equal:theValue(0)];
             });
 
+            it(@"has no motor", ^{
+                BOOL hasMotor = car.motor != nil;
+                [[theValue(hasMotor) should] beNo];
+            });
+
+            it(@"can not drive", ^{
+                [[theValue(car.canDrive) should] beNo];
+            });
+
             it(@"creates a wheel", ^{
                 [[[Wheel wheel] should] beKindOfClass:[Wheel class]];
+            });
+
+            it(@"creates a wheel", ^{
+                [[[HybridMotor motor] should] beKindOfClass:[HybridMotor class]];
+                [[[HybridMotor motor] should] conformsToProtocol:@protocol(Motor)];
             });
 
             it(@"adds wheels", ^{
@@ -37,7 +52,44 @@ SPEC_BEGIN(CarSpec)
                 car.backLeftWheel = [Wheel wheel];
                 car.backRightWheel = [Wheel wheel];
 
-                [[theValue(car.numWheels) should] equal:theValue(4)];
+                BOOL hasAllWheels = car.numWheels == 4;
+                BOOL hasFLW = [car.frontLeftWheel isKindOfClass:[Wheel class]];
+                BOOL hasFRW = [car.frontRightWheel isKindOfClass:[Wheel class]];
+                BOOL hasBLW = [car.backLeftWheel isKindOfClass:[Wheel class]];
+                BOOL hasBRW = [car.backRightWheel isKindOfClass:[Wheel class]];
+
+                [[theValue(hasAllWheels && hasBLW && hasFLW && hasFRW && hasBRW) should] beYes];
+            });
+
+            it(@"can not drive", ^{
+                car.frontLeftWheel = [Wheel wheel];
+                car.frontRightWheel = [Wheel wheel];
+                car.backLeftWheel = [Wheel wheel];
+                car.backRightWheel = [Wheel wheel];
+
+                [[theValue(car.canDrive) should] beNo];
+            });
+
+            it(@"adds a motor", ^{
+                car.motor = [HybridMotor motor];
+                BOOL hasMotor = car.motor != nil;
+
+                [[theValue(hasMotor) should] beYes];
+            });
+
+            it(@"can not drive", ^{
+                car.motor = [HybridMotor motor];
+                [[theValue(car.canDrive) should] beNo];
+            });
+
+            it(@"can drive", ^{
+                car.frontLeftWheel = [Wheel wheel];
+                car.frontRightWheel = [Wheel wheel];
+                car.backLeftWheel = [Wheel wheel];
+                car.backRightWheel = [Wheel wheel];
+                car.motor = [HybridMotor motor];
+
+                [[theValue(car.canDrive) should] beYes];
             });
 
         });

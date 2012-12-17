@@ -7,11 +7,12 @@
 
 #import "Car.h"
 #import "SDInjector.h"
+#import "Wheel.h"
 
 
 @implementation Car
 
-inject(@"frontLeftWheel", @"frontRightWheel", @"backLeftWheel", @"backRightWheel");
+inject(@"frontLeftWheel", @"frontRightWheel", @"backLeftWheel", @"backRightWheel", @"motor");
 @synthesize frontLeftWheel = _frontLeftWheel;
 @synthesize frontRightWheel = _frontRightWheel;
 @synthesize backLeftWheel = _backLeftWheel;
@@ -21,7 +22,6 @@ inject(@"frontLeftWheel", @"frontRightWheel", @"backLeftWheel", @"backRightWheel
 @synthesize fuelLevel = _fuelLevel;
 @synthesize fuelEmpty = _fuelEmpty;
 @synthesize onMotorDidStartBlock = _onMotorDidStartBlock;
-@synthesize onMotorDidStartSel = _onMotorDidStartSel;
 
 
 + (id)car {
@@ -40,6 +40,16 @@ inject(@"frontLeftWheel", @"frontRightWheel", @"backLeftWheel", @"backRightWheel
         wheels++;
 
     return wheels;
+}
+
+- (BOOL)canDrive {
+    BOOL hasAllWheels = self.numWheels == 4;
+    BOOL hasFLW = [self.frontLeftWheel isKindOfClass:[Wheel class]];
+    BOOL hasFRW = [self.frontRightWheel isKindOfClass:[Wheel class]];
+    BOOL hasBLW = [self.backLeftWheel isKindOfClass:[Wheel class]];
+    BOOL hasBRW = [self.backRightWheel isKindOfClass:[Wheel class]];
+
+    return hasAllWheels && hasBLW && hasFLW && hasFRW && hasBRW && self.motor != nil;
 }
 
 @end

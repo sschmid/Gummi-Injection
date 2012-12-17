@@ -12,10 +12,8 @@
 @implementation SDInjectorInstanceEntry
 
 - (id)initWithObject:(id)object injector:(SDInjector *)injector {
-    self = [super init];
+    self = [super initWithObject:object injector:injector];
     if (self) {
-        self.object = object;
-        _injector = injector;
         [_injector injectIntoObject:self.object];
     }
 

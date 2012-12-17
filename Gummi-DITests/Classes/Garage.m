@@ -18,7 +18,10 @@ inject(@"audi", @"bmw", @"mercedes")
 @synthesize mercedes = _mercedes;
 
 - (BOOL)isFull {
-    return self.audi != nil && self.bmw != nil && self.mercedes != nil;
+    BOOL hasAllCars = self.audi != nil && self.bmw != nil && self.mercedes != nil;
+    BOOL areAllCars = [self.audi isKindOfClass:[Car class]] && [self.bmw isKindOfClass:[Car class]] && [self.mercedes isKindOfClass:[Car class]];
+
+    return hasAllCars && areAllCars;
  }
 
 @end

@@ -8,38 +8,18 @@
 #import "Kiwi.h"
 #import "SDInjector.h"
 #import "Car.h"
-#import "Wheel.h"
 #import "Garage.h"
 #import "SingletonFoo.h"
 #import "SingletonBar.h"
+#import "HybridMotor.h"
 
 SPEC_BEGIN(SDInjectorSpec)
-
-//        describe(@"Reflection", ^{
-//            __block SDInjector *injector;
-//            beforeEach(^{
-//                injector = [SDInjector sharedInjector];
-//            });
-//
-//            it(@"gets the class of a property", ^{
-//                id wheelClass = [injector getTypeForProperty:@"frontLeftWheel" ofClass:[Car class]];
-//
-//                [[wheelClass should] equal:[Wheel class]];
-//            });
-//
-//            it(@"raises exeption for unknown property names", ^{
-//                [[theBlock(^{
-//                    [injector getTypeForProperty:@"iDoNotExist" ofClass:[Car class]];
-//                }) should] raiseWithName:(NSString *) @"SDInjectorException"];
-//            });
-//
-//        });
 
         describe(@"SDInjector", ^{
 
             __block SDInjector *injector;
             beforeEach(^{
-                injector = [SDInjector sharedInjector];
+                injector = [[SDInjector alloc] init];
             });
 
             it(@"instantiates an injector", ^{
@@ -54,8 +34,8 @@ SPEC_BEGIN(SDInjectorSpec)
 
             it(@"raises exception when class does not conform to protocol", ^{
                 [[theBlock(^{
-                    [injector map:@protocol(Vehicle) to:[NSObject class] asSingleton:NO];
-                }) should] raiseWithName:(NSString *) @"SDInjectorException"];
+                    [injector map:@protocol(Vehicle) to:[NSObject class]];
+                }) should] raiseWithName: @"SDInjectorException"];
             });
 
             context(@"when context has classes mapped", ^{
@@ -63,10 +43,21 @@ SPEC_BEGIN(SDInjectorSpec)
                 __block Car *car;
                 __block Garage *garage;
                 beforeEach(^{
-                    [injector map:[Car class] to:[Car class] asSingleton:NO];
-                    [injector map:[Garage class] to:[Garage class] asSingleton:NO];
+                    [injector map:[Car class] to:[Car class]];
+                    [injector map:[Garage class] to:[Garage class]];
+                    [injector map:@protocol(Motor) to:[HybridMotor motor]];
                     car = [injector getObject:[Car class]];
                     garage = [injector getObject:[Garage class]];
+                });
+
+                it(@"has mapping", ^{
+                    BOOL m1 = [injector is:[Car class] mappedTo:[Car class]];
+                    BOOL m2 = [injector is:[Garage class] mappedTo:[Garage class]];
+                    BOOL m3 = [injector is:@protocol(Motor) mappedTo:[HybridMotor motor]];
+
+                    [[theValue(m1) should] beYes];
+                    [[theValue(m2) should] beYes];
+                    [[theValue(m3) should] beYes];
                 });
 
                 it(@"pulls object from context", ^{
@@ -79,34 +70,14 @@ SPEC_BEGIN(SDInjectorSpec)
                 });
 
                 it(@"pulls object with all its dependecies set", ^{
-                    [[theValue(car.numWheels) should] equal:theValue(4)];
-                    [[car.frontRightWheel should] beKindOfClass:[Wheel class]];
-                    [[car.frontLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[car.backLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[car.backRightWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.audi should] beKindOfClass:[Car class]];
-                    [[garage.bmw should] beKindOfClass:[Car class]];
-                    [[garage.mercedes should] beKindOfClass:[Car class]];
+                    [[theValue(car.canDrive) should] beYes];
+                    [[theValue(garage.isFull) should] beYes];
                 });
 
                 it(@"sets dependencies of dependencies", ^{
-                    [[theValue(garage.audi.numWheels) should] equal:theValue(4)];
-                    [[garage.audi.frontRightWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.audi.frontLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.audi.backLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.audi.backRightWheel should] beKindOfClass:[Wheel class]];
-
-                    [[theValue(garage.bmw.numWheels) should] equal:theValue(4)];
-                    [[garage.bmw.frontRightWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.bmw.frontLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.bmw.backLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.bmw.backRightWheel should] beKindOfClass:[Wheel class]];
-
-                    [[theValue(garage.mercedes.numWheels) should] equal:theValue(4)];
-                    [[garage.mercedes.frontRightWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.mercedes.frontLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.mercedes.backLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.mercedes.backRightWheel should] beKindOfClass:[Wheel class]];
+                    [[theValue(garage.audi.canDrive) should] beYes];
+                    [[theValue(garage.bmw.canDrive) should] beYes];
+                    [[theValue(garage.mercedes.canDrive) should] beYes];
                 });
 
             });
@@ -116,10 +87,21 @@ SPEC_BEGIN(SDInjectorSpec)
                 __block Car *car;
                 __block Garage *garage;
                 beforeEach(^{
-                    [injector map:@protocol(Vehicle) to:[Car class] asSingleton:NO];
-                    [injector map:[Garage class] to:[Garage class] asSingleton:NO];
+                    [injector map:@protocol(Vehicle) to:[Car class]];
+                    [injector map:[Garage class] to:[Garage class]];
+                    [injector map:@protocol(Motor) to:[HybridMotor class]];
                     car = [injector getObject:@protocol(Vehicle)];
                     garage = [injector getObject:[Garage class]];
+                });
+
+                it(@"has mapping", ^{
+                    BOOL m1 = [injector is:@protocol(Vehicle) mappedTo:[Car class]];
+                    BOOL m2 = [injector is:[Garage class] mappedTo:[Garage class]];
+                    BOOL m3 = [injector is:@protocol(Motor) mappedTo:[HybridMotor class]];
+
+                    [[theValue(m1) should] beYes];
+                    [[theValue(m2) should] beYes];
+                    [[theValue(m3) should] beYes];
                 });
 
                 it(@"pulls object from context", ^{
@@ -128,34 +110,14 @@ SPEC_BEGIN(SDInjectorSpec)
                 });
 
                 it(@"pulls object with all its dependecies set", ^{
-                    [[theValue(car.numWheels) should] equal:theValue(4)];
-                    [[car.frontRightWheel should] beKindOfClass:[Wheel class]];
-                    [[car.frontLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[car.backLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[car.backRightWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.audi should] beKindOfClass:[Car class]];
-                    [[garage.bmw should] beKindOfClass:[Car class]];
-                    [[garage.mercedes should] beKindOfClass:[Car class]];
+                    [[theValue(car.canDrive) should] beYes];
+                    [[theValue(garage.isFull) should] beYes];
                 });
 
                 it(@"sets dependencies of dependencies", ^{
-                    [[theValue(garage.audi.numWheels) should] equal:theValue(4)];
-                    [[garage.audi.frontRightWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.audi.frontLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.audi.backLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.audi.backRightWheel should] beKindOfClass:[Wheel class]];
-
-                    [[theValue(garage.bmw.numWheels) should] equal:theValue(4)];
-                    [[garage.bmw.frontRightWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.bmw.frontLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.bmw.backLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.bmw.backRightWheel should] beKindOfClass:[Wheel class]];
-
-                    [[theValue(garage.mercedes.numWheels) should] equal:theValue(4)];
-                    [[garage.mercedes.frontRightWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.mercedes.frontLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.mercedes.backLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.mercedes.backRightWheel should] beKindOfClass:[Wheel class]];
+                    [[theValue(garage.audi.canDrive) should] beYes];
+                    [[theValue(garage.bmw.canDrive) should] beYes];
+                    [[theValue(garage.mercedes.canDrive) should] beYes];
                 });
 
             });
@@ -167,8 +129,20 @@ SPEC_BEGIN(SDInjectorSpec)
                 beforeEach(^{
                     [injector map:@protocol(Vehicle) to:[Car class] asSingleton:YES];
                     [injector mapSingleton:[Garage class]];
+                    [injector map:@protocol(Motor) to:[HybridMotor class]];
                     car = [injector getObject:@protocol(Vehicle)];
                     garage = [injector getObject:[Garage class]];
+
+                });
+
+                it(@"has mapping", ^{
+                    BOOL m1 = [injector is:@protocol(Vehicle) mappedTo:[Car class]];
+                    BOOL m2 = [injector is:[Garage class] mappedTo:[Garage class]];
+                    BOOL m3 = [injector is:@protocol(Motor) mappedTo:[HybridMotor class]];
+
+                    [[theValue(m1) should] beYes];
+                    [[theValue(m2) should] beYes];
+                    [[theValue(m3) should] beYes];
                 });
 
                 it(@"pulls object from context", ^{
@@ -181,34 +155,14 @@ SPEC_BEGIN(SDInjectorSpec)
                 });
 
                 it(@"pulls object with all its dependecies set", ^{
-                    [[theValue(car.numWheels) should] equal:theValue(4)];
-                    [[car.frontRightWheel should] beKindOfClass:[Wheel class]];
-                    [[car.frontLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[car.backLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[car.backRightWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.audi should] beKindOfClass:[Car class]];
-                    [[garage.bmw should] beKindOfClass:[Car class]];
-                    [[garage.mercedes should] beKindOfClass:[Car class]];
+                    [[theValue(car.canDrive) should] beYes];
+                    [[theValue(garage.isFull) should] beYes];
                 });
 
                 it(@"sets dependencies of dependencies", ^{
-                    [[theValue(garage.audi.numWheels) should] equal:theValue(4)];
-                    [[garage.audi.frontRightWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.audi.frontLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.audi.backLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.audi.backRightWheel should] beKindOfClass:[Wheel class]];
-
-                    [[theValue(garage.bmw.numWheels) should] equal:theValue(4)];
-                    [[garage.bmw.frontRightWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.bmw.frontLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.bmw.backLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.bmw.backRightWheel should] beKindOfClass:[Wheel class]];
-
-                    [[theValue(garage.mercedes.numWheels) should] equal:theValue(4)];
-                    [[garage.mercedes.frontRightWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.mercedes.frontLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.mercedes.backLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[garage.mercedes.backRightWheel should] beKindOfClass:[Wheel class]];
+                    [[theValue(garage.audi.canDrive) should] beYes];
+                    [[theValue(garage.bmw.canDrive) should] beYes];
+                    [[theValue(garage.mercedes.canDrive) should] beYes];
                 });
             });
 
@@ -229,30 +183,80 @@ SPEC_BEGIN(SDInjectorSpec)
 
             context(@"when context has instance mapped", ^{
 
-                __block Car *car1;
-                __block Car *car2;
+                __block Car *mappedCar;
+                __block Car *retrievedCar;
+                __block Garage *garage;
                 beforeEach(^{
-                    car1 = [Car car];
-                    [injector map:@protocol(Vehicle) to:car1];
-                    car2 = [injector getObject:@protocol(Vehicle)];
+                    [injector map:@protocol(Motor) to:[HybridMotor class]];
+                    mappedCar = [Car car];
+                    garage = [[Garage alloc] init];
+                    [injector map:@protocol(Vehicle) to:mappedCar];
+                    [injector map:[Garage class] to:garage];
+                    retrievedCar = [injector getObject:@protocol(Vehicle)];
+                });
+
+                it(@"has mapping", ^{
+                    BOOL m1 = [injector is:@protocol(Motor) mappedTo:[HybridMotor class]];
+                    BOOL m2 = [injector is:@protocol(Vehicle) mappedTo:mappedCar];
+                    BOOL m3 = [injector is:[Garage class] mappedTo:garage];
+
+                    BOOL m4 = [injector is:[Garage class] mappedTo:[Garage class]];
+                    BOOL m5 = [injector is:[Garage class] mappedTo:[[Garage alloc] init]];
+                    BOOL m6 = [injector is:[Car class] mappedTo:[Car class]];
+                    BOOL m7 = [injector is:[Car class] mappedTo:[Car car]];
+
+                    [[theValue(m1) should] beYes];
+                    [[theValue(m2) should] beYes];
+                    [[theValue(m3) should] beYes];
+
+                    [[theValue(m4) should] beNo];
+                    [[theValue(m5) should] beNo];
+                    [[theValue(m6) should] beNo];
+                    [[theValue(m7) should] beNo];
                 });
 
                 it(@"returns instance", ^{
-                    [[car2 should] equal:car1];
+                    [[retrievedCar should] equal:mappedCar];
                 });
 
                 it(@"pulls object with all its dependecies set", ^{
-                    [[theValue(car1.numWheels) should] equal:theValue(4)];
-                    [[car1.frontRightWheel should] beKindOfClass:[Wheel class]];
-                    [[car1.frontLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[car1.backLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[car1.backRightWheel should] beKindOfClass:[Wheel class]];
+                    [[theValue(mappedCar.canDrive) should] beYes];
+                    [[theValue(retrievedCar.canDrive) should] beYes];
+                    [[theValue(garage.isFull) should] beYes];
+                });
 
-                    [[theValue(car2.numWheels) should] equal:theValue(4)];
-                    [[car2.frontRightWheel should] beKindOfClass:[Wheel class]];
-                    [[car2.frontLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[car2.backLeftWheel should] beKindOfClass:[Wheel class]];
-                    [[car2.backRightWheel should] beKindOfClass:[Wheel class]];
+                it(@"sets dependencies of dependencies", ^{
+                    [[theValue(garage.audi.canDrive) should] beYes];
+                    [[theValue(garage.bmw.canDrive) should] beYes];
+                    [[theValue(garage.mercedes.canDrive) should] beYes];
+                });
+
+            });
+
+            context(@"when context has protocol mapped", ^{
+
+                it(@"raises exception", ^{
+                    [[theBlock(^{
+                        [injector map:[NSObject class] to:@protocol(Vehicle)];
+                    }) should] raiseWithName: @"SDInjectorException"];
+                });
+
+            });
+
+            context(@"when context has eager", ^{
+
+                it(@"creates instance", ^{
+                    BOOL wasToggled = [SingletonFoo isInitialized];
+                    [injector mapEagerSingleton:[SingletonFoo class]];
+                    BOOL isToggled = [SingletonFoo isInitialized];
+
+                    [[theValue(wasToggled) shouldNot] equal:theValue(isToggled)];
+                });
+
+                it(@"always return same instance", ^{
+                    [injector mapEagerSingleton:[SingletonFoo class]];
+
+                    [[[injector getObject:[SingletonFoo class]] should] equal:[injector getObject:[SingletonFoo class]]];
                 });
 
             });

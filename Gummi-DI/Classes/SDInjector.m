@@ -10,6 +10,7 @@
 #import "SDInjectorEntry.h"
 #import "SDInjectorClassEntry.h"
 #import "SDInjectorInstanceEntry.h"
+#import "SDReflector.h"
 
 static NSString *const SDInjectorException = @"SDInjectorException";
 static SDInjector *sInjector;
@@ -37,86 +38,83 @@ static SDInjector *sInjector;
 }
 
 - (id)getObject:(id)type {
-    SDInjectorEntry *entry = [self.context objectForKey:[self keyForType:type]];
+    if (!type)
+        return nil;
+
+    SDInjectorEntry *entry = self.context[[self keyForObject:type]];
     return entry.extractObject;
 }
 
 - (void)injectIntoObject:(id)object {
     if ([[object class] respondsToSelector:@selector(desiredProperties)]) {
         NSSet *properties = [[object class] performSelector:@selector(desiredProperties)];
-        [object setValuesForKeysWithDictionary:[self getDependenciesForObject:object forProperties:properties]];
+        [object setValuesForKeysWithDictionary:[self getDependenciesForObject:object withProperties:properties]];
     }
 }
 
-- (NSDictionary *)getDependenciesForObject:(id)object forProperties:(NSSet *)properties {
+- (NSDictionary *)getDependenciesForObject:(id)object withProperties:(NSSet *)properties {
     NSMutableDictionary *dependencies = [[NSMutableDictionary alloc] init];
     for (NSString *propertyName in properties) {
-        Class propertyType = [self getTypeForProperty:propertyName ofClass:[object class]];
+        id propertyType = [SDReflector getTypeForProperty:propertyName ofClass:[object class]];
         id dependency = [self getObject:propertyType];
         if (!dependency) {
+            if ([SDReflector isProtocol:propertyType])
+                @throw [NSException exceptionWithName:SDInjectorException reason:[NSString stringWithFormat:@"Can not retrieve object from context for <%@>. Make sure you have set up a rule for it", NSStringFromProtocol(propertyType)] userInfo:nil];
+
             dependency = [[propertyType alloc] init];
             [self injectIntoObject:dependency];
         }
-        [dependencies setObject:dependency forKey:propertyName];
+        dependencies[propertyName] = dependency;
     }
 
     return dependencies;
+}
+
+- (void)map:(id)whenAskedFor to:(id)use asSingleton:(BOOL)asSingleton {
+    if ([SDReflector isProtocol:whenAskedFor] && ![use conformsToProtocol:whenAskedFor])
+        @throw [NSException exceptionWithName:SDInjectorException reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", use, [self keyForObject:whenAskedFor]] userInfo:nil];
+
+    self.context[[self keyForObject:whenAskedFor]] = [self createEntryForObject:use asSingleton:asSingleton];
+}
+
+- (SDInjectorEntry *)createEntryForObject:(id)object asSingleton:(BOOL)asSingleton {
+    if ([SDReflector isProtocol:object])
+        @throw [NSException exceptionWithName:SDInjectorException reason:[NSString stringWithFormat:@"You can't map protocols (Tried to map <%@>)", NSStringFromProtocol(object)] userInfo:nil];
+
+    if ([SDReflector isClass:object])
+        return [SDInjectorClassEntry entryWithObject:object injector:self asSingleton:asSingleton];
+    else if ([SDReflector isInstance:object])
+        return [SDInjectorInstanceEntry entryWithObject:object injector:self];
+
+    return nil;
 }
 
 - (void)map:(id)whenAskedFor to:(id)use {
     [self map:whenAskedFor to:use asSingleton:NO];
 }
 
-- (void)map:(id)whenAskedFor to:(id)use asSingleton:(BOOL)asSingleton {
-    if ([self isProtocol:whenAskedFor] && ![use conformsToProtocol:whenAskedFor])
-        @throw [NSException exceptionWithName:SDInjectorException reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", use, [self keyForType:whenAskedFor]] userInfo:nil];
-
-    SDInjectorEntry *entry;
-    if ([self isInstance:use])
-        entry = [SDInjectorInstanceEntry entryWithObject:use injector:self];
-    else
-        entry = [SDInjectorClassEntry entryWithObject:use injector:self asSingleton:asSingleton];
-
-    [self.context setObject:entry forKey:[self keyForType:whenAskedFor]];
-}
-
 - (void)mapSingleton:(Class)aClass {
     [self map:aClass to:aClass asSingleton:YES];
 }
 
-- (NSString *)keyForType:(id)type {
-    if ([self isProtocol:type])
-        return [NSString stringWithFormat:@"<%@>", NSStringFromProtocol(type)];
-
-    return NSStringFromClass(type);
+- (void)mapEagerSingleton:(Class)aClass {
+    [self mapSingleton:aClass];
+    [self getObject:aClass];
 }
 
-
-#pragma mark Reflection
-
-// see: https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html
-
-- (Class)getTypeForProperty:(NSString *)propertyName ofClass:(Class)aClass {
-    objc_property_t property = class_getProperty(aClass, [propertyName UTF8String]);
-    if (!property)
-        @throw [NSException exceptionWithName:SDInjectorException reason:[NSString stringWithFormat:@"Property declaration for propertyName: '%@' does not exist", propertyName] userInfo:nil];
-    NSString *attributes = [NSString stringWithCString:property_getAttributes(property) encoding:NSUTF8StringEncoding];
-    NSRange startRange = [attributes rangeOfString:@"T@\""];
-    if (startRange.location == NSNotFound)
-        @throw [NSException exceptionWithName:SDInjectorException reason:[NSString stringWithFormat:@"Unable to determine class type for property declaration: '%@'. Did you type your property properly?", propertyName] userInfo:nil];
-    NSString *startOfClassName = [attributes substringFromIndex:startRange.length];
-    NSRange endRange = [startOfClassName rangeOfString:@"\""];
-    if (endRange.location == NSNotFound)
-        @throw [NSException exceptionWithName:SDInjectorException reason:[NSString stringWithFormat:@"Unable to determine class type for property declaration: '%@'. Did you type the property properly?", propertyName] userInfo:nil];
-    return NSClassFromString([startOfClassName substringToIndex:endRange.location]);
+- (BOOL)is:(id)whenAskedFor mappedTo:(id)use {
+    SDInjectorEntry *entry = self.context[[self keyForObject:whenAskedFor]];
+    if ([SDReflector isProtocol:whenAskedFor])
+        return [object_getClass(entry.object) isEqual:object_getClass(use)];
+    else
+        return [entry.object isEqual:use];
 }
 
-- (BOOL)isProtocol:(id)type {
-    return !class_isMetaClass(object_getClass(type));
-}
+- (NSString *)keyForObject:(id)object {
+    if ([SDReflector isProtocol:object])
+        return [NSString stringWithFormat:@"<%@>", NSStringFromProtocol(object)];
 
-- (BOOL)isInstance:(id)type {
-    return [type isKindOfClass:[type class]];
+    return NSStringFromClass(object);
 }
 
 @end
