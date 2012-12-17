@@ -41,6 +41,9 @@ static SDInjector *sInjector;
         return nil;
 
     SDInjectorEntry *entry = self.context[[self keyForObject:type]];
+    if (!entry)
+        return [self createObjectForType:type];
+
     return entry.extractObject;
 }
 
@@ -56,17 +59,22 @@ static SDInjector *sInjector;
     for (NSString *propertyName in properties) {
         id propertyType = [SDReflector getTypeForProperty:propertyName ofClass:[object class]];
         id dependency = [self getObject:propertyType];
-        if (!dependency) {
-            if ([SDReflector isProtocol:propertyType])
-                @throw [NSException exceptionWithName:SDInjectorException reason:[NSString stringWithFormat:@"Can not retrieve object from context for <%@>. Make sure you have set up a rule for it", NSStringFromProtocol(propertyType)] userInfo:nil];
+        if (!dependency)
+            dependency = [self createObjectForType:propertyType];
 
-            dependency = [[propertyType alloc] init];
-            [self injectIntoObject:dependency];
-        }
         dependencies[propertyName] = dependency;
     }
 
     return dependencies;
+}
+
+- (id)createObjectForType:(id)type {
+    if ([SDReflector isProtocol:type])
+        @throw [NSException exceptionWithName:SDInjectorException reason:[NSString stringWithFormat:@"Can not retrieve object from context for <%@>. Make sure you have set up a rule for it", NSStringFromProtocol(type)] userInfo:nil];
+
+    id object = [[type alloc] init];
+    [self injectIntoObject:object];
+    return object;
 }
 
 - (void)map:(id)whenAskedFor to:(id)use asSingleton:(BOOL)asSingleton {
@@ -104,6 +112,11 @@ static SDInjector *sInjector;
 - (BOOL)is:(id)whenAskedFor mappedTo:(id)use {
     SDInjectorEntry *entry = self.context[[self keyForObject:whenAskedFor]];
     return [entry.object isEqual:use];
+}
+
+- (void)unMap:(id)whenAskedFor from:(id)use {
+    if ([self is:whenAskedFor mappedTo:use])
+        [self.context removeObjectForKey:[self keyForObject:whenAskedFor]];
 }
 
 - (NSString *)keyForObject:(id)object {

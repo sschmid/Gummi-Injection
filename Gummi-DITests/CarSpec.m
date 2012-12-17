@@ -49,14 +49,14 @@ SPEC_BEGIN(CarSpec)
             it(@"adds wheels", ^{
                 car.frontLeftWheel = [Wheel wheel];
                 car.frontRightWheel = [Wheel wheel];
-                car.backLeftWheel = [Wheel wheel];
-                car.backRightWheel = [Wheel wheel];
+                car.rearLeftWheel = [Wheel wheel];
+                car.rearRightWheel = [Wheel wheel];
 
                 BOOL hasAllWheels = car.numWheels == 4;
                 BOOL hasFLW = [car.frontLeftWheel isKindOfClass:[Wheel class]];
                 BOOL hasFRW = [car.frontRightWheel isKindOfClass:[Wheel class]];
-                BOOL hasBLW = [car.backLeftWheel isKindOfClass:[Wheel class]];
-                BOOL hasBRW = [car.backRightWheel isKindOfClass:[Wheel class]];
+                BOOL hasBLW = [car.rearLeftWheel isKindOfClass:[Wheel class]];
+                BOOL hasBRW = [car.rearRightWheel isKindOfClass:[Wheel class]];
 
                 [[theValue(hasAllWheels && hasBLW && hasFLW && hasFRW && hasBRW) should] beYes];
             });
@@ -64,8 +64,8 @@ SPEC_BEGIN(CarSpec)
             it(@"can not drive without motor", ^{
                 car.frontLeftWheel = [Wheel wheel];
                 car.frontRightWheel = [Wheel wheel];
-                car.backLeftWheel = [Wheel wheel];
-                car.backRightWheel = [Wheel wheel];
+                car.rearLeftWheel = [Wheel wheel];
+                car.rearRightWheel = [Wheel wheel];
 
                 [[theValue(car.canDrive) should] beNo];
             });
@@ -85,8 +85,8 @@ SPEC_BEGIN(CarSpec)
             it(@"can drive", ^{
                 car.frontLeftWheel = [Wheel wheel];
                 car.frontRightWheel = [Wheel wheel];
-                car.backLeftWheel = [Wheel wheel];
-                car.backRightWheel = [Wheel wheel];
+                car.rearLeftWheel = [Wheel wheel];
+                car.rearRightWheel = [Wheel wheel];
                 car.motor = [HybridMotor motor];
 
                 [[theValue(car.canDrive) should] beYes];

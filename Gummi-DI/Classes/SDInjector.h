@@ -24,4 +24,6 @@
 
 - (BOOL)is:(id)whenAskedFor mappedTo:(id)use;
 
+- (void)unMap:(id)whenAskedFor from:(id)use;
+
 @end

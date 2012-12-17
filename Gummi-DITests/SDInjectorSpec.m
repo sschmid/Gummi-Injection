@@ -12,6 +12,7 @@
 #import "SingletonFoo.h"
 #import "SingletonBar.h"
 #import "HybridMotor.h"
+#import "Wheel.h"
 
 SPEC_BEGIN(SDInjectorSpec)
 
@@ -30,16 +31,22 @@ SPEC_BEGIN(SDInjectorSpec)
                 [[theValue([injector is:[Car class] mappedTo:[Car class]]) should] beNo];
             });
 
-            it(@"has no objects in context", ^{
-                Car *car = [injector getObject:[Car class]];
+            it(@"retrieves objects from empty context", ^{
+                Wheel *wheel = [injector getObject:[Wheel class]];
 
-                [car shouldBeNil];
+                [[wheel should] beKindOfClass:[Wheel class]];
+            });
+
+            it(@"raises exception when asking for unmapped protocol", ^{
+                [[theBlock(^{
+                    [injector getObject:@protocol(Vehicle)];
+                }) should] raiseWithName:@"SDInjectorException"];
             });
 
             it(@"raises exception when class does not conform to protocol", ^{
                 [[theBlock(^{
                     [injector map:@protocol(Vehicle) to:[NSObject class]];
-                }) should] raiseWithName: @"SDInjectorException"];
+                }) should] raiseWithName:@"SDInjectorException"];
             });
 
             context(@"when context has classes mapped", ^{
@@ -241,7 +248,7 @@ SPEC_BEGIN(SDInjectorSpec)
                 it(@"raises exception", ^{
                     [[theBlock(^{
                         [injector map:[NSObject class] to:@protocol(Vehicle)];
-                    }) should] raiseWithName: @"SDInjectorException"];
+                    }) should] raiseWithName:@"SDInjectorException"];
                 });
 
             });
@@ -262,6 +269,16 @@ SPEC_BEGIN(SDInjectorSpec)
                     [[[injector getObject:[SingletonFoo class]] should] equal:[injector getObject:[SingletonFoo class]]];
                 });
 
+            });
+
+            it(@"removes mappings", ^{
+                [injector map:@protocol(Vehicle) to:[Car class]];
+                BOOL has1 = [injector is:@protocol(Vehicle) mappedTo:[Car class]];
+                [injector unMap:@protocol(Vehicle) from:[Car class]];
+                BOOL has2 = [injector is:@protocol(Vehicle) mappedTo:[Car class]];
+
+                [[theValue(has1) should] beYes];
+                [[theValue(has2) should] beNo];
             });
 
         });

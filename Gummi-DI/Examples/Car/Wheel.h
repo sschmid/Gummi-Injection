@@ -9,7 +9,6 @@
 
 
 @interface Wheel : NSObject
-
 + (id)wheel;
 
 @end
