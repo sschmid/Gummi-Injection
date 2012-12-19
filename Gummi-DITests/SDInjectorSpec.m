@@ -138,8 +138,8 @@ SPEC_BEGIN(SDInjectorSpec)
                 __block Car *car;
                 __block Garage *garage;
                 beforeEach(^{
-                    [injector map:@protocol(Vehicle) to:[Car class] asSingleton:YES];
-                    [injector mapSingleton:[Garage class]];
+                    [injector mapSingleton:@protocol(Vehicle) to:[Car class] lazy:YES];
+                    [injector mapSingleton:[Garage class] to:[Garage class] lazy:YES];
                     [injector map:@protocol(Motor) to:[HybridMotor class]];
                     car = [injector getObject:@protocol(Vehicle)];
                     garage = [injector getObject:[Garage class]];
@@ -180,8 +180,8 @@ SPEC_BEGIN(SDInjectorSpec)
             context(@"when circular dependency", ^{
 
                 it(@"will be resolved for singletons", ^{
-                    [injector mapSingleton:[SingletonFoo class]];
-                    [injector mapSingleton:[SingletonBar class]];
+                    [injector mapSingleton:[SingletonFoo class] to:[SingletonFoo class] lazy:YES];
+                    [injector mapSingleton:[SingletonBar class] to:[SingletonBar class] lazy:YES];
                     SingletonFoo *foo = [injector getObject:[SingletonFoo class]];
                     SingletonBar *bar = [injector getObject:[SingletonBar class]];
 
@@ -257,14 +257,14 @@ SPEC_BEGIN(SDInjectorSpec)
 
                 it(@"creates instance", ^{
                     BOOL wasToggled = [SingletonFoo isInitialized];
-                    [injector mapEagerSingleton:[SingletonFoo class]];
+                    [injector mapSingleton:[SingletonFoo class] to:[SingletonFoo class] lazy:NO];
                     BOOL isToggled = [SingletonFoo isInitialized];
 
                     [[theValue(wasToggled) shouldNot] equal:theValue(isToggled)];
                 });
 
                 it(@"always return same instance", ^{
-                    [injector mapEagerSingleton:[SingletonFoo class]];
+                    [injector mapSingleton:[SingletonFoo class] to:[SingletonFoo class] lazy:NO];
 
                     [[[injector getObject:[SingletonFoo class]] should] equal:[injector getObject:[SingletonFoo class]]];
                 });

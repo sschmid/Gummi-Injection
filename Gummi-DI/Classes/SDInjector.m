@@ -10,6 +10,7 @@
 #import "SDInjectorClassEntry.h"
 #import "SDInjectorInstanceEntry.h"
 #import "SDReflector.h"
+#import "SDModule.h"
 
 static NSString *const SDInjectorException = @"SDInjectorException";
 static SDInjector *sInjector;
@@ -54,34 +55,53 @@ static SDInjector *sInjector;
     }
 }
 
+- (SDInjectorEntry *)map:(id)whenAskedFor to:(id)use {
+    [self validateMapping:whenAskedFor with:use];
+    SDInjectorEntry *entry = [self createEntryForObject:use asSingleton:NO];
+    self.context[[self keyForObject:whenAskedFor]] = entry;
+    return entry;
+}
+
+- (SDInjectorEntry *)mapSingleton:(id)whenAskedFor to:(id)use lazy:(BOOL)lazy {
+    [self validateMapping:whenAskedFor with:use];
+    SDInjectorEntry *entry = [self createEntryForObject:use asSingleton:YES];
+    self.context[[self keyForObject:whenAskedFor]] = entry;
+    if (!lazy)
+        [self getObject:whenAskedFor];
+
+    return entry;
+}
+
+- (BOOL)is:(id)whenAskedFor mappedTo:(id)use {
+    SDInjectorEntry *entry = self.context[[self keyForObject:whenAskedFor]];
+    return [entry.object isEqual:use];
+}
+
+- (void)unMap:(id)whenAskedFor from:(id)use {
+    if ([self is:whenAskedFor mappedTo:use])
+        [self.context removeObjectForKey:[self keyForObject:whenAskedFor]];
+}
+
+- (void)validateMapping:(id)whenAskedFor with:(id)use {
+    if ([SDReflector isProtocol:whenAskedFor] && ![use conformsToProtocol:whenAskedFor])
+        @throw [NSException exceptionWithName:SDInjectorException reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", use, [self keyForObject:whenAskedFor]] userInfo:nil];
+}
+
 - (NSDictionary *)getDependenciesForObject:(id)object withProperties:(NSSet *)properties {
     NSMutableDictionary *dependencies = [[NSMutableDictionary alloc] init];
-    for (NSString *propertyName in properties) {
-        id propertyType = [SDReflector getTypeForProperty:propertyName ofClass:[object class]];
-        id dependency = [self getObject:propertyType];
-        if (!dependency)
-            dependency = [self createObjectForType:propertyType];
-
-        dependencies[propertyName] = dependency;
-    }
+    for (NSString *propertyName in properties)
+        dependencies[propertyName] = [self getObject:[SDReflector getTypeForProperty:propertyName ofClass:[object class]]];
 
     return dependencies;
 }
 
 - (id)createObjectForType:(id)type {
     if ([SDReflector isProtocol:type])
-        @throw [NSException exceptionWithName:SDInjectorException reason:[NSString stringWithFormat:@"Can not retrieve object from context for <%@>. Make sure you have set up a rule for it", NSStringFromProtocol(type)] userInfo:nil];
+        @throw [NSException exceptionWithName:SDInjectorException reason:[NSString stringWithFormat:@"Can not create an object for <%@>. Make sure you have set up a rule for it", NSStringFromProtocol(type)] userInfo:nil];
 
     id object = [[type alloc] init];
     [self injectIntoObject:object];
     return object;
-}
-
-- (void)map:(id)whenAskedFor to:(id)use asSingleton:(BOOL)asSingleton {
-    if ([SDReflector isProtocol:whenAskedFor] && ![use conformsToProtocol:whenAskedFor])
-        @throw [NSException exceptionWithName:SDInjectorException reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", use, [self keyForObject:whenAskedFor]] userInfo:nil];
-
-    self.context[[self keyForObject:whenAskedFor]] = [self createEntryForObject:use asSingleton:asSingleton];
 }
 
 - (SDInjectorEntry *)createEntryForObject:(id)object asSingleton:(BOOL)asSingleton {
@@ -96,34 +116,18 @@ static SDInjector *sInjector;
     return nil;
 }
 
-- (void)map:(id)whenAskedFor to:(id)use {
-    return [self map:whenAskedFor to:use asSingleton:NO];
-}
-
-- (void)mapSingleton:(Class)aClass {
-    return [self map:aClass to:aClass asSingleton:YES];
-}
-
-- (void)mapEagerSingleton:(Class)aClass {
-    [self mapSingleton:aClass];
-    [self getObject:aClass];
-}
-
-- (BOOL)is:(id)whenAskedFor mappedTo:(id)use {
-    SDInjectorEntry *entry = self.context[[self keyForObject:whenAskedFor]];
-    return [entry.object isEqual:use];
-}
-
-- (void)unMap:(id)whenAskedFor from:(id)use {
-    if ([self is:whenAskedFor mappedTo:use])
-        [self.context removeObjectForKey:[self keyForObject:whenAskedFor]];
-}
-
 - (NSString *)keyForObject:(id)object {
     if ([SDReflector isProtocol:object])
         return [NSString stringWithFormat:@"<%@>", NSStringFromProtocol(object)];
 
     return NSStringFromClass(object);
 }
+
+
+#pragma mark Modules
+- (void)addModule:(SDModule *)module {
+    [module configure:self];
+}
+
 
 @end

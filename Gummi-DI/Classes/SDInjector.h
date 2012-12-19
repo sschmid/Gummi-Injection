@@ -6,24 +6,19 @@
 
 
 #import <Foundation/Foundation.h>
+#import "SDInjectionMapper.h"
+
+@class SDModule;
 
 #define inject(args...) +(NSSet *)desiredProperties {return [NSSet setWithObjects: args, nil];}
 
-@interface SDInjector : NSObject
+@interface SDInjector : NSObject <SDInjectionMapper>
 
 + (SDInjector *)sharedInjector;
 
 - (id)getObject:(id)type;
 - (void)injectIntoObject:(id)object;
 
-- (void)map:(id)whenAskedFor to:(id)use asSingleton:(BOOL)asSingleton;
-- (void)map:(id)whenAskedFor to:(id)use;
-
-- (void)mapSingleton:(Class)aClass;
-- (void)mapEagerSingleton:(Class)aClass;
-
-- (BOOL)is:(id)whenAskedFor mappedTo:(id)use;
-
-- (void)unMap:(id)whenAskedFor from:(id)use;
+- (void)addModule:(SDModule *)module;
 
 @end

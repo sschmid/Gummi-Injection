@@ -31,7 +31,7 @@ SPEC_BEGIN(SDReflectorSpec)
             it(@"raises exeption for unknown property names", ^{
                 [[theBlock(^{
                     [SDReflector getTypeForProperty:@"iDoNotExist" ofClass:[Car class]];
-                }) should] raiseWithName: @"SDReflectorException"];
+                }) should] raiseWithName:@"SDReflectorException"];
             });
 
             it(@"is a class", ^{
