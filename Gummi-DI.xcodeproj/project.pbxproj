@@ -14,7 +14,7 @@
 		8D4DF3193D7BF6D7443A78DE /* Wheel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF2853D9FEB7A3A7C4F79 /* Wheel.m */; };
 		8D4DF38895A9DBBF7189360A /* SDModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF7C734E348C4F961F7ED /* SDModule.m */; };
 		8D4DF3A9C2370B77255EB0AC /* SDReflector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFE7AED8C0DBBB4A3D3EF /* SDReflector.m */; };
-		8D4DF524753E1E74F44D26F7 /* CarExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF7C6DDAAEE4E8E10C07B /* CarExample.m */; };
+		8D4DF524753E1E74F44D26F7 /* GarageExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF7C6DDAAEE4E8E10C07B /* GarageExample.m */; };
 		8D4DF835DBDF8FB7BF2E733F /* SDInjectorClassEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF3A76C0A870CEB51C83E /* SDInjectorClassEntry.m */; };
 		8D4DF869F8886F67550C6D84 /* SDInjectorEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF2AD1D8EFD2D4AF8FCB4 /* SDInjectorEntry.m */; };
 		8D4DF9033AB98407B035F260 /* SDInjectorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFA913A04026C568605D8 /* SDInjectorSpec.m */; };
@@ -68,7 +68,7 @@
 		8D4DF63F37B2E4C6646406D7 /* HybridMotor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HybridMotor.m; sourceTree = "<group>"; };
 		8D4DF6A3F6A5995B2F738664 /* SDReflectorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDReflectorSpec.m; sourceTree = "<group>"; };
 		8D4DF6EAF4A0E406A3A46EA4 /* Motor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Motor.h; sourceTree = "<group>"; };
-		8D4DF7C6DDAAEE4E8E10C07B /* CarExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarExample.m; sourceTree = "<group>"; };
+		8D4DF7C6DDAAEE4E8E10C07B /* GarageExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GarageExample.m; sourceTree = "<group>"; };
 		8D4DF7C734E348C4F961F7ED /* SDModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDModule.m; sourceTree = "<group>"; };
 		8D4DF842FED06BCE69213A93 /* SDInjectorClassEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDInjectorClassEntry.h; sourceTree = "<group>"; };
 		8D4DF9DC81B98F9691083D19 /* SingletonBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonBar.m; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 		8D4DFABE2C6FC143D1A6C2DC /* SDInjectorEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDInjectorEntry.h; sourceTree = "<group>"; };
 		8D4DFC46923C9F3F27494932 /* SDInjectorInstanceEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDInjectorInstanceEntry.m; sourceTree = "<group>"; };
 		8D4DFCB82259097306CC192A /* GarageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GarageSpec.m; sourceTree = "<group>"; };
-		8D4DFD130838D9250C2F9777 /* CarExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarExample.h; sourceTree = "<group>"; };
+		8D4DFD130838D9250C2F9777 /* GarageExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GarageExample.h; sourceTree = "<group>"; };
 		8D4DFD20DD9421DCC79DBBC5 /* Garage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Garage.m; sourceTree = "<group>"; };
 		8D4DFD352F7D8B14CD3688FD /* SDReflector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDReflector.h; sourceTree = "<group>"; };
 		8D4DFDA09285E1DDE8DE4336 /* SDInjector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDInjector.m; sourceTree = "<group>"; };
@@ -184,8 +184,8 @@
 			children = (
 				8D4DF3EB4650A769C94AE984 /* Car.h */,
 				8D4DFDF089CFD1E95DA507FB /* Car.m */,
-				8D4DFD130838D9250C2F9777 /* CarExample.h */,
-				8D4DF7C6DDAAEE4E8E10C07B /* CarExample.m */,
+				8D4DFD130838D9250C2F9777 /* GarageExample.h */,
+				8D4DF7C6DDAAEE4E8E10C07B /* GarageExample.m */,
 				8D4DF9EFAE11EEC84C87518F /* Garage.h */,
 				8D4DFD20DD9421DCC79DBBC5 /* Garage.m */,
 				8D4DF4433173206CB3CE3DEA /* HybridMotor.h */,
@@ -410,7 +410,7 @@
 				8D4DF835DBDF8FB7BF2E733F /* SDInjectorClassEntry.m in Sources */,
 				8D4DF9E8000002D3294AAA83 /* SDInjectorInstanceEntry.m in Sources */,
 				8D4DF3A9C2370B77255EB0AC /* SDReflector.m in Sources */,
-				8D4DF524753E1E74F44D26F7 /* CarExample.m in Sources */,
+				8D4DF524753E1E74F44D26F7 /* GarageExample.m in Sources */,
 				8D4DF072DB44619CAF75AA82 /* Car.m in Sources */,
 				8D4DFC3924A05A8537EC50B6 /* Garage.m in Sources */,
 				8D4DF3193D7BF6D7443A78DE /* Wheel.m in Sources */,

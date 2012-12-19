@@ -5,15 +5,14 @@
 //
 
 
-#import "CarExample.h"
+#import "GarageExample.h"
 #import "Motor.h"
 #import "SDInjector.h"
-#import "Car.h"
 #import "HybridMotor.h"
-#import "Wheel.h"
+#import "Garage.h"
 
 
-@implementation CarExample
+@implementation GarageExample
 
 - (id)init {
     self = [super init];
@@ -24,10 +23,10 @@
         // For protocols there's no way to know which implementation to return - we need to set up a rule for it.
         [injector map:@protocol(Motor) to:[HybridMotor class]];
 
-        // Injector creates Car and injects Wheels and Motor.
-        Car *car = [injector getObject:[Car class]];
+        // Injector creates Cars and injects Wheels and Motor.
+        Garage *garage = [injector getObject:[Garage class]];
 
-        NSLog(@"Car can drive: %@", car.canDrive == 0 ? @"NO" : @"YES"); // YES, all dependencies set
+        NSLog(@"Garage is full with cars: %@", garage.isFull == 0 ? @"NO" : @"YES"); // YES, all dependencies set
     }
 
     return self;
