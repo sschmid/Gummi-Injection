@@ -7,7 +7,6 @@
 
 #import "Kiwi.h"
 #import "SDModule.h"
-#import "Vehicle.h"
 #import "SDInjector.h"
 
 
@@ -22,17 +21,8 @@ SPEC_BEGIN(SDModuleSpec)
                 injector = [[SDInjector alloc] init];
             });
 
-            it(@"creates obj", ^{
+            it(@"creates module", ^{
                 [[module should] beKindOfClass:[SDModule class]];
-            });
-
-            it(@"has no mappings", ^{
-                [[module.context should] beEmpty];
-            });
-
-            it(@"adds module", ^{
-                [injector addModule:module];
-
             });
 
         });

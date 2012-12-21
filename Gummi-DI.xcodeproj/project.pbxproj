@@ -24,6 +24,7 @@
 		8D4DFC3924A05A8537EC50B6 /* Garage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFD20DD9421DCC79DBBC5 /* Garage.m */; };
 		8D4DFCDACF5EC147C2A7B69F /* HybridMotor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF63F37B2E4C6646406D7 /* HybridMotor.m */; };
 		8D4DFF0EC381C643E012D2CA /* GarageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFCB82259097306CC192A /* GarageSpec.m */; };
+		8D4DFFBAC35BB9F55E32EC89 /* CarModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF83C66BBD4E0E190DB9D /* CarModule.m */; };
 		9C3C70F11B41406DAFE68394 /* libPods-Gummi-DITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2F37604DD54BCFB7A5482F /* libPods-Gummi-DITests.a */; };
 		CBFB674F167B4FEF00BF2D02 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBFB674E167B4FEF00BF2D02 /* UIKit.framework */; };
 		CBFB6751167B4FEF00BF2D02 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBFB6750167B4FEF00BF2D02 /* Foundation.framework */; };
@@ -70,6 +71,7 @@
 		8D4DF6EAF4A0E406A3A46EA4 /* Motor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Motor.h; sourceTree = "<group>"; };
 		8D4DF7C6DDAAEE4E8E10C07B /* GarageExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GarageExample.m; sourceTree = "<group>"; };
 		8D4DF7C734E348C4F961F7ED /* SDModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDModule.m; sourceTree = "<group>"; };
+		8D4DF83C66BBD4E0E190DB9D /* CarModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarModule.m; sourceTree = "<group>"; };
 		8D4DF842FED06BCE69213A93 /* SDInjectorClassEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDInjectorClassEntry.h; sourceTree = "<group>"; };
 		8D4DF9DC81B98F9691083D19 /* SingletonBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonBar.m; sourceTree = "<group>"; };
 		8D4DF9EFAE11EEC84C87518F /* Garage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Garage.h; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 		8D4DFDE8610CCE44EC8C0978 /* SDInjectionMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDInjectionMapper.h; sourceTree = "<group>"; };
 		8D4DFDF089CFD1E95DA507FB /* Car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
 		8D4DFE7AED8C0DBBB4A3D3EF /* SDReflector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDReflector.m; sourceTree = "<group>"; };
+		8D4DFEA28DF3F6FF61AB10E8 /* CarModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarModule.h; sourceTree = "<group>"; };
 		9E2F37604DD54BCFB7A5482F /* libPods-Gummi-DITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Gummi-DITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBFB674A167B4FEF00BF2D02 /* Gummi-DI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gummi-DI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBFB674E167B4FEF00BF2D02 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -154,6 +157,7 @@
 				8D4DF03D159AB2E746074167 /* SingletonFoo.m */,
 				8D4DF9DC81B98F9691083D19 /* SingletonBar.m */,
 				8D4DF2CEE9D443880FB1F363 /* SingletonBar.h */,
+				8D4DF7823D628C2C3D4846AD /* Modules */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -177,6 +181,15 @@
 				8D4DF074C84C888B38D8BA68 /* SDInjectorInstanceEntry.h */,
 			);
 			path = InjectorEntries;
+			sourceTree = "<group>";
+		};
+		8D4DF7823D628C2C3D4846AD /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8D4DF83C66BBD4E0E190DB9D /* CarModule.m */,
+				8D4DFEA28DF3F6FF61AB10E8 /* CarModule.h */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		8D4DFA9396F39DA3228232CA /* Car */ = {
@@ -430,6 +443,7 @@
 				8D4DF01076F428F930D5F618 /* SingletonBar.m in Sources */,
 				8D4DF146ED667D95D1DF0988 /* SDReflectorSpec.m in Sources */,
 				8D4DFABD608A658DA5FC676A /* SDModuleSpec.m in Sources */,
+				8D4DFFBAC35BB9F55E32EC89 /* CarModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

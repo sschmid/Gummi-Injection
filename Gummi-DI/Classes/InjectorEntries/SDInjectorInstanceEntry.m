@@ -11,10 +11,10 @@
 
 @implementation SDInjectorInstanceEntry
 
-- (id)initWithObject:(id)object injector:(SDInjector *)injector {
-    self = [super initWithObject:object injector:injector];
+- (id)initWithObject:(id)whenAskedFor mappedTo:(id)use injector:(SDInjector *)injector {
+    self = [super initWithObject:whenAskedFor mappedTo:use injector:injector];
     if (self) {
-        [_injector injectIntoObject:self.object];
+        [_injector injectIntoObject:_use];
     }
 
     return self;

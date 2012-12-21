@@ -9,16 +9,16 @@
 
 @class SDInjector;
 
-
 @interface SDInjectorEntry : NSObject {
+    id _whenAskedFor;
+    id _use;
     SDInjector *_injector;
 }
 
-@property(nonatomic, strong) id object;
+@property(nonatomic, strong, readonly) id whenAskedFor;
+@property(nonatomic, strong, readonly) id use;
 
-+ (id)entryWithObject:(id)object injector:(SDInjector *)injector;
-
-- (id)initWithObject:(id)object injector:(SDInjector *)injector;
+- (id)initWithObject:(id)whenAskedFor mappedTo:(id)use injector:(SDInjector *)injector;
 - (id)extractObject;
 
 @end

@@ -20,5 +20,10 @@
 - (void)injectIntoObject:(id)object;
 
 - (void)addModule:(SDModule *)module;
+- (void)removeModule:(SDModule *)module;
+- (void)removeModuleClass:(Class)moduleClass;
+
+- (BOOL)hasModule:(SDModule *)module;
+- (BOOL)hasModuleClass:(Class)moduleClass;
 
 @end

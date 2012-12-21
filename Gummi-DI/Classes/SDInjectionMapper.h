@@ -12,7 +12,7 @@
 - (SDInjectorEntry *)map:(id)whenAskedFor to:(id)use;
 - (SDInjectorEntry *)mapSingleton:(id)whenAskedFor to:(id)use lazy:(BOOL)lazy;
 
-- (BOOL)is:(id)whenAskedFor mappedTo:(id)use;
+- (BOOL)isObject:(id)whenAskedFor mappedTo:(id)use;
 - (void)unMap:(id)whenAskedFor from:(id)use;
 
 @end

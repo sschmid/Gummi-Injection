@@ -1,3 +1,4 @@
+
 //
 // Created by sschmid on 16.12.12.
 //
@@ -21,12 +22,17 @@ inject(@"bar")
 }
 
 - (id)init {
+    NSLog(@"[%@ %s]", NSStringFromClass([self class]), sel_getName(_cmd));
     self = [super init];
     if (self) {
         sToggle = !sToggle;
     }
 
     return self;
+}
+
+- (void)dealloc {
+    NSLog(@"[%@ %s]", NSStringFromClass([self class]), sel_getName(_cmd));
 }
 
 

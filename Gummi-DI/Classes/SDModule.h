@@ -13,11 +13,11 @@
 
 @interface SDModule : NSObject <SDInjectionMapper> {
     SDInjector *_injector;
-    NSMutableArray *_context;
+    NSMutableDictionary*_context;
 }
 
-@property(nonatomic, strong, readonly) NSArray *context;
-
 - (void)configure:(SDInjector *)injector;
+- (void)unload;
+
 
 @end
