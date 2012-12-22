@@ -33,7 +33,7 @@ SPEC_BEGIN(GarageSpec)
                 [[theValue(garage.isFull) should] beNo];
             });
 
-            it(@"is full", ^{
+            pending(@"is full", ^{
                 garage.audi = [Car car];
                 garage.bmw = [Car car];
                 garage.mercedes = [Car car];

@@ -7,19 +7,21 @@
 
 #import "SDInjectorEntry.h"
 #import "SDInjector.h"
+#import "SDReflector.h"
 
 
 @implementation SDInjectorEntry
-@synthesize object = _object;
+@synthesize whenAskedFor = _whenAskedFor;
+@synthesize use = _use;
 
-+ (id)entryWithObject:(id)object injector:(SDInjector *)injector {
-    return [[self alloc] initWithObject:object injector:injector];
-}
-
-- (id)initWithObject:(id)object injector:(SDInjector *)injector {
+- (id)initWithObject:(id)whenAskedFor mappedTo:(id)use injector:(SDInjector *)injector {
     self = [super init];
     if (self) {
-        self.object = object;
+        if ([SDReflector isProtocol:whenAskedFor] && ![use conformsToProtocol:whenAskedFor])
+            @throw [NSException exceptionWithName:@"SDInjectorEntryException" reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", use, whenAskedFor] userInfo:nil];
+
+        _whenAskedFor = whenAskedFor;
+        _use = use;
         _injector = injector;
     }
 
@@ -27,7 +29,7 @@
 }
 
 - (id)extractObject {
-    return self.object;
+    return _use;
 }
 
 @end

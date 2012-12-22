@@ -10,5 +10,5 @@
 @class SDInjector;
 
 
-@interface CarExample : NSObject
+@interface GarageExample : NSObject
 @end

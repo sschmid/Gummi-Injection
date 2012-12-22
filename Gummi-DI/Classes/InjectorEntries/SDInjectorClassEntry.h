@@ -9,10 +9,9 @@
 #import "SDInjectorEntry.h"
 
 
-@interface SDInjectorClassEntry : SDInjectorEntry
+@interface SDInjectorClassEntry : SDInjectorEntry {
+    id _singletonCache;
+}
 
-+ (id)entryWithObject:(id)object injector:(SDInjector *)injector asSingleton:(BOOL)asSingleton;
-
-- (id)initWithObject:(id)object injector:(SDInjector *)injector asSingleton:(BOOL)asSingleton;
-
+@property(nonatomic) BOOL asSingleton;
 @end

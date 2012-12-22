@@ -7,14 +7,14 @@
 //
 
 #import "AppDelegate.h"
-#import "CarExample.h"
+#import "GarageExample.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    [[CarExample alloc] init];
+    [[GarageExample alloc] init];
 
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
