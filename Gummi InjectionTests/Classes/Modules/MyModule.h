@@ -1,5 +1,5 @@
 //
-// Created by sschmid on 19.12.12.
+// Created by Simon Schmid
 //
 // contact@sschmid.com
 //
@@ -9,5 +9,5 @@
 #import "GIModule.h"
 
 
-@interface CarModule : GIModule
+@interface MyModule : GIModule
 @end

@@ -1,5 +1,5 @@
 //
-// Created by sschmid on 17.12.12.
+// Created by Simon Schmid
 //
 // contact@sschmid.com
 //
@@ -8,7 +8,6 @@
 #import <Foundation/Foundation.h>
 
 @class GIInjector;
-
 
 @interface GarageExample : NSObject
 @end

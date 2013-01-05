@@ -1,5 +1,5 @@
 //
-// Created by sschmid on 17.12.12.
+// Created by Simon Schmid
 //
 // contact@sschmid.com
 //
@@ -21,8 +21,57 @@ SPEC_BEGIN(GIModuleSpec)
                 injector = [[GIInjector alloc] init];
             });
 
-            it(@"creates module", ^{
+            it(@"creates a module", ^{
                 [[module should] beKindOfClass:[GIModule class]];
+            });
+
+            it(@"has no mappings", ^{
+                BOOL has = [module isObject:[NSObject class] mappedTo:[NSObject class]];
+
+                [[theValue(has) should] beNo];
+            });
+
+            context(@"when mapping added", ^{
+
+                beforeEach(^{
+                    [module configure:[[GIInjector alloc] init]];
+                    [module map:@protocol(NSObject) to:[NSObject class]];
+                });
+
+                it(@"has mapping", ^{
+                    BOOL has = [module isObject:@protocol(NSObject) mappedTo:[NSObject class]];
+
+                    [[theValue(has) should] beYes];
+                });
+
+                context(@"when removed mapping", ^{
+
+                    beforeEach(^{
+                        [module unMap:@protocol(NSObject) from:[NSObject class]];
+                    });
+
+                    it(@"has no mapping", ^{
+                        BOOL has = [module isObject:@protocol(NSObject) mappedTo:[NSObject class]];
+
+                        [[theValue(has) should] beNo];
+                    });
+
+                });
+
+                context(@"when unload module", ^{
+
+                    beforeEach(^{
+                        [module unload];
+                    });
+
+                    it(@"has no mapping", ^{
+                        BOOL has = [module isObject:@protocol(NSObject) mappedTo:[NSObject class]];
+
+                        [[theValue(has) should] beNo];
+                    });
+
+                });
+
             });
 
         });

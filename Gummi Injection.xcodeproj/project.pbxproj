@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8D4DF19F6225319DA6D031C5 /* GarageExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF8E23DBA6E6DC0533B09 /* GarageExample.m */; };
-		8D4DF1DF8C62695C8549AF6B /* CarModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF849C5D4E4EEC641EA43 /* CarModule.m */; };
+		8D4DF1DF8C62695C8549AF6B /* MyModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF849C5D4E4EEC641EA43 /* MyModule.m */; };
+		8D4DF387ACCA9BD5C6EF4D53 /* GIInjectorEntryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFE869EDD99927CE151DE /* GIInjectorEntryFactory.m */; };
 		8D4DF4A3B25D120FBACA0E6D /* GIReflector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF2BA73AF38A11CBC4530 /* GIReflector.m */; };
 		8D4DF4C572FB038A5D6C9ED0 /* Garage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFA967EF63B36EF2CE82C /* Garage.m */; };
 		8D4DF728EF1C9E0A055D8AD3 /* SingletonFoo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF1AA9AC271DF9DC8D00D /* SingletonFoo.m */; };
@@ -20,6 +21,7 @@
 		8D4DFA4048822C7ADD338559 /* GIModuleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFAEE56C2761CFBB31C16 /* GIModuleSpec.m */; };
 		8D4DFB3DAEDB92A778C02F22 /* GIInjectorClassEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFDBB14DFC188623E775F /* GIInjectorClassEntry.m */; };
 		8D4DFB7F8AB82798097D463E /* SingletonBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF59398AED7643652BD32 /* SingletonBar.m */; };
+		8D4DFBDCCDD8F60ED335564D /* GIInjectorEntryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFCD8D1DEE99DCD2A49A3 /* GIInjectorEntryFactory.m */; };
 		8D4DFC6B33518428B783685A /* GIInjectorEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF22457E4F9181A35A3E3 /* GIInjectorEntry.m */; };
 		8D4DFDC7C868A999BD9EB5AD /* GIReflectorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF6A40D26B454254B0FD6 /* GIReflectorSpec.m */; };
 		8D4DFE2D39D5301CF2381F75 /* GIInjectorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF1635D2C5F7975E579CC /* GIInjectorSpec.m */; };
@@ -69,12 +71,13 @@
 		8D4DF59398AED7643652BD32 /* SingletonBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonBar.m; sourceTree = "<group>"; };
 		8D4DF5C135A1236FD85B3FCF /* Wheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wheel.m; sourceTree = "<group>"; };
 		8D4DF5E82016B76B9CF15C49 /* CarSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarSpec.m; sourceTree = "<group>"; };
+		8D4DF6177AFF41D65F3A4A6B /* GIInjectorEntryFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectorEntryFactory.h; sourceTree = "<group>"; };
 		8D4DF6647F3EC65A2EC7DF46 /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
 		8D4DF699F6A37829E84A50D9 /* Car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
 		8D4DF6A40D26B454254B0FD6 /* GIReflectorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIReflectorSpec.m; sourceTree = "<group>"; };
 		8D4DF73681B3F5A6A07F329D /* GarageExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GarageExample.h; sourceTree = "<group>"; };
 		8D4DF805DB231D053C4ACA1B /* HybridMotor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HybridMotor.h; sourceTree = "<group>"; };
-		8D4DF849C5D4E4EEC641EA43 /* CarModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarModule.m; sourceTree = "<group>"; };
+		8D4DF849C5D4E4EEC641EA43 /* MyModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyModule.m; sourceTree = "<group>"; };
 		8D4DF8C90EC352E79086AD75 /* GIReflector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIReflector.h; sourceTree = "<group>"; };
 		8D4DF8E23DBA6E6DC0533B09 /* GarageExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GarageExample.m; sourceTree = "<group>"; };
 		8D4DF9CBE0E1796A95D58649 /* GIInjector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjector.m; sourceTree = "<group>"; };
@@ -85,10 +88,12 @@
 		8D4DFC030C0B673CE0BDB7B3 /* SingletonFoo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonFoo.h; sourceTree = "<group>"; };
 		8D4DFC0C1BEB4FF3CE3CA556 /* GIInjectorInstanceEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorInstanceEntry.m; sourceTree = "<group>"; };
 		8D4DFC5872164DF5A334EDD9 /* GIInjector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjector.h; sourceTree = "<group>"; };
-		8D4DFC6D72707E5BB1F12974 /* CarModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarModule.h; sourceTree = "<group>"; };
+		8D4DFC6D72707E5BB1F12974 /* MyModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyModule.h; sourceTree = "<group>"; };
 		8D4DFC6EFB32ADA4DCE5CDA1 /* GIInjectorInstanceEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectorInstanceEntry.h; sourceTree = "<group>"; };
+		8D4DFCD8D1DEE99DCD2A49A3 /* GIInjectorEntryFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorEntryFactory.m; sourceTree = "<group>"; };
 		8D4DFDBB14DFC188623E775F /* GIInjectorClassEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorClassEntry.m; sourceTree = "<group>"; };
 		8D4DFE6D4947932984B297EC /* GIModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIModule.h; sourceTree = "<group>"; };
+		8D4DFE869EDD99927CE151DE /* GIInjectorEntryFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorEntryFactory.m; sourceTree = "<group>"; };
 		8D4DFF23C1C906158AE60B96 /* Garage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Garage.h; sourceTree = "<group>"; };
 		ADEB8B8D049A4CD6871C9B7A /* libPods-Gummi InjectionTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Gummi InjectionTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBD97110168F60DE00536DF9 /* Gummi Injection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gummi Injection.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +172,8 @@
 				8D4DF8C90EC352E79086AD75 /* GIReflector.h */,
 				8D4DF2BA73AF38A11CBC4530 /* GIReflector.m */,
 				8D4DF4ED9B2DEDC37D8AB05F /* InjectorEntries */,
+				8D4DFE869EDD99927CE151DE /* GIInjectorEntryFactory.m */,
+				8D4DF6177AFF41D65F3A4A6B /* GIInjectorEntryFactory.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -174,8 +181,8 @@
 		8D4DF77BF9B16D39C195B96A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				8D4DFC6D72707E5BB1F12974 /* CarModule.h */,
-				8D4DF849C5D4E4EEC641EA43 /* CarModule.m */,
+				8D4DFC6D72707E5BB1F12974 /* MyModule.h */,
+				8D4DF849C5D4E4EEC641EA43 /* MyModule.m */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -279,6 +286,7 @@
 				8D4DF1635D2C5F7975E579CC /* GIInjectorSpec.m */,
 				8D4DFAEE56C2761CFBB31C16 /* GIModuleSpec.m */,
 				8D4DF6A40D26B454254B0FD6 /* GIReflectorSpec.m */,
+				8D4DFCD8D1DEE99DCD2A49A3 /* GIInjectorEntryFactory.m */,
 			);
 			path = "Gummi InjectionTests";
 			sourceTree = "<group>";
@@ -430,6 +438,7 @@
 				8D4DF19F6225319DA6D031C5 /* GarageExample.m in Sources */,
 				8D4DF87FFA07362B91093456 /* HybridMotor.m in Sources */,
 				8D4DF8D7E595E348FD5E02D7 /* Wheel.m in Sources */,
+				8D4DF387ACCA9BD5C6EF4D53 /* GIInjectorEntryFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,13 +447,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D4DFA1789EE909E9CB0D801 /* CarSpec.m in Sources */,
-				8D4DF1DF8C62695C8549AF6B /* CarModule.m in Sources */,
+				8D4DF1DF8C62695C8549AF6B /* MyModule.m in Sources */,
 				8D4DFB7F8AB82798097D463E /* SingletonBar.m in Sources */,
 				8D4DF728EF1C9E0A055D8AD3 /* SingletonFoo.m in Sources */,
 				8D4DF9886779E00EF116F3A8 /* GarageSpec.m in Sources */,
 				8D4DFE2D39D5301CF2381F75 /* GIInjectorSpec.m in Sources */,
 				8D4DFA4048822C7ADD338559 /* GIModuleSpec.m in Sources */,
 				8D4DFDC7C868A999BD9EB5AD /* GIReflectorSpec.m in Sources */,
+				8D4DFBDCCDD8F60ED335564D /* GIInjectorEntryFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,16 +1,16 @@
 //
-// Created by sschmid on 19.12.12.
+// Created by Simon Schmid
 //
 // contact@sschmid.com
 //
 
 
-#import "CarModule.h"
+#import "MyModule.h"
 #import "GIInjector.h"
 #import "SingletonFoo.h"
 
 
-@implementation CarModule
+@implementation MyModule
 
 - (void)configure:(GIInjector *)injector {
     [super configure:injector];

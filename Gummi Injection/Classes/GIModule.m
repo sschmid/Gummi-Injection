@@ -1,5 +1,5 @@
 //
-// Created by sschmid on 17.12.12.
+// Created by Simon Schmid
 //
 // contact@sschmid.com
 //
@@ -28,21 +28,20 @@
 - (void)unload {
     for (NSString *key in _context) {
         GIInjectorEntry *entry = _context[key];
-        [_injector unMap:entry.whenAskedFor from:entry.use];
+        [self unMap:entry.whenAskedFor from:entry.use];
     }
-    _context = nil;
     _injector = nil;
 }
 
 - (GIInjectorEntry *)map:(id)whenAskedFor to:(id)use {
     GIInjectorEntry *entry = [_injector map:whenAskedFor to:use];
-    [self addEntry:entry];
+    [_context setObject:entry forKey:[self keyForObject:entry.whenAskedFor]];
     return entry;
 }
 
 - (GIInjectorEntry *)mapSingleton:(id)whenAskedFor to:(id)use lazy:(BOOL)lazy {
     GIInjectorEntry *entry = [_injector mapSingleton:whenAskedFor to:use lazy:lazy];
-    [self addEntry:entry];
+    [_context setObject:entry forKey:[self keyForObject:entry.whenAskedFor]];
     return entry;
 }
 
@@ -52,10 +51,7 @@
 
 - (void)unMap:(id)whenAskedFor from:(id)use {
     [_injector unMap:whenAskedFor from:use];
-}
-
-- (void)addEntry:(GIInjectorEntry *)entry {
-    [_context setObject:entry forKey:[self keyForObject:entry.whenAskedFor]];
+    [_context removeObjectForKey:[self keyForObject:whenAskedFor]];
 }
 
 - (NSString *)keyForObject:(id)object {

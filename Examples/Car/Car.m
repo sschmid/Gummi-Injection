@@ -1,5 +1,5 @@
 //
-// Created by sschmid on 14.12.12.
+// Created by Simon Schmid
 //
 // contact@sschmid.com
 //
@@ -15,8 +15,8 @@
 inject(@"frontLeftWheel", @"frontRightWheel", @"rearLeftWheel", @"rearRightWheel", @"motor");
 @synthesize frontLeftWheel = _frontLeftWheel;
 @synthesize frontRightWheel = _frontRightWheel;
-@synthesize rearLeftWheel = _backLeftWheel;
-@synthesize rearRightWheel = _backRightWheel;
+@synthesize rearLeftWheel = _rearLeftWheel;
+@synthesize rearRightWheel = _rearRightWheel;
 
 @synthesize motor = _motor;
 

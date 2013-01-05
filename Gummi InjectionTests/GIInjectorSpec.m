@@ -1,5 +1,5 @@
 //
-// Created by sschmid on 15.12.12.
+// Created by Simon Schmid
 //
 // contact@sschmid.com
 //
@@ -14,7 +14,7 @@
 #import "HybridMotor.h"
 #import "Wheel.h"
 #import "GIModule.h"
-#import "CarModule.h"
+#import "MyModule.h"
 
 SPEC_BEGIN(GIInjectorSpec)
 
@@ -254,7 +254,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 it(@"raises exception", ^{
                     [[theBlock(^{
                         [injector map:[NSObject class] to:@protocol(Vehicle)];
-                    }) should] raiseWithName:@"GIInjectorException"];
+                    }) should] raiseWithName:@"GIInjectorEntryFactoryException"];
                 });
 
             });
@@ -299,9 +299,9 @@ SPEC_BEGIN(GIInjectorSpec)
 
             context(@"when added a module", ^{
 
-                __block CarModule *carModule;
+                __block MyModule *carModule;
                 beforeEach(^{
-                    carModule = [[CarModule alloc] init];
+                    carModule = [[MyModule alloc] init];
                     [injector addModule:carModule];
                 });
 
@@ -311,7 +311,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 });
 
                 it(@"has module class", ^{
-                    BOOL has = [injector hasModuleClass:[CarModule class]];
+                    BOOL has = [injector hasModuleClass:[MyModule class]];
                     [[theValue(has) should] beYes];
                 });
 
@@ -332,7 +332,7 @@ SPEC_BEGIN(GIInjectorSpec)
                     });
 
                     it(@"has no module class", ^{
-                        BOOL has = [injector hasModuleClass:[CarModule class]];
+                        BOOL has = [injector hasModuleClass:[MyModule class]];
                         [[theValue(has) should] beNo];
                     });
 
@@ -346,7 +346,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 context(@"when removed module class", ^{
 
                     beforeEach(^{
-                        [injector removeModuleClass:[CarModule class]];
+                        [injector removeModuleClass:[MyModule class]];
                     });
 
                     it(@"has no module", ^{
@@ -355,7 +355,7 @@ SPEC_BEGIN(GIInjectorSpec)
                     });
 
                     it(@"has no module class", ^{
-                        BOOL has = [injector hasModuleClass:[CarModule class]];
+                        BOOL has = [injector hasModuleClass:[MyModule class]];
                         [[theValue(has) should] beNo];
                     });
 

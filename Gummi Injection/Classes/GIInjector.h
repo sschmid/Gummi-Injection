@@ -1,5 +1,5 @@
 //
-// Created by sschmid on 15.12.12.
+// Created by Simon Schmid
 //
 // contact@sschmid.com
 //
@@ -9,6 +9,7 @@
 #import "GIInjectionMapper.h"
 
 @class GIModule;
+@class GIInjectorEntryFactory;
 
 #define inject(args...) +(NSSet *)desiredProperties {return [NSSet setWithObjects: args, nil];}
 

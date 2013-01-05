@@ -1,9 +1,7 @@
 //
-//  AppDelegate.m
-//  Gummi-DI
+// Created by Simon Schmid
 //
-//  Created by Simon Schmid on 14.12.12.
-//  Copyright (c) 2012 Simon Schmid. All rights reserved.
+// contact@sschmid.com
 //
 
 #import "GIAppDelegate.h"

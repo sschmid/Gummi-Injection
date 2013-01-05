@@ -1,5 +1,5 @@
 //
-// Created by sschmid on 15.12.12.
+// Created by Simon Schmid
 //
 // contact@sschmid.com
 //
@@ -7,26 +7,27 @@
 
 #import "GIInjector.h"
 #import "GIInjectorEntry.h"
-#import "GIInjectorClassEntry.h"
-#import "GIInjectorInstanceEntry.h"
 #import "GIReflector.h"
 #import "GIModule.h"
+#import "GIInjectorEntryFactory.h"
 
-static NSString *const GIInjectorException = @"GIInjectorException";
 static GIInjector *sInjector;
 
 @interface GIInjector ()
 @property(nonatomic, strong) NSMutableDictionary *context;
 @property(nonatomic, strong) NSMutableArray *modules;
+@property(nonatomic, strong) GIInjectorEntryFactory *entryFactory;
 @end
 
 @implementation GIInjector
 @synthesize context = _context;
 @synthesize modules = _modules;
+@synthesize entryFactory = _entryFactory;
 
 + (GIInjector *)sharedInjector {
     if (!sInjector)
         sInjector = [[GIInjector alloc] init];
+
     return sInjector;
 }
 
@@ -35,6 +36,7 @@ static GIInjector *sInjector;
     if (self) {
         self.context = [[NSMutableDictionary alloc] init];
         self.modules = [[NSMutableArray alloc] init];
+        self.entryFactory = [[GIInjectorEntryFactory alloc] initWithInjector:self];
     }
 
     return self;
@@ -59,13 +61,13 @@ static GIInjector *sInjector;
 }
 
 - (GIInjectorEntry *)map:(id)whenAskedFor to:(id)use {
-    GIInjectorEntry *entry = [self createEntryForObject:whenAskedFor mappedTo:use asSingleton:NO];
+    GIInjectorEntry *entry = [self.entryFactory createEntryForObject:whenAskedFor mappedTo:use asSingleton:NO];
     self.context[[self keyForObject:entry.whenAskedFor]] = entry;
     return entry;
 }
 
 - (GIInjectorEntry *)mapSingleton:(id)whenAskedFor to:(id)use lazy:(BOOL)lazy {
-    GIInjectorEntry *entry = [self createEntryForObject:whenAskedFor mappedTo:use asSingleton:YES];
+    GIInjectorEntry *entry = [self.entryFactory createEntryForObject:whenAskedFor mappedTo:use asSingleton:YES];
     self.context[[self keyForObject:entry.whenAskedFor]] = entry;
     if (!lazy)
         [self getObject:whenAskedFor];
@@ -93,26 +95,11 @@ static GIInjector *sInjector;
 
 - (id)createObjectForType:(id)type {
     if ([GIReflector isProtocol:type])
-        @throw [NSException exceptionWithName:GIInjectorException reason:[NSString stringWithFormat:@"Can not create an object for <%@>. Make sure you have set up a rule for it", type] userInfo:nil];
+        @throw [NSException exceptionWithName:@"GIInjectorException" reason:[NSString stringWithFormat:@"Can not create an object for <%@>. Make sure you have set up a rule for it", type] userInfo:nil];
 
     id object = [[type alloc] init];
     [self injectIntoObject:object];
     return object;
-}
-
-- (GIInjectorEntry *)createEntryForObject:(id)whenAskedFor mappedTo:(id)use asSingleton:(BOOL)asSingleton {
-    if ([GIReflector isProtocol:use])
-        @throw [NSException exceptionWithName:GIInjectorException reason:[NSString stringWithFormat:@"You can't map protocols (Tried to map <%@>)", use] userInfo:nil];
-
-    if ([GIReflector isClass:use]) {
-        GIInjectorClassEntry *entry = [[GIInjectorClassEntry alloc] initWithObject:whenAskedFor mappedTo:use injector:self];
-        entry.asSingleton = asSingleton;
-        return entry;
-    } else if ([GIReflector isInstance:use]) {
-        return [[GIInjectorInstanceEntry alloc] initWithObject:whenAskedFor mappedTo:use injector:self];
-    }
-
-    return nil;
 }
 
 - (NSString *)keyForObject:(id)object {
@@ -138,6 +125,7 @@ static GIInjector *sInjector;
     for (GIModule *module in [self.modules copy]) {
         if ([module isKindOfClass:moduleClass]) {
             [self removeModule:module];
+
             return;
         }
     }
