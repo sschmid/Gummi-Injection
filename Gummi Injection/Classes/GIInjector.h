@@ -18,6 +18,7 @@
 + (GIInjector *)sharedInjector;
 
 - (id)getObject:(id)type;
+
 - (void)injectIntoObject:(id)object;
 
 - (void)addModule:(GIModule *)module;
@@ -27,4 +28,5 @@
 - (BOOL)hasModule:(GIModule *)module;
 - (BOOL)hasModuleClass:(Class)moduleClass;
 
+- (void)reset;
 @end

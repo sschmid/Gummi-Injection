@@ -143,4 +143,9 @@ static GIInjector *sInjector;
     return NO;
 }
 
+- (void)reset {
+    [self.context removeAllObjects];
+    [self.modules removeAllObjects];
+}
+
 @end
