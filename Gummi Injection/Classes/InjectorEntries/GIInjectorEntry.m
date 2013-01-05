@@ -18,7 +18,7 @@
     self = [super init];
     if (self) {
         if ([GIReflector isProtocol:whenAskedFor] && ![use conformsToProtocol:whenAskedFor])
-            @throw [NSException exceptionWithName:@"GIInjectorEntryException" reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", use, whenAskedFor] userInfo:nil];
+            @throw [NSException exceptionWithName:@"GIInjectorEntryException" reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", use, NSStringFromProtocol(whenAskedFor)] userInfo:nil];
 
         _whenAskedFor = whenAskedFor;
         _use = use;

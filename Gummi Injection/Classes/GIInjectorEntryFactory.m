@@ -31,7 +31,7 @@
 
 - (GIInjectorEntry *)createEntryForObject:(id)whenAskedFor mappedTo:(id)use asSingleton:(BOOL)asSingleton {
     if ([GIReflector isProtocol:use])
-        @throw [NSException exceptionWithName:@"GIInjectorEntryFactoryException" reason:[NSString stringWithFormat:@"You cannot create an injector entry using protocols (<%@>)", use] userInfo:nil];
+        @throw [NSException exceptionWithName:@"GIInjectorEntryFactoryException" reason:[NSString stringWithFormat:@"You cannot create an injector entry using protocols (<%@>)", NSStringFromProtocol(use)] userInfo:nil];
 
     if ([GIReflector isClass:use]) {
         GIInjectorClassEntry *entry = [[GIInjectorClassEntry alloc] initWithObject:whenAskedFor mappedTo:use injector:self.injector];
