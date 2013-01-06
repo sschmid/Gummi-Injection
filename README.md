@@ -102,14 +102,12 @@ GIModule *module = [[GameModule alloc] init];
 
     [self mapSingleton:[Model class] to:[Model class] lazy:YES];
     
-    Service *service = [[Service alloc] init];
-    // For convenience, start service when module is added
-    [service connect];
-    [self map:service to:[Service class]];
+    // Example Service starts automatically on init
+    [self mapSingleton:[Service class] to:[Service class] lazy:NO];
 }
 
 - (void)unload {
-    // For convenience, close all connections to stop service when module gets removed
+    // For convenience, close all connections to stop service
     Service *service = [_injector getObject:[Service class]];
     [service close];
 
