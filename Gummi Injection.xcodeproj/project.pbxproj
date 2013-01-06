@@ -29,6 +29,10 @@
 		8D4DFE927C2B7440D88605D5 /* GIModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF0DD465CE784C4061820 /* GIModule.m */; };
 		8D4DFEE740DBCB436F19BA4B /* GIInjector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF9CBE0E1796A95D58649 /* GIInjector.m */; };
 		B3EF82BC1640414FB9515E96 /* libPods-Gummi InjectionTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEB8B8D049A4CD6871C9B7A /* libPods-Gummi InjectionTests.a */; };
+		CB2A9452169A16E200128691 /* Gummi-Injection-114.png in Resources */ = {isa = PBXBuildFile; fileRef = CB2A9451169A16E200128691 /* Gummi-Injection-114.png */; };
+		CB2A9455169A16F800128691 /* Gummi-Injection-57.png in Resources */ = {isa = PBXBuildFile; fileRef = CB2A9454169A16F800128691 /* Gummi-Injection-57.png */; };
+		CB2A9457169A173200128691 /* Gummi-Injection-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CB2A9456169A173200128691 /* Gummi-Injection-72.png */; };
+		CB2A9459169A175200128691 /* Gummi-Injection-144.png in Resources */ = {isa = PBXBuildFile; fileRef = CB2A9458169A175200128691 /* Gummi-Injection-144.png */; };
 		CBD97115168F60DE00536DF9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD97114168F60DE00536DF9 /* UIKit.framework */; };
 		CBD97117168F60DE00536DF9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD97116168F60DE00536DF9 /* Foundation.framework */; };
 		CBD97119168F60DE00536DF9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD97118168F60DE00536DF9 /* CoreGraphics.framework */; };
@@ -96,6 +100,10 @@
 		8D4DFE869EDD99927CE151DE /* GIInjectorEntryFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorEntryFactory.m; sourceTree = "<group>"; };
 		8D4DFF23C1C906158AE60B96 /* Garage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Garage.h; sourceTree = "<group>"; };
 		ADEB8B8D049A4CD6871C9B7A /* libPods-Gummi InjectionTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Gummi InjectionTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB2A9451169A16E200128691 /* Gummi-Injection-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gummi-Injection-114.png"; sourceTree = "<group>"; };
+		CB2A9454169A16F800128691 /* Gummi-Injection-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gummi-Injection-57.png"; sourceTree = "<group>"; };
+		CB2A9456169A173200128691 /* Gummi-Injection-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gummi-Injection-72.png"; sourceTree = "<group>"; };
+		CB2A9458169A175200128691 /* Gummi-Injection-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gummi-Injection-144.png"; sourceTree = "<group>"; };
 		CBD97110168F60DE00536DF9 /* Gummi Injection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gummi Injection.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBD97114168F60DE00536DF9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CBD97116168F60DE00536DF9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -221,6 +229,10 @@
 		CBD97105168F60DE00536DF9 = {
 			isa = PBXGroup;
 			children = (
+				CB2A9458169A175200128691 /* Gummi-Injection-144.png */,
+				CB2A9456169A173200128691 /* Gummi-Injection-72.png */,
+				CB2A9454169A16F800128691 /* Gummi-Injection-57.png */,
+				CB2A9451169A16E200128691 /* Gummi-Injection-114.png */,
 				CBD9711A168F60DE00536DF9 /* Gummi Injection */,
 				CBD97138168F60DE00536DF9 /* Gummi InjectionTests */,
 				CBD97113168F60DE00536DF9 /* Frameworks */,
@@ -377,6 +389,10 @@
 				CBD97127168F60DE00536DF9 /* Default.png in Resources */,
 				CBD97129168F60DE00536DF9 /* Default@2x.png in Resources */,
 				CBD9712B168F60DE00536DF9 /* Default-568h@2x.png in Resources */,
+				CB2A9452169A16E200128691 /* Gummi-Injection-114.png in Resources */,
+				CB2A9455169A16F800128691 /* Gummi-Injection-57.png in Resources */,
+				CB2A9457169A173200128691 /* Gummi-Injection-72.png in Resources */,
+				CB2A9459169A175200128691 /* Gummi-Injection-144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
