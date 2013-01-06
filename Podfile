@@ -1,5 +1,5 @@
 platform :ios, '5.0'
 
-target "Gummi-DITests", :exclusive => true do
+target "Gummi InjectionTests", :exclusive => true do
     pod 'Kiwi'
 end
