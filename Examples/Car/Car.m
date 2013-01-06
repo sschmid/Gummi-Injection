@@ -12,11 +12,11 @@
 
 @implementation Car
 
-inject(@"frontLeftWheel", @"frontRightWheel", @"rearLeftWheel", @"rearRightWheel", @"motor");
-@synthesize frontLeftWheel = _frontLeftWheel;
-@synthesize frontRightWheel = _frontRightWheel;
-@synthesize rearLeftWheel = _rearLeftWheel;
-@synthesize rearRightWheel = _rearRightWheel;
+inject(@"leftFrontWheel", @"rightFrontWheel", @"leftRearWheel", @"rightRearWheel", @"motor");
+@synthesize leftFrontWheel = _leftFrontWheel;
+@synthesize rightFrontWheel = _rightFrontWheel;
+@synthesize leftRearWheel = _leftRearWheel;
+@synthesize rightRearWheel = _rightRearWheel;
 
 @synthesize motor = _motor;
 
@@ -26,13 +26,13 @@ inject(@"frontLeftWheel", @"frontRightWheel", @"rearLeftWheel", @"rearRightWheel
 
 - (uint)numWheels {
     uint wheels = 0;
-    if (self.frontRightWheel)
+    if (self.rightFrontWheel)
         wheels++;
-    if (self.frontLeftWheel)
+    if (self.leftFrontWheel)
         wheels++;
-    if (self.rearLeftWheel)
+    if (self.leftRearWheel)
         wheels++;
-    if (self.rearRightWheel)
+    if (self.rightRearWheel)
         wheels++;
 
     return wheels;
@@ -40,12 +40,12 @@ inject(@"frontLeftWheel", @"frontRightWheel", @"rearLeftWheel", @"rearRightWheel
 
 - (BOOL)canDrive {
     BOOL hasAllWheels = self.numWheels == 4;
-    BOOL hasFLW = [self.frontLeftWheel isKindOfClass:[Wheel class]];
-    BOOL hasFRW = [self.frontRightWheel isKindOfClass:[Wheel class]];
-    BOOL hasRLW = [self.rearLeftWheel isKindOfClass:[Wheel class]];
-    BOOL hasRRW = [self.rearRightWheel isKindOfClass:[Wheel class]];
+    BOOL hasLFW = [self.leftFrontWheel isKindOfClass:[Wheel class]];
+    BOOL hasRFW = [self.rightFrontWheel isKindOfClass:[Wheel class]];
+    BOOL hasLRW = [self.leftRearWheel isKindOfClass:[Wheel class]];
+    BOOL hasRRW = [self.rightRearWheel isKindOfClass:[Wheel class]];
 
-    return hasAllWheels && hasRLW && hasFLW && hasFRW && hasRRW && self.motor != nil;
+    return hasAllWheels && hasLFW && hasRFW && hasLRW && hasRRW && self.motor != nil;
 }
 
 @end

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8D4DF19F6225319DA6D031C5 /* GarageExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF8E23DBA6E6DC0533B09 /* GarageExample.m */; };
-		8D4DF1DF8C62695C8549AF6B /* MyModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF849C5D4E4EEC641EA43 /* MyModule.m */; };
+		8D4DF1DF8C62695C8549AF6B /* SingletonModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF849C5D4E4EEC641EA43 /* SingletonModule.m */; };
 		8D4DF387ACCA9BD5C6EF4D53 /* GIInjectorEntryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFE869EDD99927CE151DE /* GIInjectorEntryFactory.m */; };
 		8D4DF4A3B25D120FBACA0E6D /* GIReflector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF2BA73AF38A11CBC4530 /* GIReflector.m */; };
 		8D4DF4C572FB038A5D6C9ED0 /* Garage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFA967EF63B36EF2CE82C /* Garage.m */; };
@@ -77,7 +77,7 @@
 		8D4DF6A40D26B454254B0FD6 /* GIReflectorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIReflectorSpec.m; sourceTree = "<group>"; };
 		8D4DF73681B3F5A6A07F329D /* GarageExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GarageExample.h; sourceTree = "<group>"; };
 		8D4DF805DB231D053C4ACA1B /* HybridMotor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HybridMotor.h; sourceTree = "<group>"; };
-		8D4DF849C5D4E4EEC641EA43 /* MyModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyModule.m; sourceTree = "<group>"; };
+		8D4DF849C5D4E4EEC641EA43 /* SingletonModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonModule.m; sourceTree = "<group>"; };
 		8D4DF8C90EC352E79086AD75 /* GIReflector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIReflector.h; sourceTree = "<group>"; };
 		8D4DF8E23DBA6E6DC0533B09 /* GarageExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GarageExample.m; sourceTree = "<group>"; };
 		8D4DF9CBE0E1796A95D58649 /* GIInjector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjector.m; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		8D4DFC030C0B673CE0BDB7B3 /* SingletonFoo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonFoo.h; sourceTree = "<group>"; };
 		8D4DFC0C1BEB4FF3CE3CA556 /* GIInjectorInstanceEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorInstanceEntry.m; sourceTree = "<group>"; };
 		8D4DFC5872164DF5A334EDD9 /* GIInjector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjector.h; sourceTree = "<group>"; };
-		8D4DFC6D72707E5BB1F12974 /* MyModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyModule.h; sourceTree = "<group>"; };
+		8D4DFC6D72707E5BB1F12974 /* SingletonModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonModule.h; sourceTree = "<group>"; };
 		8D4DFC6EFB32ADA4DCE5CDA1 /* GIInjectorInstanceEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectorInstanceEntry.h; sourceTree = "<group>"; };
 		8D4DFCD8D1DEE99DCD2A49A3 /* GIInjectorEntryFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorEntryFactory.m; sourceTree = "<group>"; };
 		8D4DFDBB14DFC188623E775F /* GIInjectorClassEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorClassEntry.m; sourceTree = "<group>"; };
@@ -181,8 +181,8 @@
 		8D4DF77BF9B16D39C195B96A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				8D4DFC6D72707E5BB1F12974 /* MyModule.h */,
-				8D4DF849C5D4E4EEC641EA43 /* MyModule.m */,
+				8D4DFC6D72707E5BB1F12974 /* SingletonModule.h */,
+				8D4DF849C5D4E4EEC641EA43 /* SingletonModule.m */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -447,7 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D4DFA1789EE909E9CB0D801 /* CarSpec.m in Sources */,
-				8D4DF1DF8C62695C8549AF6B /* MyModule.m in Sources */,
+				8D4DF1DF8C62695C8549AF6B /* SingletonModule.m in Sources */,
 				8D4DFB7F8AB82798097D463E /* SingletonBar.m in Sources */,
 				8D4DF728EF1C9E0A055D8AD3 /* SingletonFoo.m in Sources */,
 				8D4DF9886779E00EF116F3A8 /* GarageSpec.m in Sources */,

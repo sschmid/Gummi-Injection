@@ -11,17 +11,17 @@
 
 
 @implementation GIInjectorEntry
+@synthesize object = _object;
 @synthesize whenAskedFor = _whenAskedFor;
-@synthesize use = _use;
 
-- (id)initWithObject:(id)whenAskedFor mappedTo:(id)use injector:(GIInjector *)injector {
+- (id)initWithObject:(id)object mappedTo:(id)whenAskedFor injector:(GIInjector *)injector {
     self = [super init];
     if (self) {
-        if ([GIReflector isProtocol:whenAskedFor] && ![use conformsToProtocol:whenAskedFor])
-            @throw [NSException exceptionWithName:@"GIInjectorEntryException" reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", use, NSStringFromProtocol(whenAskedFor)] userInfo:nil];
+        if ([GIReflector isProtocol:whenAskedFor] && ![object conformsToProtocol:whenAskedFor])
+            @throw [NSException exceptionWithName:@"GIInjectorEntryException" reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", object, NSStringFromProtocol(whenAskedFor)] userInfo:nil];
 
+        _object = object;
         _whenAskedFor = whenAskedFor;
-        _use = use;
         _injector = injector;
     }
 
@@ -29,7 +29,7 @@
 }
 
 - (id)extractObject {
-    return _use;
+    return _object;
 }
 
 @end

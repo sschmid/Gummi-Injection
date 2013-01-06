@@ -11,10 +11,10 @@
 
 @implementation GIInjectorInstanceEntry
 
-- (id)initWithObject:(id)whenAskedFor mappedTo:(id)use injector:(GIInjector *)injector {
-    self = [super initWithObject:whenAskedFor mappedTo:use injector:injector];
+- (id)initWithObject:(id)object mappedTo:(id)whenAskedFor injector:(GIInjector *)injector {
+    self = [super initWithObject:object mappedTo:whenAskedFor injector:injector];
     if (self) {
-        [_injector injectIntoObject:_use];
+        [_injector injectIntoObject:_object];
     }
 
     return self;

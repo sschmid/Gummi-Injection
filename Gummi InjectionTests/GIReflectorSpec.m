@@ -17,7 +17,7 @@ SPEC_BEGIN(GIReflectorSpec)
         describe(@"Reflection", ^{
 
             it(@"gets the type of a property class", ^{
-                id class = [GIReflector getTypeForProperty:@"frontLeftWheel" ofClass:[Car class]];
+                id class = [GIReflector getTypeForProperty:@"leftFrontWheel" ofClass:[Car class]];
 
                 [[class should] equal:[Wheel class]];
             });

@@ -12,5 +12,5 @@
 
 @interface GIInjectorEntryFactory : NSObject
 - (id)initWithInjector:(GIInjector *)injector;
-- (GIInjectorEntry *)createEntryForObject:(id)whenAskedFor mappedTo:(id)use asSingleton:(BOOL)asSingleton;
+- (GIInjectorEntry *)createEntryForObject:(id)object mappedTo:(id)whenAskedFor asSingleton:(BOOL)asSingleton;
 @end

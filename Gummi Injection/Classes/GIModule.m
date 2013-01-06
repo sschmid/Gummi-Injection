@@ -26,31 +26,31 @@
 }
 
 - (void)unload {
-    for (NSString *key in _context) {
+    for (NSString *key in [_context copy]) {
         GIInjectorEntry *entry = _context[key];
-        [self unMap:entry.whenAskedFor from:entry.use];
+        [self unMap:entry.object from:entry.whenAskedFor];
     }
     _injector = nil;
 }
 
-- (GIInjectorEntry *)map:(id)whenAskedFor to:(id)use {
-    GIInjectorEntry *entry = [_injector map:whenAskedFor to:use];
+- (GIInjectorEntry *)map:(id)object to:(id)whenAskedFor {
+    GIInjectorEntry *entry = [_injector map:object to:whenAskedFor];
     [_context setObject:entry forKey:[self keyForObject:entry.whenAskedFor]];
     return entry;
 }
 
-- (GIInjectorEntry *)mapSingleton:(id)whenAskedFor to:(id)use lazy:(BOOL)lazy {
-    GIInjectorEntry *entry = [_injector mapSingleton:whenAskedFor to:use lazy:lazy];
+- (GIInjectorEntry *)mapSingleton:(id)object to:(id)whenAskedFor lazy:(BOOL)lazy {
+    GIInjectorEntry *entry = [_injector mapSingleton:object to:whenAskedFor lazy:lazy];
     [_context setObject:entry forKey:[self keyForObject:entry.whenAskedFor]];
     return entry;
 }
 
-- (BOOL)isObject:(id)whenAskedFor mappedTo:(id)use {
-    return [_injector isObject:whenAskedFor mappedTo:use];
+- (BOOL)isObject:(id)object mappedTo:(id)whenAskedFor {
+    return [_injector isObject:object mappedTo:whenAskedFor];
 }
 
-- (void)unMap:(id)whenAskedFor from:(id)use {
-    [_injector unMap:whenAskedFor from:use];
+- (void)unMap:(id)object from:(id)whenAskedFor {
+    [_injector unMap:object from:whenAskedFor];
     [_context removeObjectForKey:[self keyForObject:whenAskedFor]];
 }
 

@@ -5,12 +5,12 @@
 //
 
 
-#import "MyModule.h"
+#import "SingletonModule.h"
 #import "GIInjector.h"
 #import "SingletonFoo.h"
 
 
-@implementation MyModule
+@implementation SingletonModule
 
 - (void)configure:(GIInjector *)injector {
     [super configure:injector];

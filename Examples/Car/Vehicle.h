@@ -10,10 +10,10 @@
 
 @protocol Vehicle <NSObject>
 
-@property(nonatomic, strong) Wheel *frontLeftWheel;
-@property(nonatomic, strong) Wheel *frontRightWheel;
-@property(nonatomic, strong) Wheel *rearLeftWheel;
-@property(nonatomic, strong) Wheel *rearRightWheel;
+@property(nonatomic, strong) Wheel *leftFrontWheel;
+@property(nonatomic, strong) Wheel *rightFrontWheel;
+@property(nonatomic, strong) Wheel *leftRearWheel;
+@property(nonatomic, strong) Wheel *rightRearWheel;
 
 @property(nonatomic, readonly) uint numWheels;
 @property(nonatomic) id <Motor> motor;

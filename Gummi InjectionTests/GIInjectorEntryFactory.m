@@ -11,7 +11,6 @@
 #import "GIInjectorEntry.h"
 #import "GIInjectorClassEntry.h"
 #import "GIInjectorInstanceEntry.h"
-#import "GIReflector.h"
 
 
 SPEC_BEGIN(GIInjectorEntryFactorySpec)
@@ -28,7 +27,7 @@ SPEC_BEGIN(GIInjectorEntryFactorySpec)
             });
 
             it(@"returns a class entry", ^{
-                GIInjectorEntry *entry = [factory createEntryForObject:[NSObject class] mappedTo:[[NSObject alloc] init] asSingleton:NO];
+                GIInjectorEntry *entry = [factory createEntryForObject:[[NSObject alloc] init] mappedTo:[NSObject class] asSingleton:NO];
 
                 [[entry should] beKindOfClass:[GIInjectorInstanceEntry class]];
             });
@@ -40,14 +39,14 @@ SPEC_BEGIN(GIInjectorEntryFactorySpec)
             });
 
             it(@"returns nil", ^{
-                GIInjectorEntry *entry = [factory createEntryForObject:[NSObject class] mappedTo:nil asSingleton:NO];
+                GIInjectorEntry *entry = [factory createEntryForObject:nil mappedTo:[NSObject class] asSingleton:NO];
 
                 [entry shouldBeNil];
             });
 
             it(@"thorws protocol error", ^{
                 [[theBlock(^{
-                    [factory createEntryForObject:[NSObject class] mappedTo:@protocol(NSObject) asSingleton:NO];
+                    [factory createEntryForObject:@protocol(NSObject) mappedTo:@protocol(NSObject) asSingleton:NO];
                 }) should] raiseWithName:@"GIInjectorEntryFactoryException"];
             });
 

@@ -21,7 +21,7 @@
 
         // No need to set up rules for simple injections that can be created with alloc init - Car and Wheels get injected automatically.
         // For protocols there's no way to know which implementation to return - we need to set up a rule for it.
-        [injector map:@protocol(Motor) to:[HybridMotor class]];
+        [injector map:[HybridMotor class] to:@protocol(Motor)];
 
         // Injector creates Cars and injects Wheels and Motor.
         Garage *garage = [injector getObject:[Garage class]];

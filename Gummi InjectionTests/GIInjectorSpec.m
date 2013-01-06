@@ -14,7 +14,7 @@
 #import "HybridMotor.h"
 #import "Wheel.h"
 #import "GIModule.h"
-#import "MyModule.h"
+#import "SingletonModule.h"
 
 SPEC_BEGIN(GIInjectorSpec)
 
@@ -51,7 +51,7 @@ SPEC_BEGIN(GIInjectorSpec)
 
             it(@"raises exception when class does not conform to protocol", ^{
                 [[theBlock(^{
-                    [injector map:@protocol(Vehicle) to:[NSObject class]];
+                    [injector map:[NSObject class] to:@protocol(Vehicle)];
                 }) should] raiseWithName:@"GIInjectorEntryException"];
             });
 
@@ -62,7 +62,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 beforeEach(^{
                     [injector map:[Car class] to:[Car class]];
                     [injector map:[Garage class] to:[Garage class]];
-                    [injector map:@protocol(Motor) to:[HybridMotor class]];
+                    [injector map:[HybridMotor class] to:@protocol(Motor)];
                     car = [injector getObject:[Car class]];
                     garage = [injector getObject:[Garage class]];
                 });
@@ -70,7 +70,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 it(@"has mapping", ^{
                     BOOL m1 = [injector isObject:[Car class] mappedTo:[Car class]];
                     BOOL m2 = [injector isObject:[Garage class] mappedTo:[Garage class]];
-                    BOOL m3 = [injector isObject:@protocol(Motor) mappedTo:[HybridMotor class]];
+                    BOOL m3 = [injector isObject:[HybridMotor class] mappedTo:@protocol(Motor)];
 
                     [[theValue(m1) should] beYes];
                     [[theValue(m2) should] beYes];
@@ -104,17 +104,17 @@ SPEC_BEGIN(GIInjectorSpec)
                 __block Car *car;
                 __block Garage *garage;
                 beforeEach(^{
-                    [injector map:@protocol(Vehicle) to:[Car class]];
+                    [injector map:[Car class] to:@protocol(Vehicle)];
                     [injector map:[Garage class] to:[Garage class]];
-                    [injector map:@protocol(Motor) to:[HybridMotor class]];
+                    [injector map:[HybridMotor class] to:@protocol(Motor)];
                     car = [injector getObject:@protocol(Vehicle)];
                     garage = [injector getObject:[Garage class]];
                 });
 
                 it(@"has mapping", ^{
-                    BOOL m1 = [injector isObject:@protocol(Vehicle) mappedTo:[Car class]];
+                    BOOL m1 = [injector isObject:[Car class] mappedTo:@protocol(Vehicle)];
                     BOOL m2 = [injector isObject:[Garage class] mappedTo:[Garage class]];
-                    BOOL m3 = [injector isObject:@protocol(Motor) mappedTo:[HybridMotor class]];
+                    BOOL m3 = [injector isObject:[HybridMotor  class] mappedTo:@protocol(Motor)];
 
                     [[theValue(m1) should] beYes];
                     [[theValue(m2) should] beYes];
@@ -144,18 +144,18 @@ SPEC_BEGIN(GIInjectorSpec)
                 __block Car *car;
                 __block Garage *garage;
                 beforeEach(^{
-                    [injector mapSingleton:@protocol(Vehicle) to:[Car class] lazy:YES];
+                    [injector mapSingleton:[Car class] to:@protocol(Vehicle) lazy:YES];
                     [injector mapSingleton:[Garage class] to:[Garage class] lazy:YES];
-                    [injector map:@protocol(Motor) to:[HybridMotor class]];
+                    [injector map:[HybridMotor class] to:@protocol(Motor)];
                     car = [injector getObject:@protocol(Vehicle)];
                     garage = [injector getObject:[Garage class]];
 
                 });
 
                 it(@"has mapping", ^{
-                    BOOL m1 = [injector isObject:@protocol(Vehicle) mappedTo:[Car class]];
+                    BOOL m1 = [injector isObject:[Car class] mappedTo:@protocol(Vehicle)];
                     BOOL m2 = [injector isObject:[Garage class] mappedTo:[Garage class]];
-                    BOOL m3 = [injector isObject:@protocol(Motor) mappedTo:[HybridMotor class]];
+                    BOOL m3 = [injector isObject:[HybridMotor class] mappedTo:@protocol(Motor)];
 
                     [[theValue(m1) should] beYes];
                     [[theValue(m2) should] beYes];
@@ -203,23 +203,23 @@ SPEC_BEGIN(GIInjectorSpec)
                 __block Car *retrievedCar;
                 __block Garage *garage;
                 beforeEach(^{
-                    [injector map:@protocol(Motor) to:[HybridMotor class]];
+                    [injector map:[HybridMotor class] to:@protocol(Motor)];
                     mappedCar = [Car car];
                     garage = [[Garage alloc] init];
-                    [injector map:@protocol(Vehicle) to:mappedCar];
-                    [injector map:[Garage class] to:garage];
+                    [injector map:mappedCar to:@protocol(Vehicle)];
+                    [injector map:garage to:[Garage class]];
                     retrievedCar = [injector getObject:@protocol(Vehicle)];
                 });
 
                 it(@"has mapping", ^{
-                    BOOL m1 = [injector isObject:@protocol(Motor) mappedTo:[HybridMotor class]];
-                    BOOL m2 = [injector isObject:@protocol(Vehicle) mappedTo:mappedCar];
-                    BOOL m3 = [injector isObject:[Garage class] mappedTo:garage];
+                    BOOL m1 = [injector isObject:[HybridMotor class] mappedTo:@protocol(Motor)];
+                    BOOL m2 = [injector isObject:mappedCar mappedTo:@protocol(Vehicle)];
+                    BOOL m3 = [injector isObject:garage mappedTo:[Garage class]];
 
                     BOOL m4 = [injector isObject:[Garage class] mappedTo:[Garage class]];
-                    BOOL m5 = [injector isObject:[Garage class] mappedTo:[[Garage alloc] init]];
+                    BOOL m5 = [injector isObject:[[Garage alloc] init] mappedTo:[Garage class]];
                     BOOL m6 = [injector isObject:[Car class] mappedTo:[Car class]];
-                    BOOL m7 = [injector isObject:[Car class] mappedTo:[Car car]];
+                    BOOL m7 = [injector isObject:[Car car] mappedTo:[Car class]];
 
                     [[theValue(m1) should] beYes];
                     [[theValue(m2) should] beYes];
@@ -254,7 +254,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 it(@"raises exception", ^{
                     [[theBlock(^{
                         [injector map:[NSObject class] to:@protocol(Vehicle)];
-                    }) should] raiseWithName:@"GIInjectorEntryFactoryException"];
+                    }) should] raiseWithName:@"GIInjectorEntryException"];
                 });
 
             });
@@ -278,10 +278,10 @@ SPEC_BEGIN(GIInjectorSpec)
             });
 
             it(@"removes mappings", ^{
-                [injector map:@protocol(Vehicle) to:[Car class]];
-                BOOL has1 = [injector isObject:@protocol(Vehicle) mappedTo:[Car class]];
-                [injector unMap:@protocol(Vehicle) from:[Car class]];
-                BOOL has2 = [injector isObject:@protocol(Vehicle) mappedTo:[Car class]];
+                [injector map:[Car class] to:@protocol(Vehicle)];
+                BOOL has1 = [injector isObject:[Car class] mappedTo:@protocol(Vehicle)];
+                [injector unMap:[Car class] from:@protocol(Vehicle)];
+                BOOL has2 = [injector isObject:[Car class] mappedTo:@protocol(Vehicle)];
 
                 [[theValue(has1) should] beYes];
                 [[theValue(has2) should] beNo];
@@ -299,19 +299,19 @@ SPEC_BEGIN(GIInjectorSpec)
 
             context(@"when added a module", ^{
 
-                __block MyModule *carModule;
+                __block SingletonModule *singletonModule;
                 beforeEach(^{
-                    carModule = [[MyModule alloc] init];
-                    [injector addModule:carModule];
+                    singletonModule = [[SingletonModule alloc] init];
+                    [injector addModule:singletonModule];
                 });
 
                 it(@"has module", ^{
-                    BOOL has = [injector hasModule:carModule];
+                    BOOL has = [injector hasModule:singletonModule];
                     [[theValue(has) should] beYes];
                 });
 
                 it(@"has module class", ^{
-                    BOOL has = [injector hasModuleClass:[MyModule class]];
+                    BOOL has = [injector hasModuleClass:[SingletonModule class]];
                     [[theValue(has) should] beYes];
                 });
 
@@ -323,16 +323,16 @@ SPEC_BEGIN(GIInjectorSpec)
                 context(@"when removed module", ^{
 
                     beforeEach(^{
-                        [injector removeModule:carModule];
+                        [injector removeModule:singletonModule];
                     });
 
                     it(@"has no module", ^{
-                        BOOL has = [injector hasModule:carModule];
+                        BOOL has = [injector hasModule:singletonModule];
                         [[theValue(has) should] beNo];
                     });
 
                     it(@"has no module class", ^{
-                        BOOL has = [injector hasModuleClass:[MyModule class]];
+                        BOOL has = [injector hasModuleClass:[SingletonModule class]];
                         [[theValue(has) should] beNo];
                     });
 
@@ -346,16 +346,16 @@ SPEC_BEGIN(GIInjectorSpec)
                 context(@"when removed module class", ^{
 
                     beforeEach(^{
-                        [injector removeModuleClass:[MyModule class]];
+                        [injector removeModuleClass:[SingletonModule class]];
                     });
 
                     it(@"has no module", ^{
-                        BOOL has = [injector hasModule:carModule];
+                        BOOL has = [injector hasModule:singletonModule];
                         [[theValue(has) should] beNo];
                     });
 
                     it(@"has no module class", ^{
-                        BOOL has = [injector hasModuleClass:[MyModule class]];
+                        BOOL has = [injector hasModuleClass:[SingletonModule class]];
                         [[theValue(has) should] beNo];
                     });
 
