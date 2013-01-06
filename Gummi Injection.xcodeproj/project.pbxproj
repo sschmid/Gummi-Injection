@@ -229,10 +229,6 @@
 		CBD97105168F60DE00536DF9 = {
 			isa = PBXGroup;
 			children = (
-				CB2A9458169A175200128691 /* Gummi-Injection-144.png */,
-				CB2A9456169A173200128691 /* Gummi-Injection-72.png */,
-				CB2A9454169A16F800128691 /* Gummi-Injection-57.png */,
-				CB2A9451169A16E200128691 /* Gummi-Injection-114.png */,
 				CBD9711A168F60DE00536DF9 /* Gummi Injection */,
 				CBD97138168F60DE00536DF9 /* Gummi InjectionTests */,
 				CBD97113168F60DE00536DF9 /* Frameworks */,
@@ -284,6 +280,10 @@
 				CBD97126168F60DE00536DF9 /* Default.png */,
 				CBD97128168F60DE00536DF9 /* Default@2x.png */,
 				CBD9712A168F60DE00536DF9 /* Default-568h@2x.png */,
+				CB2A9454169A16F800128691 /* Gummi-Injection-57.png */,
+				CB2A9456169A173200128691 /* Gummi-Injection-72.png */,
+				CB2A9451169A16E200128691 /* Gummi-Injection-114.png */,
+				CB2A9458169A175200128691 /* Gummi-Injection-144.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
