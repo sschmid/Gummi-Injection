@@ -9,5 +9,5 @@
 #import "GIModule.h"
 
 
-@interface MyModule : GIModule
+@interface SingletonModule : GIModule
 @end

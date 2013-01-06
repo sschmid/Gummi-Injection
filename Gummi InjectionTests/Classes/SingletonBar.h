@@ -9,7 +9,6 @@
 
 @class SingletonFoo;
 
-
 @interface SingletonBar : NSObject
 @property(nonatomic, strong) SingletonFoo *foo;
 

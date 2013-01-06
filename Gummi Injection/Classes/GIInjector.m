@@ -60,28 +60,28 @@ static GIInjector *sInjector;
     }
 }
 
-- (GIInjectorEntry *)map:(id)whenAskedFor to:(id)use {
-    GIInjectorEntry *entry = [self.entryFactory createEntryForObject:whenAskedFor mappedTo:use asSingleton:NO];
+- (GIInjectorEntry *)map:(id)object to:(id)whenAskedFor {
+    GIInjectorEntry *entry = [self.entryFactory createEntryForObject:object mappedTo:whenAskedFor asSingleton:NO];
     self.context[[self keyForObject:entry.whenAskedFor]] = entry;
     return entry;
 }
 
-- (GIInjectorEntry *)mapSingleton:(id)whenAskedFor to:(id)use lazy:(BOOL)lazy {
-    GIInjectorEntry *entry = [self.entryFactory createEntryForObject:whenAskedFor mappedTo:use asSingleton:YES];
+- (GIInjectorEntry *)mapSingleton:(id)object to:(id)whenAskedFor lazy:(BOOL)lazy {
+    GIInjectorEntry *entry = [self.entryFactory createEntryForObject:object mappedTo:whenAskedFor asSingleton:YES];
     self.context[[self keyForObject:entry.whenAskedFor]] = entry;
     if (!lazy)
-        [self getObject:whenAskedFor];
+        [self getObject:object];
 
     return entry;
 }
 
-- (BOOL)isObject:(id)whenAskedFor mappedTo:(id)use {
+- (BOOL)isObject:(id)object mappedTo:(id)whenAskedFor {
     GIInjectorEntry *entry = self.context[[self keyForObject:whenAskedFor]];
-    return [entry.use isEqual:use];
+    return [entry.object isEqual:object];
 }
 
-- (void)unMap:(id)whenAskedFor from:(id)use {
-    if ([self isObject:whenAskedFor mappedTo:use])
+- (void)unMap:(id)object from:(id)whenAskedFor {
+    if ([self isObject:object mappedTo:whenAskedFor])
         [self.context removeObjectForKey:[self keyForObject:whenAskedFor]];
 }
 
@@ -111,6 +111,7 @@ static GIInjector *sInjector;
 
 
 #pragma mark Modules
+
 - (void)addModule:(GIModule *)module {
     [module configure:self];
     [self.modules addObject:module];

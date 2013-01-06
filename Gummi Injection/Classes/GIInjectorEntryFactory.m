@@ -29,16 +29,16 @@
     return self;
 }
 
-- (GIInjectorEntry *)createEntryForObject:(id)whenAskedFor mappedTo:(id)use asSingleton:(BOOL)asSingleton {
-    if ([GIReflector isProtocol:use])
-        @throw [NSException exceptionWithName:@"GIInjectorEntryFactoryException" reason:[NSString stringWithFormat:@"You cannot create an injector entry using protocols (<%@>)", NSStringFromProtocol(use)] userInfo:nil];
+- (GIInjectorEntry *)createEntryForObject:(id)object mappedTo:(id)whenAskedFor asSingleton:(BOOL)asSingleton {
+    if ([GIReflector isProtocol:object])
+        @throw [NSException exceptionWithName:@"GIInjectorEntryFactoryException" reason:[NSString stringWithFormat:@"You cannot create an injector entry using protocols (<%@>)", NSStringFromProtocol(object)] userInfo:nil];
 
-    if ([GIReflector isClass:use]) {
-        GIInjectorClassEntry *entry = [[GIInjectorClassEntry alloc] initWithObject:whenAskedFor mappedTo:use injector:self.injector];
+    if ([GIReflector isClass:object]) {
+        GIInjectorClassEntry *entry = [[GIInjectorClassEntry alloc] initWithObject:object mappedTo:whenAskedFor injector:self.injector];
         entry.asSingleton = asSingleton;
         return entry;
-    } else if ([GIReflector isInstance:use]) {
-        return [[GIInjectorInstanceEntry alloc] initWithObject:whenAskedFor mappedTo:use injector:self.injector];
+    } else if ([GIReflector isInstance:object]) {
+        return [[GIInjectorInstanceEntry alloc] initWithObject:object mappedTo:whenAskedFor injector:self.injector];
     }
 
     return nil;

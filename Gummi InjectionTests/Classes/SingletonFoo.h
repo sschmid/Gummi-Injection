@@ -9,11 +9,9 @@
 
 @class SingletonBar;
 
-
 @interface SingletonFoo : NSObject
 @property(nonatomic, strong) SingletonBar *bar;
 
 + (BOOL)isInitialized;
-
 
 @end

@@ -34,5 +34,4 @@ inject(@"bar")
     NSLog(@"[%@ %s]", NSStringFromClass([self class]), sel_getName(_cmd));
 }
 
-
 @end

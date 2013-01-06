@@ -35,11 +35,11 @@ SPEC_BEGIN(GIModuleSpec)
 
                 beforeEach(^{
                     [module configure:[[GIInjector alloc] init]];
-                    [module map:@protocol(NSObject) to:[NSObject class]];
+                    [module map:[NSObject class]to:@protocol(NSObject)];
                 });
 
                 it(@"has mapping", ^{
-                    BOOL has = [module isObject:@protocol(NSObject) mappedTo:[NSObject class]];
+                    BOOL has = [module isObject:[NSObject class] mappedTo:@protocol(NSObject)];
 
                     [[theValue(has) should] beYes];
                 });
@@ -47,11 +47,11 @@ SPEC_BEGIN(GIModuleSpec)
                 context(@"when removed mapping", ^{
 
                     beforeEach(^{
-                        [module unMap:@protocol(NSObject) from:[NSObject class]];
+                        [module unMap:[NSObject class] from:@protocol(NSObject)];
                     });
 
                     it(@"has no mapping", ^{
-                        BOOL has = [module isObject:@protocol(NSObject) mappedTo:[NSObject class]];
+                        BOOL has = [module isObject:[NSObject class] mappedTo:@protocol(NSObject)];
 
                         [[theValue(has) should] beNo];
                     });
@@ -65,7 +65,7 @@ SPEC_BEGIN(GIModuleSpec)
                     });
 
                     it(@"has no mapping", ^{
-                        BOOL has = [module isObject:@protocol(NSObject) mappedTo:[NSObject class]];
+                        BOOL has = [module isObject:[NSObject class] mappedTo:@protocol(NSObject)];
 
                         [[theValue(has) should] beNo];
                     });

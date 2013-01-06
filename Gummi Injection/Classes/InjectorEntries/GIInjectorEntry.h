@@ -10,15 +10,15 @@
 @class GIInjector;
 
 @interface GIInjectorEntry : NSObject {
+    id _object;
     id _whenAskedFor;
-    id _use;
     GIInjector *_injector;
 }
 
+@property(nonatomic, strong, readonly) id object;
 @property(nonatomic, strong, readonly) id whenAskedFor;
-@property(nonatomic, strong, readonly) id use;
 
-- (id)initWithObject:(id)whenAskedFor mappedTo:(id)use injector:(GIInjector *)injector;
+- (id)initWithObject:(id)object mappedTo:(id)whenAskedFor injector:(GIInjector *)injector;
 - (id)extractObject;
 
 @end
