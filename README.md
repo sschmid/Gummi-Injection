@@ -126,6 +126,7 @@ GIModule *module = [[GameModule alloc] init];
 
 You find the source files you need in Gummi Injection/Classes
 
+## CocoaPods
 Create a Podfile and put it into your root folder of your project
 
 #### Edit your Podfile
@@ -147,13 +148,13 @@ $ pod setup
 $ pod repo add sschmid-cocoapods-specs https://github.com/sschmid/cocoapods-specs
 ```
 
-#### Install Gummi
+#### Install Gummi Injection
 ```
 $ cd path/to/project
 $ pod install
 ```
 
-## Other projects using SDObjection
+## Other projects using Gummi Injection
 
 * [Gummi Commander] (https://github.com/sschmid/Gummi-Commander) Event Command Mapping System for Objective-C
 
