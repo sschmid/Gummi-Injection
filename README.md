@@ -1,4 +1,5 @@
 ## Gummi Injection
+![Gummi Injection Logo](http://sschmid.com/Gummi/Gummi-Injection/Gummi-Injection-128.png)
 
 Gummi Injection is a lightweight dependency injection framework for Objective-C.
 
@@ -134,7 +135,7 @@ platform :ios, '5.0'
 pod 'Gummi Injection'
 ```
 
-#### Setup [CocoaPods], if not done already
+#### Setup [CocoaPods] (http://cocoapods.org/), if not done already
 
 ```
 $ sudo gem install cocoapods
@@ -152,4 +153,9 @@ $ cd path/to/project
 $ pod install
 ```
 
-[cocoapods]: http://cocoapods.org/
+## Other projects using SDObjection
+
+* [Gummi Commander] (https://github.com/sschmid/Gummi-Commander) Event Command Mapping System for Objective-C
+
+If you enjoy using Gummi Injection in your projects let me know, and I'll mention your projects here.
+
