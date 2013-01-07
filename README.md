@@ -9,28 +9,37 @@ Gummi Injection is a lightweight dependency injection framework for Objective-C.
 * Inject into existing objects
 * Extend injector context with modules
 * Add or remove modules at any time
+* Instantiate singletons lazily or not
+* Handles circular dependencies for singletons
+* Can handle unmapped dependencies, when they can be created like this [[MyObject alloc] init]
 
 ## How to use Gummi Injection
 
-#### Add rules to injector
+#### Get an injector
 ```objective-c
-
+// Create your own injector
 GIInjector *injector = [[GIInjector alloc] init];
 
-// Or
+// or use the shared injector
 GIInjector *injector = [GIInjector sharedInjector];
+```
 
-// [injector map:object to:whenAskedFor]
-
+#### Add rules to injector [injector map:object to:whenAskedFor]
+```objective-c
 // Map classes
 [injector map:[MyImplementation class] to:@protocol(MyProtocol)];
+
+// You don't have to do this. Gummi Injection will figure it out itself.
 [injector map:[MyImplementation class] to:[MyImplementation class]];
+
+// But you could do this
+[injector map:[MyImplementation1 class] to:[MyImplementation2 class]];
 
 // Map instances
 [injector map:car to:[Car class]]
 [injector map:car to:@protocol(Vehicle)]
 
-// Map singletons
+// Map singletons lazily or not
 [injector mapSingleton:[Service class] to:@protocol(RemoteService) lazy:NO];
 [injector mapSingleton:[Model class] to:[Model class] lazy:YES];
 
@@ -38,7 +47,7 @@ GIInjector *injector = [GIInjector sharedInjector];
 [injector unMap:[Service class] from:@protocol(RemoteService)];
 ```
 
-#### Automatically inject dependencies
+#### Mark properties for injection with "inject"
 ```objective-c
 @interface Car : NSObject <Vehicle>
 @property(nonatomic, strong) Wheel *leftFrontWheel;
@@ -52,6 +61,7 @@ GIInjector *injector = [GIInjector sharedInjector];
 @implementation Car
 
 inject(@"leftFrontWheel", @"rightFrontWheel", @"leftRearWheel", @"rightRearWheel", @"motor");
+
 @synthesize leftFrontWheel = _leftFrontWheel;
 @synthesize rightFrontWheel = _rightFrontWheel;
 @synthesize leftRearWheel = _leftRearWheel;
@@ -63,32 +73,32 @@ inject(@"leftFrontWheel", @"rightFrontWheel", @"leftRearWheel", @"rightRearWheel
 ```
 
 #### Create an object with all dependencies set
+When an object gets created by calling injector#getObject, all its dependecies will be satisfied as well.
 ```objective-c
 // No need to set up rules for simple injections like Wheel that can be created with alloc init.
 // For protocols there's no way to know which implementation to return - we need to set up a rule for it.
 [injector map:[HybridMotor class] to:@protocol(Motor)];
+
 Car *car = [injector getObject:[Car class]];
 
-// Or
+// or use protocols
 [injector map:[Car class] to:@protocol(Vehicle)];
-[injector map:[HybridMotor class] to:@protocol(Motor)];
 Car *car = [injector getObject:@protocol(Vehicle)];
 
-// Or
+// or injecti into existing objects
 Car *car = [[Car alloc] init];
-[injector map:[HybridMotor class] to:@protocol(Motor)];
 [injector injectIntoObject:car];
 ```
 
 ## Modules
-Modules are just a wrapper for related mappings. They extend the context of the injector and can be added and removed at any time.
+Modules are a wrapper for related mappings. They extend the context of the injector and can be added and removed at any time.
 ```objective-c
 GIModule *module = [[GameModule alloc] init];
 [injector addModule:module];
 
-// After the game
+// After the game, remove the Module by class
 [injector removeModuleClass:[GameModule class]];
-// Or
+// or by instance
 [injector removeModule:gameModule];
 ```
 
@@ -101,15 +111,15 @@ GIModule *module = [[GameModule alloc] init];
 - (void)configure:(GIInjector *)injector {
     [super configure:injector];
 
-    [self mapSingleton:[Model class] to:[Model class] lazy:YES];
+    [self mapSingleton:[MyAppModel class] to:@protocol(AppModel) lazy:YES];
     
     // Example Service starts automatically on init
-    [self mapSingleton:[Service class] to:[Service class] lazy:NO];
+    [self mapSingleton:[MyRemoteService class] to:@protocol(RemoteService) lazy:NO];
 }
 
 - (void)unload {
     // For convenience, close all connections to stop service
-    Service *service = [_injector getObject:[Service class]];
+    Service *service = [_injector getObject:@protocol(RemoteService)];
     [service close];
 
     [super unload];
@@ -124,7 +134,7 @@ GIModule *module = [[GameModule alloc] init];
 
 ## Use Gummi Injection in your project
 
-You find the source files you need in Gummi Injection/Classes
+You find the source files you need in Gummi-Injection/Classes
 
 ## CocoaPods
 Create a Podfile and put it into your root folder of your project
@@ -133,7 +143,7 @@ Create a Podfile and put it into your root folder of your project
 ```
 platform :ios, '5.0'
 
-pod 'Gummi Injection'
+pod 'Gummi-Injection'
 ```
 
 #### Setup [CocoaPods] (http://cocoapods.org/), if not done already
