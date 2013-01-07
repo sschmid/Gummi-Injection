@@ -1,9 +1,9 @@
 //
 //  main.m
-//  Gummi Injection
+//  Gummi-Injection
 //
-//  Created by Simon Schmid on 29.12.12.
-//  Copyright (c) 2012 Simon Schmid. All rights reserved.
+//  Created by Simon Schmid on 07.01.13.
+//  Copyright (c) 2013 Simon Schmid. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

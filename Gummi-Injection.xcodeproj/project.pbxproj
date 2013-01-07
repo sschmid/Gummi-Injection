@@ -1,0 +1,660 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3A9036FA6DE445349BF8EA85 /* libPods-Gummi-InjectionTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD2C85A137B43709BFC00DB /* libPods-Gummi-InjectionTests.a */; };
+		8D4DF022B92A83B4D1CC97C8 /* SingletonFoo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF89DBB86D0493952E85E /* SingletonFoo.m */; };
+		8D4DF060F93B853DBB00F170 /* GIInjectorClassEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFF816B26D453B05E5405 /* GIInjectorClassEntry.m */; };
+		8D4DF1DF7A48DE4144D2B82F /* GIInjectorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF4AD9FB7434EEA54B34F /* GIInjectorSpec.m */; };
+		8D4DF2E28944E3D7DB6213C5 /* GIModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFCF6D9F287E8B975F3B5 /* GIModule.m */; };
+		8D4DF3F5725D47B177364742 /* GIInjector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF9BCCC5B198872BCF39A /* GIInjector.m */; };
+		8D4DF425A4E0CFEAACC4FA94 /* GIInjectorEntryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF735A4C5A13506F5640A /* GIInjectorEntryFactory.m */; };
+		8D4DF58861882C9CD4E9D9F5 /* GarageExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF5C96EFD245E0678A32B /* GarageExample.m */; };
+		8D4DF6181A01808A5A2643A6 /* HybridMotor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFDF0C637C7F873A4E095 /* HybridMotor.m */; };
+		8D4DF8F18888C58417501FF8 /* SingletonModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF6A29F3587F955BF319D /* SingletonModule.m */; };
+		8D4DF9272750EF44BAA85C68 /* GIInjectorEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFEA257E128570D74DF6B /* GIInjectorEntry.m */; };
+		8D4DF9D251AFEB0F13924B08 /* GIInjectorEntryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF6D1615EA888F18AD100 /* GIInjectorEntryFactory.m */; };
+		8D4DFA3668AF552DE68A4C87 /* CarSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF19958AD90EF9C4E879B /* CarSpec.m */; };
+		8D4DFAFBE5C6F351C4E9D705 /* SingletonBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF516EAF70902ADA70D65 /* SingletonBar.m */; };
+		8D4DFB60274D41C8B5AC30C7 /* GIReflector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFB78C61EAB37688CCA10 /* GIReflector.m */; };
+		8D4DFC2BA93125407E5FCB40 /* GIInjectorInstanceEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFE936F4AE4A03352E906 /* GIInjectorInstanceEntry.m */; };
+		8D4DFC98BFDD0D3CBE02407F /* GIModuleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF3D33C0C5BBAF1784CC8 /* GIModuleSpec.m */; };
+		8D4DFD3803079FC3DE557711 /* Garage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF7B14C2323AE564B66F0 /* Garage.m */; };
+		8D4DFEDA5E69ED38424E9978 /* Wheel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFB56D5AB82AAB64223C5 /* Wheel.m */; };
+		8D4DFF2651348B9A4027F55E /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF5B11E79D896FFC6BDB2 /* Car.m */; };
+		8D4DFF5E8B378356BF899323 /* GIReflectorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF491ACF08E6B983DD519 /* GIReflectorSpec.m */; };
+		8D4DFFC43441C6A3417260F8 /* GarageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF75940E4702A25A22C8E /* GarageSpec.m */; };
+		CB248C82169B48DA001F4B01 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB248C81169B48DA001F4B01 /* UIKit.framework */; };
+		CB248C84169B48DA001F4B01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB248C83169B48DA001F4B01 /* Foundation.framework */; };
+		CB248C86169B48DA001F4B01 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB248C85169B48DA001F4B01 /* CoreGraphics.framework */; };
+		CB248C8C169B48DA001F4B01 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CB248C8A169B48DA001F4B01 /* InfoPlist.strings */; };
+		CB248C8E169B48DA001F4B01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CB248C8D169B48DA001F4B01 /* main.m */; };
+		CB248C92169B48DA001F4B01 /* GIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CB248C91169B48DA001F4B01 /* GIAppDelegate.m */; };
+		CB248C94169B48DA001F4B01 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CB248C93169B48DA001F4B01 /* Default.png */; };
+		CB248C96169B48DA001F4B01 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB248C95169B48DA001F4B01 /* Default@2x.png */; };
+		CB248C98169B48DA001F4B01 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB248C97169B48DA001F4B01 /* Default-568h@2x.png */; };
+		CB248CA0169B48DA001F4B01 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB248C9F169B48DA001F4B01 /* SenTestingKit.framework */; };
+		CB248CA1169B48DA001F4B01 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB248C81169B48DA001F4B01 /* UIKit.framework */; };
+		CB248CA2169B48DA001F4B01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB248C83169B48DA001F4B01 /* Foundation.framework */; };
+		CB248CAA169B48DA001F4B01 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CB248CA8169B48DA001F4B01 /* InfoPlist.strings */; };
+		CB248CC7169B49F3001F4B01 /* Gummi-Injection-57.png in Resources */ = {isa = PBXBuildFile; fileRef = CB248CC6169B49F3001F4B01 /* Gummi-Injection-57.png */; };
+		CB248CC9169B49F5001F4B01 /* Gummi-Injection-114.png in Resources */ = {isa = PBXBuildFile; fileRef = CB248CC8169B49F5001F4B01 /* Gummi-Injection-114.png */; };
+		CB248CCB169B49F9001F4B01 /* Gummi-Injection-144.png in Resources */ = {isa = PBXBuildFile; fileRef = CB248CCA169B49F9001F4B01 /* Gummi-Injection-144.png */; };
+		CB248CCD169B49FB001F4B01 /* Gummi-Injection-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CB248CCC169B49FB001F4B01 /* Gummi-Injection-72.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CB248CA3169B48DA001F4B01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB248C74169B48DA001F4B01 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CB248C7C169B48DA001F4B01;
+			remoteInfo = "Gummi-Injection";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7DD2C85A137B43709BFC00DB /* libPods-Gummi-InjectionTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Gummi-InjectionTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D4DF0875B2A22C640F3F1EE /* Vehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vehicle.h; sourceTree = "<group>"; };
+		8D4DF19958AD90EF9C4E879B /* CarSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarSpec.m; sourceTree = "<group>"; };
+		8D4DF2BCD0BEC061A66D4A55 /* GIInjectorEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectorEntry.h; sourceTree = "<group>"; };
+		8D4DF31F4681417B49B86925 /* GIInjectorEntryFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectorEntryFactory.h; sourceTree = "<group>"; };
+		8D4DF3D33C0C5BBAF1784CC8 /* GIModuleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIModuleSpec.m; sourceTree = "<group>"; };
+		8D4DF47E48BBC36474B539AA /* GIModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIModule.h; sourceTree = "<group>"; };
+		8D4DF491ACF08E6B983DD519 /* GIReflectorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIReflectorSpec.m; sourceTree = "<group>"; };
+		8D4DF4AD9FB7434EEA54B34F /* GIInjectorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorSpec.m; sourceTree = "<group>"; };
+		8D4DF516EAF70902ADA70D65 /* SingletonBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonBar.m; sourceTree = "<group>"; };
+		8D4DF5B11E79D896FFC6BDB2 /* Car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
+		8D4DF5C96EFD245E0678A32B /* GarageExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GarageExample.m; sourceTree = "<group>"; };
+		8D4DF601503BBEE0A75EFB3E /* Garage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Garage.h; sourceTree = "<group>"; };
+		8D4DF6695B3DF017D2C62446 /* GarageExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GarageExample.h; sourceTree = "<group>"; };
+		8D4DF6A29F3587F955BF319D /* SingletonModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonModule.m; sourceTree = "<group>"; };
+		8D4DF6D1615EA888F18AD100 /* GIInjectorEntryFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorEntryFactory.m; sourceTree = "<group>"; };
+		8D4DF70C6FE5C78213CBE1EB /* SingletonFoo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonFoo.h; sourceTree = "<group>"; };
+		8D4DF735A4C5A13506F5640A /* GIInjectorEntryFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorEntryFactory.m; sourceTree = "<group>"; };
+		8D4DF75940E4702A25A22C8E /* GarageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GarageSpec.m; sourceTree = "<group>"; };
+		8D4DF78ADD00DEC591FF9290 /* GIInjectionMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectionMapper.h; sourceTree = "<group>"; };
+		8D4DF7B14C2323AE564B66F0 /* Garage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Garage.m; sourceTree = "<group>"; };
+		8D4DF7EF4F52A4394F7303FE /* Wheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wheel.h; sourceTree = "<group>"; };
+		8D4DF89DBB86D0493952E85E /* SingletonFoo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonFoo.m; sourceTree = "<group>"; };
+		8D4DF8F76D62C09C1292EDCA /* HybridMotor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HybridMotor.h; sourceTree = "<group>"; };
+		8D4DF917BB11023C2BA3A404 /* GIReflector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIReflector.h; sourceTree = "<group>"; };
+		8D4DF9BCCC5B198872BCF39A /* GIInjector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjector.m; sourceTree = "<group>"; };
+		8D4DFA3C871549465C03BDB8 /* GIInjectorInstanceEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectorInstanceEntry.h; sourceTree = "<group>"; };
+		8D4DFB56D5AB82AAB64223C5 /* Wheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wheel.m; sourceTree = "<group>"; };
+		8D4DFB78C61EAB37688CCA10 /* GIReflector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIReflector.m; sourceTree = "<group>"; };
+		8D4DFB8E2DB80128290FD761 /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
+		8D4DFC9C97C681FDCB6D8B4E /* SingletonBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonBar.h; sourceTree = "<group>"; };
+		8D4DFCF6D9F287E8B975F3B5 /* GIModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIModule.m; sourceTree = "<group>"; };
+		8D4DFDF0C637C7F873A4E095 /* HybridMotor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HybridMotor.m; sourceTree = "<group>"; };
+		8D4DFE75B9272CB0E1776B14 /* GIInjectorClassEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectorClassEntry.h; sourceTree = "<group>"; };
+		8D4DFE936F4AE4A03352E906 /* GIInjectorInstanceEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorInstanceEntry.m; sourceTree = "<group>"; };
+		8D4DFEA257E128570D74DF6B /* GIInjectorEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorEntry.m; sourceTree = "<group>"; };
+		8D4DFF0E89577AA8D6A3834D /* GIInjector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjector.h; sourceTree = "<group>"; };
+		8D4DFF816B26D453B05E5405 /* GIInjectorClassEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorClassEntry.m; sourceTree = "<group>"; };
+		8D4DFFB46B13037A1E1D94CD /* Motor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Motor.h; sourceTree = "<group>"; };
+		8D4DFFCBEF202BC280DF31FC /* SingletonModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonModule.h; sourceTree = "<group>"; };
+		B3659605DB934067BECAD436 /* Pods-Gummi-InjectionTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gummi-InjectionTests.xcconfig"; path = "Pods/Pods-Gummi-InjectionTests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		CB248C7D169B48DA001F4B01 /* Gummi-Injection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gummi-Injection.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB248C81169B48DA001F4B01 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CB248C83169B48DA001F4B01 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CB248C85169B48DA001F4B01 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CB248C89169B48DA001F4B01 /* Gummi-Injection-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Gummi-Injection-Info.plist"; sourceTree = "<group>"; };
+		CB248C8B169B48DA001F4B01 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CB248C8D169B48DA001F4B01 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CB248C8F169B48DA001F4B01 /* Gummi-Injection-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Gummi-Injection-Prefix.pch"; sourceTree = "<group>"; };
+		CB248C90169B48DA001F4B01 /* GIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GIAppDelegate.h; sourceTree = "<group>"; };
+		CB248C91169B48DA001F4B01 /* GIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GIAppDelegate.m; sourceTree = "<group>"; };
+		CB248C93169B48DA001F4B01 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		CB248C95169B48DA001F4B01 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		CB248C97169B48DA001F4B01 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		CB248C9E169B48DA001F4B01 /* Gummi-InjectionTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Gummi-InjectionTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB248C9F169B48DA001F4B01 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		CB248CA7169B48DA001F4B01 /* Gummi-InjectionTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Gummi-InjectionTests-Info.plist"; sourceTree = "<group>"; };
+		CB248CA9169B48DA001F4B01 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CB248CC6169B49F3001F4B01 /* Gummi-Injection-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gummi-Injection-57.png"; sourceTree = "<group>"; };
+		CB248CC8169B49F5001F4B01 /* Gummi-Injection-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gummi-Injection-114.png"; sourceTree = "<group>"; };
+		CB248CCA169B49F9001F4B01 /* Gummi-Injection-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gummi-Injection-144.png"; sourceTree = "<group>"; };
+		CB248CCC169B49FB001F4B01 /* Gummi-Injection-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gummi-Injection-72.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CB248C7A169B48DA001F4B01 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB248C82169B48DA001F4B01 /* UIKit.framework in Frameworks */,
+				CB248C84169B48DA001F4B01 /* Foundation.framework in Frameworks */,
+				CB248C86169B48DA001F4B01 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB248C9A169B48DA001F4B01 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB248CA0169B48DA001F4B01 /* SenTestingKit.framework in Frameworks */,
+				CB248CA1169B48DA001F4B01 /* UIKit.framework in Frameworks */,
+				CB248CA2169B48DA001F4B01 /* Foundation.framework in Frameworks */,
+				3A9036FA6DE445349BF8EA85 /* libPods-Gummi-InjectionTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8D4DF7B9FF754CB453D7FC3B /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				8D4DFE1646CBB63A45C20564 /* Car */,
+			);
+			path = Examples;
+			sourceTree = "<group>";
+		};
+		8D4DF8305CA68829A9E42BB9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8D4DFE40FD44F82D8E81FCE6 /* Modules */,
+				8D4DFC9C97C681FDCB6D8B4E /* SingletonBar.h */,
+				8D4DF516EAF70902ADA70D65 /* SingletonBar.m */,
+				8D4DF70C6FE5C78213CBE1EB /* SingletonFoo.h */,
+				8D4DF89DBB86D0493952E85E /* SingletonFoo.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		8D4DF8FCE252DDEB523F087C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8D4DF78ADD00DEC591FF9290 /* GIInjectionMapper.h */,
+				8D4DFF0E89577AA8D6A3834D /* GIInjector.h */,
+				8D4DF9BCCC5B198872BCF39A /* GIInjector.m */,
+				8D4DF31F4681417B49B86925 /* GIInjectorEntryFactory.h */,
+				8D4DF735A4C5A13506F5640A /* GIInjectorEntryFactory.m */,
+				8D4DF47E48BBC36474B539AA /* GIModule.h */,
+				8D4DFCF6D9F287E8B975F3B5 /* GIModule.m */,
+				8D4DF917BB11023C2BA3A404 /* GIReflector.h */,
+				8D4DFB78C61EAB37688CCA10 /* GIReflector.m */,
+				8D4DFB29BC008BE4D007F5FC /* InjectorEntries */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		8D4DF9AB473C6B41BD4A59B7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CB248CC6169B49F3001F4B01 /* Gummi-Injection-57.png */,
+				CB248CCC169B49FB001F4B01 /* Gummi-Injection-72.png */,
+				CB248CC8169B49F5001F4B01 /* Gummi-Injection-114.png */,
+				CB248CCA169B49F9001F4B01 /* Gummi-Injection-144.png */,
+				CB248C97169B48DA001F4B01 /* Default-568h@2x.png */,
+				CB248C93169B48DA001F4B01 /* Default.png */,
+				CB248C95169B48DA001F4B01 /* Default@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8D4DFB29BC008BE4D007F5FC /* InjectorEntries */ = {
+			isa = PBXGroup;
+			children = (
+				8D4DFE75B9272CB0E1776B14 /* GIInjectorClassEntry.h */,
+				8D4DFF816B26D453B05E5405 /* GIInjectorClassEntry.m */,
+				8D4DF2BCD0BEC061A66D4A55 /* GIInjectorEntry.h */,
+				8D4DFEA257E128570D74DF6B /* GIInjectorEntry.m */,
+				8D4DFA3C871549465C03BDB8 /* GIInjectorInstanceEntry.h */,
+				8D4DFE936F4AE4A03352E906 /* GIInjectorInstanceEntry.m */,
+			);
+			path = InjectorEntries;
+			sourceTree = "<group>";
+		};
+		8D4DFE1646CBB63A45C20564 /* Car */ = {
+			isa = PBXGroup;
+			children = (
+				8D4DFB8E2DB80128290FD761 /* Car.h */,
+				8D4DF5B11E79D896FFC6BDB2 /* Car.m */,
+				8D4DF601503BBEE0A75EFB3E /* Garage.h */,
+				8D4DF7B14C2323AE564B66F0 /* Garage.m */,
+				8D4DF6695B3DF017D2C62446 /* GarageExample.h */,
+				8D4DF5C96EFD245E0678A32B /* GarageExample.m */,
+				8D4DF8F76D62C09C1292EDCA /* HybridMotor.h */,
+				8D4DFDF0C637C7F873A4E095 /* HybridMotor.m */,
+				8D4DFFB46B13037A1E1D94CD /* Motor.h */,
+				8D4DF0875B2A22C640F3F1EE /* Vehicle.h */,
+				8D4DF7EF4F52A4394F7303FE /* Wheel.h */,
+				8D4DFB56D5AB82AAB64223C5 /* Wheel.m */,
+			);
+			path = Car;
+			sourceTree = "<group>";
+		};
+		8D4DFE40FD44F82D8E81FCE6 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8D4DFFCBEF202BC280DF31FC /* SingletonModule.h */,
+				8D4DF6A29F3587F955BF319D /* SingletonModule.m */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		CB248C72169B48DA001F4B01 = {
+			isa = PBXGroup;
+			children = (
+				8D4DF7B9FF754CB453D7FC3B /* Examples */,
+				CB248C80169B48DA001F4B01 /* Frameworks */,
+				CB248C87169B48DA001F4B01 /* Gummi-Injection */,
+				CB248CA5169B48DA001F4B01 /* Gummi-InjectionTests */,
+				B3659605DB934067BECAD436 /* Pods-Gummi-InjectionTests.xcconfig */,
+				CB248C7E169B48DA001F4B01 /* Products */,
+				8D4DF9AB473C6B41BD4A59B7 /* Resources */,
+			);
+			sourceTree = "<group>";
+		};
+		CB248C7E169B48DA001F4B01 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB248C7D169B48DA001F4B01 /* Gummi-Injection.app */,
+				CB248C9E169B48DA001F4B01 /* Gummi-InjectionTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CB248C80169B48DA001F4B01 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CB248C81169B48DA001F4B01 /* UIKit.framework */,
+				CB248C83169B48DA001F4B01 /* Foundation.framework */,
+				CB248C85169B48DA001F4B01 /* CoreGraphics.framework */,
+				CB248C9F169B48DA001F4B01 /* SenTestingKit.framework */,
+				7DD2C85A137B43709BFC00DB /* libPods-Gummi-InjectionTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CB248C87169B48DA001F4B01 /* Gummi-Injection */ = {
+			isa = PBXGroup;
+			children = (
+				CB248C90169B48DA001F4B01 /* GIAppDelegate.h */,
+				CB248C91169B48DA001F4B01 /* GIAppDelegate.m */,
+				CB248C88169B48DA001F4B01 /* Supporting Files */,
+				8D4DF8FCE252DDEB523F087C /* Classes */,
+			);
+			path = "Gummi-Injection";
+			sourceTree = "<group>";
+		};
+		CB248C88169B48DA001F4B01 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CB248C89169B48DA001F4B01 /* Gummi-Injection-Info.plist */,
+				CB248C8A169B48DA001F4B01 /* InfoPlist.strings */,
+				CB248C8D169B48DA001F4B01 /* main.m */,
+				CB248C8F169B48DA001F4B01 /* Gummi-Injection-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CB248CA5169B48DA001F4B01 /* Gummi-InjectionTests */ = {
+			isa = PBXGroup;
+			children = (
+				CB248CA6169B48DA001F4B01 /* Supporting Files */,
+				8D4DF19958AD90EF9C4E879B /* CarSpec.m */,
+				8D4DF8305CA68829A9E42BB9 /* Classes */,
+				8D4DF75940E4702A25A22C8E /* GarageSpec.m */,
+				8D4DF6D1615EA888F18AD100 /* GIInjectorEntryFactory.m */,
+				8D4DF4AD9FB7434EEA54B34F /* GIInjectorSpec.m */,
+				8D4DF3D33C0C5BBAF1784CC8 /* GIModuleSpec.m */,
+				8D4DF491ACF08E6B983DD519 /* GIReflectorSpec.m */,
+			);
+			path = "Gummi-InjectionTests";
+			sourceTree = "<group>";
+		};
+		CB248CA6169B48DA001F4B01 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CB248CA7169B48DA001F4B01 /* Gummi-InjectionTests-Info.plist */,
+				CB248CA8169B48DA001F4B01 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CB248C7C169B48DA001F4B01 /* Gummi-Injection */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB248CB0169B48DA001F4B01 /* Build configuration list for PBXNativeTarget "Gummi-Injection" */;
+			buildPhases = (
+				CB248C79169B48DA001F4B01 /* Sources */,
+				CB248C7A169B48DA001F4B01 /* Frameworks */,
+				CB248C7B169B48DA001F4B01 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Gummi-Injection";
+			productName = "Gummi-Injection";
+			productReference = CB248C7D169B48DA001F4B01 /* Gummi-Injection.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CB248C9D169B48DA001F4B01 /* Gummi-InjectionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB248CB3169B48DA001F4B01 /* Build configuration list for PBXNativeTarget "Gummi-InjectionTests" */;
+			buildPhases = (
+				CB248C99169B48DA001F4B01 /* Sources */,
+				CB248C9A169B48DA001F4B01 /* Frameworks */,
+				CB248C9B169B48DA001F4B01 /* Resources */,
+				CB248C9C169B48DA001F4B01 /* ShellScript */,
+				18DD60B3312D47D99DFD50DD /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CB248CA4169B48DA001F4B01 /* PBXTargetDependency */,
+			);
+			name = "Gummi-InjectionTests";
+			productName = "Gummi-InjectionTests";
+			productReference = CB248C9E169B48DA001F4B01 /* Gummi-InjectionTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CB248C74169B48DA001F4B01 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = GI;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Simon Schmid";
+			};
+			buildConfigurationList = CB248C77169B48DA001F4B01 /* Build configuration list for PBXProject "Gummi-Injection" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CB248C72169B48DA001F4B01;
+			productRefGroup = CB248C7E169B48DA001F4B01 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CB248C7C169B48DA001F4B01 /* Gummi-Injection */,
+				CB248C9D169B48DA001F4B01 /* Gummi-InjectionTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CB248C7B169B48DA001F4B01 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB248C8C169B48DA001F4B01 /* InfoPlist.strings in Resources */,
+				CB248C94169B48DA001F4B01 /* Default.png in Resources */,
+				CB248C96169B48DA001F4B01 /* Default@2x.png in Resources */,
+				CB248C98169B48DA001F4B01 /* Default-568h@2x.png in Resources */,
+				CB248CC7169B49F3001F4B01 /* Gummi-Injection-57.png in Resources */,
+				CB248CC9169B49F5001F4B01 /* Gummi-Injection-114.png in Resources */,
+				CB248CCB169B49F9001F4B01 /* Gummi-Injection-144.png in Resources */,
+				CB248CCD169B49FB001F4B01 /* Gummi-Injection-72.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB248C9B169B48DA001F4B01 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB248CAA169B48DA001F4B01 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		18DD60B3312D47D99DFD50DD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Gummi-InjectionTests-resources.sh\"\n";
+		};
+		CB248C9C169B48DA001F4B01 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CB248C79169B48DA001F4B01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB248C8E169B48DA001F4B01 /* main.m in Sources */,
+				CB248C92169B48DA001F4B01 /* GIAppDelegate.m in Sources */,
+				8D4DF3F5725D47B177364742 /* GIInjector.m in Sources */,
+				8D4DF425A4E0CFEAACC4FA94 /* GIInjectorEntryFactory.m in Sources */,
+				8D4DF2E28944E3D7DB6213C5 /* GIModule.m in Sources */,
+				8D4DFB60274D41C8B5AC30C7 /* GIReflector.m in Sources */,
+				8D4DF060F93B853DBB00F170 /* GIInjectorClassEntry.m in Sources */,
+				8D4DF9272750EF44BAA85C68 /* GIInjectorEntry.m in Sources */,
+				8D4DFC2BA93125407E5FCB40 /* GIInjectorInstanceEntry.m in Sources */,
+				8D4DFF2651348B9A4027F55E /* Car.m in Sources */,
+				8D4DFD3803079FC3DE557711 /* Garage.m in Sources */,
+				8D4DF58861882C9CD4E9D9F5 /* GarageExample.m in Sources */,
+				8D4DF6181A01808A5A2643A6 /* HybridMotor.m in Sources */,
+				8D4DFEDA5E69ED38424E9978 /* Wheel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB248C99169B48DA001F4B01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D4DFA3668AF552DE68A4C87 /* CarSpec.m in Sources */,
+				8D4DF8F18888C58417501FF8 /* SingletonModule.m in Sources */,
+				8D4DFAFBE5C6F351C4E9D705 /* SingletonBar.m in Sources */,
+				8D4DF022B92A83B4D1CC97C8 /* SingletonFoo.m in Sources */,
+				8D4DFFC43441C6A3417260F8 /* GarageSpec.m in Sources */,
+				8D4DF9D251AFEB0F13924B08 /* GIInjectorEntryFactory.m in Sources */,
+				8D4DF1DF7A48DE4144D2B82F /* GIInjectorSpec.m in Sources */,
+				8D4DFC98BFDD0D3CBE02407F /* GIModuleSpec.m in Sources */,
+				8D4DFF5E8B378356BF899323 /* GIReflectorSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CB248CA4169B48DA001F4B01 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CB248C7C169B48DA001F4B01 /* Gummi-Injection */;
+			targetProxy = CB248CA3169B48DA001F4B01 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CB248C8A169B48DA001F4B01 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CB248C8B169B48DA001F4B01 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CB248CA8169B48DA001F4B01 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CB248CA9169B48DA001F4B01 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CB248CAE169B48DA001F4B01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CB248CAF169B48DA001F4B01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CB248CB1169B48DA001F4B01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Gummi-Injection/Gummi-Injection-Prefix.pch";
+				INFOPLIST_FILE = "Gummi-Injection/Gummi-Injection-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CB248CB2169B48DA001F4B01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Gummi-Injection/Gummi-Injection-Prefix.pch";
+				INFOPLIST_FILE = "Gummi-Injection/Gummi-Injection-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		CB248CB4169B48DA001F4B01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3659605DB934067BECAD436 /* Pods-Gummi-InjectionTests.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gummi-Injection.app/Gummi-Injection";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(inherited)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Gummi-Injection/Gummi-Injection-Prefix.pch";
+				INFOPLIST_FILE = "Gummi-InjectionTests/Gummi-InjectionTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		CB248CB5169B48DA001F4B01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3659605DB934067BECAD436 /* Pods-Gummi-InjectionTests.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Gummi-Injection.app/Gummi-Injection";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(inherited)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Gummi-Injection/Gummi-Injection-Prefix.pch";
+				INFOPLIST_FILE = "Gummi-InjectionTests/Gummi-InjectionTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CB248C77169B48DA001F4B01 /* Build configuration list for PBXProject "Gummi-Injection" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB248CAE169B48DA001F4B01 /* Debug */,
+				CB248CAF169B48DA001F4B01 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB248CB0169B48DA001F4B01 /* Build configuration list for PBXNativeTarget "Gummi-Injection" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB248CB1169B48DA001F4B01 /* Debug */,
+				CB248CB2169B48DA001F4B01 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB248CB3169B48DA001F4B01 /* Build configuration list for PBXNativeTarget "Gummi-InjectionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB248CB4169B48DA001F4B01 /* Debug */,
+				CB248CB5169B48DA001F4B01 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CB248C74169B48DA001F4B01 /* Project object */;
+}

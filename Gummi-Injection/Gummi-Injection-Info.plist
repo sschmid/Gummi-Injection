@@ -14,10 +14,10 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>Gummi-Injection-114.png</string>
 				<string>Gummi-Injection-57.png</string>
-				<string>Gummi-Injection-72.png</string>
+				<string>Gummi-Injection-114.png</string>
 				<string>Gummi-Injection-144.png</string>
+				<string>Gummi-Injection-72.png</string>
 			</array>
 		</dict>
 	</dict>
