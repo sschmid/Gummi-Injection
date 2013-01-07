@@ -34,7 +34,7 @@ SPEC_BEGIN(GIModuleSpec)
             context(@"when mapping added", ^{
 
                 beforeEach(^{
-                    [module configure:[[GIInjector alloc] init]];
+                    [module configure:injector];
                     [module map:[NSObject class]to:@protocol(NSObject)];
                 });
 
@@ -42,6 +42,18 @@ SPEC_BEGIN(GIModuleSpec)
                     BOOL has = [module isObject:[NSObject class] mappedTo:@protocol(NSObject)];
 
                     [[theValue(has) should] beYes];
+                });
+
+                it(@"injector has mapping", ^{
+                    BOOL has = [injector isObject:[NSObject class] mappedTo:@protocol(NSObject)];
+
+                    [[theValue(has) should] beYes];
+                });
+
+                it(@"injector returns instance", ^{
+                    id obj = [injector getObject:@protocol(NSObject)];
+
+                    [[obj should] beKindOfClass:[NSObject class]];
                 });
 
                 context(@"when removed mapping", ^{
@@ -56,6 +68,18 @@ SPEC_BEGIN(GIModuleSpec)
                         [[theValue(has) should] beNo];
                     });
 
+                    it(@"injector has no mapping", ^{
+                        BOOL has = [injector isObject:[NSObject class] mappedTo:@protocol(NSObject)];
+
+                        [[theValue(has) should] beNo];
+                    });
+
+                    it(@"injector returns no instance", ^{
+                        [[theBlock(^{
+                            id obj = [injector getObject:@protocol(NSObject)];
+                        }) should] raiseWithName:@"GIInjectorException"];
+                    });
+
                 });
 
                 context(@"when unload module", ^{
@@ -65,6 +89,12 @@ SPEC_BEGIN(GIModuleSpec)
                     });
 
                     it(@"has no mapping", ^{
+                        BOOL has = [module isObject:[NSObject class] mappedTo:@protocol(NSObject)];
+
+                        [[theValue(has) should] beNo];
+                    });
+
+                    it(@"injector has no mapping", ^{
                         BOOL has = [module isObject:[NSObject class] mappedTo:@protocol(NSObject)];
 
                         [[theValue(has) should] beNo];

@@ -15,6 +15,8 @@
 #import "Wheel.h"
 #import "GIModule.h"
 #import "SingletonModule.h"
+#import "StartStopModule.h"
+#import "StartStopObject.h"
 
 SPEC_BEGIN(GIInjectorSpec)
 
@@ -114,7 +116,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 it(@"has mapping", ^{
                     BOOL m1 = [injector isObject:[Car class] mappedTo:@protocol(Vehicle)];
                     BOOL m2 = [injector isObject:[Garage class] mappedTo:[Garage class]];
-                    BOOL m3 = [injector isObject:[HybridMotor  class] mappedTo:@protocol(Motor)];
+                    BOOL m3 = [injector isObject:[HybridMotor class] mappedTo:@protocol(Motor)];
 
                     [[theValue(m1) should] beYes];
                     [[theValue(m2) should] beYes];
@@ -364,6 +366,30 @@ SPEC_BEGIN(GIInjectorSpec)
                         [[theValue(has) should] beNo];
                     });
 
+                });
+
+            });
+
+            context(@"module lifecycle", ^{
+
+                __block StartStopModule *startStopModule;
+                beforeEach(^{
+                    startStopModule = [[StartStopModule alloc] init];
+                    [injector addModule:startStopModule];
+                });
+
+                it(@"module is configured", ^{
+                    [[theValue(startStopModule.startStopObject.started) should] beYes];
+                });
+
+                it(@"module is unloaded", ^{
+                    [injector removeModule:startStopModule];
+                    [[theValue(startStopModule.startStopObject.started) should] beNo];
+                });
+
+                it(@"module is unloaded", ^{
+                    [injector reset];
+                    [[theValue(startStopModule.startStopObject.started) should] beNo];
                 });
 
             });
