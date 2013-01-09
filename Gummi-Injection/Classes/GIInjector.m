@@ -42,13 +42,13 @@ static GIInjector *sInjector;
     return self;
 }
 
-- (id)getObject:(id)type {
-    if (!type)
+- (id)getObject:(id)keyObject {
+    if (!keyObject)
         return nil;
 
-    GIInjectorEntry *entry = self.context[[self keyForObject:type]];
+    GIInjectorEntry *entry = self.context[[self keyForObject:keyObject]];
     if (!entry)
-        return [self createObjectForType:type];
+        return [self createObjectForType:keyObject];
 
     return entry.extractObject;
 }
@@ -60,29 +60,30 @@ static GIInjector *sInjector;
     }
 }
 
-- (GIInjectorEntry *)map:(id)object to:(id)whenAskedFor {
-    GIInjectorEntry *entry = [self.entryFactory createEntryForObject:object mappedTo:whenAskedFor asSingleton:NO];
-    self.context[[self keyForObject:entry.whenAskedFor]] = entry;
-    return entry;
+- (void)map:(id)object to:(id)keyObject {
+    GIInjectorEntry *entry = [self.entryFactory createEntryForObject:object mappedTo:keyObject asSingleton:NO];
+    self.context[[self keyForObject:entry.keyObject]] = entry;
 }
 
-- (GIInjectorEntry *)mapSingleton:(id)object to:(id)whenAskedFor lazy:(BOOL)lazy {
-    GIInjectorEntry *entry = [self.entryFactory createEntryForObject:object mappedTo:whenAskedFor asSingleton:YES];
-    self.context[[self keyForObject:entry.whenAskedFor]] = entry;
+- (void)mapSingleton:(id)object to:(id)keyObject lazy:(BOOL)lazy {
+    GIInjectorEntry *entry = [self.entryFactory createEntryForObject:object mappedTo:keyObject asSingleton:YES];
+    self.context[[self keyForObject:entry.keyObject]] = entry;
     if (!lazy)
         [self getObject:object];
-
-    return entry;
 }
 
-- (BOOL)isObject:(id)object mappedTo:(id)whenAskedFor {
-    GIInjectorEntry *entry = self.context[[self keyForObject:whenAskedFor]];
+- (BOOL)isObject:(id)object mappedTo:(id)keyObject {
+    GIInjectorEntry *entry = self.context[[self keyForObject:keyObject]];
     return [entry.object isEqual:object];
 }
 
-- (void)unMap:(id)object from:(id)whenAskedFor {
-    if ([self isObject:object mappedTo:whenAskedFor])
-        [self.context removeObjectForKey:[self keyForObject:whenAskedFor]];
+- (void)unMap:(id)object from:(id)keyObject {
+    if ([self isObject:object mappedTo:keyObject])
+        [self.context removeObjectForKey:[self keyForObject:keyObject]];
+}
+
+- (GIInjectorEntry *)entryForKeyObject:(id)keyObject {
+    return [self.context objectForKey:[self keyForObject:keyObject]];
 }
 
 - (NSDictionary *)getDependenciesForObject:(id)object withProperties:(NSSet *)properties {

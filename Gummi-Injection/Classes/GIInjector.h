@@ -17,7 +17,7 @@
 
 + (GIInjector *)sharedInjector;
 
-- (id)getObject:(id)type;
+- (id)getObject:(id)keyObject;
 
 - (void)injectIntoObject:(id)object;
 
@@ -29,4 +29,5 @@
 - (BOOL)hasModuleClass:(Class)moduleClass;
 
 - (void)reset;
+
 @end

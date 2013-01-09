@@ -11,8 +11,8 @@
 
 @implementation GIInjectorInstanceEntry
 
-- (id)initWithObject:(id)object mappedTo:(id)whenAskedFor injector:(GIInjector *)injector {
-    self = [super initWithObject:object mappedTo:whenAskedFor injector:injector];
+- (id)initWithObject:(id)object mappedTo:(id)keyObject injector:(GIInjector *)injector {
+    self = [super initWithObject:object mappedTo:keyObject injector:injector];
     if (self) {
         [_injector injectIntoObject:_object];
     }
