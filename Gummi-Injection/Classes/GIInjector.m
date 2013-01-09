@@ -96,7 +96,7 @@ static GIInjector *sInjector;
 
 - (id)createObjectForType:(id)type {
     if ([GIReflector isProtocol:type])
-        @throw [NSException exceptionWithName:@"GIInjectorException" reason:[NSString stringWithFormat:@"Can not create an object for <%@>. Make sure you have set up a rule for it", NSStringFromProtocol(type)] userInfo:nil];
+        @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])] reason:[NSString stringWithFormat:@"Can not create an object for <%@>. Make sure you have set up a rule for it", NSStringFromProtocol(type)] userInfo:nil];
 
     id object = [[type alloc] init];
     [self injectIntoObject:object];
