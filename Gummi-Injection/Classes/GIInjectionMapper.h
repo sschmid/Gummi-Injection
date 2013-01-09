@@ -9,10 +9,12 @@
 
 @protocol GIInjectionMapper <NSObject>
 
-- (GIInjectorEntry *)map:(id)object to:(id)whenAskedFor;
-- (GIInjectorEntry *)mapSingleton:(id)object to:(id)whenAskedFor lazy:(BOOL)lazy;
+- (void)map:(id)object to:(id)keyObject;
+- (void)mapSingleton:(id)object to:(id)keyObject lazy:(BOOL)lazy;
 
-- (BOOL)isObject:(id)object mappedTo:(id)whenAskedFor;
-- (void)unMap:(id)object from:(id)whenAskedFor;
+- (BOOL)isObject:(id)object mappedTo:(id)keyObject;
+- (void)unMap:(id)object from:(id)keyObject;
+
+- (GIInjectorEntry *)entryForKeyObject:(id)keyObject;
 
 @end

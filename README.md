@@ -11,7 +11,7 @@ Gummi Injection is a lightweight dependency injection framework for Objective-C.
 * Add or remove modules at any time
 * Instantiate singletons lazily or not
 * Handles circular dependencies for singletons
-* Can handle unmapped dependencies, when they can be created like this [[MyObject alloc] init]
+* Can create unmapped dependencies, when they can be created like this [[MyObject alloc] init]
 
 ## How to use Gummi Injection
 
@@ -24,7 +24,7 @@ GIInjector *injector = [[GIInjector alloc] init];
 GIInjector *injector = [GIInjector sharedInjector];
 ```
 
-#### Add rules to injector [injector map:object to:whenAskedFor]
+#### Add rules to injector [injector map:object to:keyObject]
 ```objective-c
 // Map classes
 [injector map:[MyImplementation class] to:@protocol(MyProtocol)];
