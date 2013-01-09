@@ -146,7 +146,7 @@ static GIInjector *sInjector;
 }
 
 - (void)reset {
-    for (GIModule *module in self.modules)
+    for (GIModule *module in [self.modules copy])
         [self removeModule:module];
 
     [self.context removeAllObjects];
