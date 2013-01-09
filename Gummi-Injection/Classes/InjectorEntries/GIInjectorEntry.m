@@ -7,7 +7,6 @@
 
 #import "GIInjectorEntry.h"
 #import "GIInjector.h"
-#import "GIReflector.h"
 
 
 @implementation GIInjectorEntry
@@ -17,9 +16,6 @@
 - (id)initWithObject:(id)object mappedTo:(id)keyObject injector:(GIInjector *)injector {
     self = [super init];
     if (self) {
-        if ([GIReflector isProtocol:keyObject] && ![object conformsToProtocol:keyObject])
-            @throw [NSException exceptionWithName:@"GIInjectorEntryException" reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", object, NSStringFromProtocol(keyObject)] userInfo:nil];
-
         _object = object;
         _keyObject = keyObject;
         _injector = injector;

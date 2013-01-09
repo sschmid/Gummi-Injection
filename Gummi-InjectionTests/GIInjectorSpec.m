@@ -54,7 +54,13 @@ SPEC_BEGIN(GIInjectorSpec)
             it(@"raises exception when class does not conform to protocol", ^{
                 [[theBlock(^{
                     [injector map:[NSObject class] to:@protocol(Vehicle)];
-                }) should] raiseWithName:@"GIInjectorEntryException"];
+                }) should] raiseWithName:@"GIInjectorClassEntryException"];
+            });
+
+            it(@"raises exception when instance does not conform to protocol", ^{
+                [[theBlock(^{
+                    [injector map:[[NSObject alloc] init] to:@protocol(Vehicle)];
+                }) should] raiseWithName:@"GIInjectorInstanceEntryException"];
             });
 
             context(@"when context has classes mapped", ^{
@@ -256,7 +262,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 it(@"raises exception", ^{
                     [[theBlock(^{
                         [injector map:[NSObject class] to:@protocol(Vehicle)];
-                    }) should] raiseWithName:@"GIInjectorEntryException"];
+                    }) should] raiseWithName:@"GIInjectorClassEntryException"];
                 });
 
             });
