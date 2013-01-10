@@ -17,6 +17,8 @@
 #import "SingletonModule.h"
 #import "StartStopModule.h"
 #import "StartStopObject.h"
+#import "GIInjectorEntry.h"
+#import "GIInjectorClassEntry.h"
 
 SPEC_BEGIN(GIInjectorSpec)
 
@@ -37,6 +39,10 @@ SPEC_BEGIN(GIInjectorSpec)
 
             it(@"has no mappings", ^{
                 [[theValue([injector isObject:[Car class] mappedTo:[Car class]]) should] beNo];
+            });
+
+            it(@"returns no mappings", ^{
+                [[injector entryForKeyObject:[Car class]] shouldBeNil];
             });
 
             it(@"retrieves objects from empty context", ^{
@@ -83,6 +89,12 @@ SPEC_BEGIN(GIInjectorSpec)
                     [[theValue(m1) should] beYes];
                     [[theValue(m2) should] beYes];
                     [[theValue(m3) should] beYes];
+                });
+
+                it(@"returns mappings", ^{
+                    [[[injector entryForKeyObject:[Car class]] should] beKindOfClass:[GIInjectorClassEntry class]];
+                    [[[injector entryForKeyObject:[Garage class]] should] beKindOfClass:[GIInjectorClassEntry class]];
+                    [[[injector entryForKeyObject:@protocol(Motor)] should] beKindOfClass:[GIInjectorClassEntry class]];
                 });
 
                 it(@"pulls object from context", ^{
