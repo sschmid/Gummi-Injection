@@ -8,7 +8,7 @@
 #import "GIModule.h"
 #import "GIInjector.h"
 #import "GIInjectorEntry.h"
-#import "GIReflector.h"
+#import "GRReflection.h"
 
 @implementation GIModule
 
@@ -59,7 +59,7 @@
 }
 
 - (NSString *)keyForObject:(id)object {
-    if ([GIReflector isProtocol:object])
+    if ([GRReflection isProtocol:object])
         return [NSString stringWithFormat:@"<%@>", NSStringFromProtocol(object)];
 
     return NSStringFromClass(object);

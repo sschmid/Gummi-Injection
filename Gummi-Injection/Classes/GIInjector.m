@@ -7,7 +7,7 @@
 
 #import "GIInjector.h"
 #import "GIInjectorEntry.h"
-#import "GIReflector.h"
+#import "GRReflection.h"
 #import "GIModule.h"
 #import "GIInjectorEntryFactory.h"
 
@@ -89,13 +89,13 @@ static GIInjector *sInjector;
 - (NSDictionary *)getDependenciesForObject:(id)object withProperties:(NSSet *)properties {
     NSMutableDictionary *dependencies = [[NSMutableDictionary alloc] init];
     for (NSString *propertyName in properties)
-        dependencies[propertyName] = [self getObject:[GIReflector getTypeForProperty:propertyName ofClass:[object class]]];
+        dependencies[propertyName] = [self getObject:[GRReflection getTypeForProperty:propertyName ofClass:[object class]]];
 
     return dependencies;
 }
 
 - (id)createObjectForType:(id)type {
-    if ([GIReflector isProtocol:type])
+    if ([GRReflection isProtocol:type])
         @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])] reason:[NSString stringWithFormat:@"Can not create an object for <%@>. Make sure you have set up a rule for it", NSStringFromProtocol(type)] userInfo:nil];
 
     id object = [[type alloc] init];
@@ -104,7 +104,7 @@ static GIInjector *sInjector;
 }
 
 - (NSString *)keyForObject:(id)object {
-    if ([GIReflector isProtocol:object])
+    if ([GRReflection isProtocol:object])
         return [NSString stringWithFormat:@"<%@>", NSStringFromProtocol(object)];
 
     return NSStringFromClass(object);
