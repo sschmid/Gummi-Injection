@@ -19,6 +19,10 @@
 #import "StartStopObject.h"
 #import "GIInjectorEntry.h"
 #import "GIInjectorClassEntry.h"
+#import "SubObject2.h"
+#import "BaseDependency.h"
+#import "Sub1Dependency.h"
+#import "Sub2Dependency.h"
 
 SPEC_BEGIN(GIInjectorSpec)
 
@@ -410,6 +414,18 @@ SPEC_BEGIN(GIInjectorSpec)
                     [[theValue(startStopModule.startStopObject.started) should] beNo];
                 });
 
+            });
+
+            context(@"when sublassing", ^{
+
+                it(@"inherits dependencies", ^{
+                    SubObject2 *subObject2 = [injector getObject:[SubObject2 class]];
+
+                    [[subObject2.baseDependency should] beKindOfClass:[BaseDependency class]];
+                    [[subObject2.sub1Dependency should] beKindOfClass:[Sub1Dependency class]];
+                    [[subObject2.sub2Dependency should] beKindOfClass:[Sub2Dependency class]];
+                });
+                
             });
 
         });

@@ -6,12 +6,22 @@
 
 
 #import <Foundation/Foundation.h>
+#import <objc/runtime.h>
 #import "GIInjectionMapper.h"
 
 @class GIModule;
 @class GIInjectorEntryFactory;
 
-#define inject(args...) +(NSSet *)desiredProperties {return [NSSet setWithObjects: args, nil];}
+#define inject(args...) \
+    + (NSSet *)desiredProperties { \
+        NSMutableSet *requirements = [NSMutableSet setWithObjects:args, nil]; \
+        Class superClass = class_getSuperclass([self class]); \
+        if ([superClass respondsToSelector:@selector(desiredProperties)]) { \
+            NSSet *parentRequirements = [superClass performSelector:@selector(desiredProperties)]; \
+            [requirements unionSet:parentRequirements]; \
+        } \
+        return requirements; \
+    }
 
 @interface GIInjector : NSObject <GIInjectionMapper>
 
