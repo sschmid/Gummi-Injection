@@ -63,13 +63,16 @@ GIInjector *injector = [GIInjector sharedInjector];
 
 inject(@"leftFrontWheel", @"rightFrontWheel", @"leftRearWheel", @"rightRearWheel", @"motor");
 
+// Optional selector, when injection is complete
+injection_complete(@"startEngine")
+
 @synthesize leftFrontWheel = _leftFrontWheel;
 @synthesize rightFrontWheel = _rightFrontWheel;
 @synthesize leftRearWheel = _leftRearWheel;
 @synthesize rightRearWheel = _rightRearWheel;
 @synthesize motor = _motor;
 
-…
+...
 @end
 ```
 
