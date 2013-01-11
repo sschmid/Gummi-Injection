@@ -23,6 +23,8 @@
 #import "BaseDependency.h"
 #import "Sub1Dependency.h"
 #import "Sub2Dependency.h"
+#import "PostConstructObject.h"
+#import "DefectPostConstructObject.h"
 
 SPEC_BEGIN(GIInjectorSpec)
 
@@ -426,6 +428,21 @@ SPEC_BEGIN(GIInjectorSpec)
                     [[subObject2.sub2Dependency should] beKindOfClass:[Sub2Dependency class]];
                 });
                 
+            });
+
+            context(@"post construc", ^{
+
+                it(@"desired selector after dependencies set gets called", ^{
+                    PostConstructObject *object = [injector getObject:[PostConstructObject class]];
+                    [[theValue(object.ready) should] beYes];
+                });
+
+                it(@"raises exception, when selector is unknown", ^{
+                    [[theBlock(^{
+                        DefectPostConstructObject *object = [injector getObject:[DefectPostConstructObject class]];
+                    }) should] raiseWithName:@"GIInjectorException"];
+                });
+
             });
 
         });

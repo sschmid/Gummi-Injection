@@ -58,6 +58,20 @@ static GIInjector *sInjector;
         NSSet *properties = [[object class] performSelector:@selector(desiredProperties)];
         [object setValuesForKeysWithDictionary:[self getDependenciesForObject:object withProperties:properties]];
     }
+    [self notifyObjectOfInjectionComplete:object];
+}
+
+- (void)notifyObjectOfInjectionComplete:(id)object {
+     if ([[object class] respondsToSelector:@selector(injectionCompleteSelector)]) {
+         NSString *onCompleteName = [[object class] performSelector:@selector(injectionCompleteSelector)];
+         SEL onComplete = NSSelectorFromString(onCompleteName);
+         if (![object respondsToSelector:onComplete])
+             @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
+                                            reason:[NSString stringWithFormat:@"Object '%@' does not respond to selector '%@'", NSStringFromClass([object class]), onCompleteName]
+                                          userInfo:nil];
+         else
+            [object performSelector:onComplete];
+     }
 }
 
 - (void)map:(id)object to:(id)keyObject {
