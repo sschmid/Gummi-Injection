@@ -1,5 +1,5 @@
 ## Gummi Injection
-![Gummi Injection Logo](http://sschmid.com/Gummi/Gummi-Injection/Gummi-Injection-128.png)
+![Gummi Injection Logo](http://sschmid.com/Libs/Gummi-Injection/Gummi-Injection-128.png)
 
 Gummi Injection is a lightweight dependency injection framework for Objective-C.
 
@@ -9,9 +9,9 @@ Gummi Injection is a lightweight dependency injection framework for Objective-C.
 * Inject into existing objects
 * Extend injector context with modules
 * Add or remove modules at any time
-* Instantiate singletons lazily or not
+* Map singletons and eager singletons
 * Handles circular dependencies for singletons
-* Can create unmapped dependencies, when they can be created like this [[MyObject alloc] init]
+* Injector can create unmapped dependencies, when they can be created like this [[MyObject alloc] init]
 
 ## How to use Gummi Injection
 
@@ -39,9 +39,10 @@ GIInjector *injector = [GIInjector sharedInjector];
 [injector map:car to:[Car class]]
 [injector map:car to:@protocol(Vehicle)]
 
-// Map singletons lazily or not
-[injector mapSingleton:[Service class] to:@protocol(RemoteService) lazy:NO];
-[injector mapSingleton:[Model class] to:[Model class] lazy:YES];
+// Map singletons and eager singletons.
+// Eager singletons will be instantiated immediately
+[injector mapEagerSingleton:[Service class] to:@protocol(RemoteService)];
+[injector mapSingleton:[Model class] to:[Model class]];
 
 // You can remove mappings at any time
 [injector unMap:[Service class] from:@protocol(RemoteService)];
@@ -111,10 +112,10 @@ GIModule *module = [[GameModule alloc] init];
 - (void)configure:(GIInjector *)injector {
     [super configure:injector];
 
-    [self mapSingleton:[MyAppModel class] to:@protocol(AppModel) lazy:YES];
+    [self mapSingleton:[MyGameModel class] to:@protocol(GameModel)];
     
     // Example Service starts automatically on init
-    [self mapSingleton:[MyRemoteService class] to:@protocol(RemoteService) lazy:NO];
+    [self mapEagerSingleton:[MyRemoteService class] to:@protocol(RemoteService)];
 }
 
 - (void)unload {
@@ -135,6 +136,10 @@ GIModule *module = [[GameModule alloc] init];
 ## Use Gummi Injection in your project
 
 You find the source files you need in Gummi-Injection/Classes
+
+#### Dependencies
+Gummi-Injection uses [Gummi-Reflection](https://github.com/sschmid/Gummi-Reflection) to inspect objects.
+
 
 ## CocoaPods
 Create a Podfile and put it into your root folder of your project
