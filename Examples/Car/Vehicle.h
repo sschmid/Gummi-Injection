@@ -4,7 +4,6 @@
 // contact@sschmid.com
 //
 
-
 @protocol Motor;
 @class Wheel;
 

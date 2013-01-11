@@ -4,11 +4,9 @@
 // contact@sschmid.com
 //
 
-
 #import "Car.h"
 #import "GIInjector.h"
 #import "Wheel.h"
-
 
 @implementation Car
 

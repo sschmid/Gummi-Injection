@@ -4,7 +4,6 @@
 // contact@sschmid.com
 //
 
-
 #import "GIInjector.h"
 #import "GIInjectorEntry.h"
 #import "GRReflection.h"
@@ -20,9 +19,6 @@ static GIInjector *sInjector;
 @end
 
 @implementation GIInjector
-@synthesize context = _context;
-@synthesize modules = _modules;
-@synthesize entryFactory = _entryFactory;
 
 + (GIInjector *)sharedInjector {
     if (!sInjector)

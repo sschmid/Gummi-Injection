@@ -4,9 +4,7 @@
 // contact@sschmid.com
 //
 
-
 #import "HybridMotor.h"
-
 
 @implementation HybridMotor
 

@@ -4,7 +4,6 @@
 // contact@sschmid.com
 //
 
-
 #import "Kiwi.h"
 #import "Car.h"
 #import "Wheel.h"

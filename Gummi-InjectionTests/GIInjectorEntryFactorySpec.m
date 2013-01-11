@@ -4,14 +4,12 @@
 // contact@sschmid.com
 //
 
-
 #import "Kiwi.h"
 #import "GIInjectorEntryFactory.h"
 #import "GIInjector.h"
 #import "GIInjectorEntry.h"
 #import "GIInjectorClassEntry.h"
 #import "GIInjectorInstanceEntry.h"
-
 
 SPEC_BEGIN(GIInjectorEntryFactorySpec)
 

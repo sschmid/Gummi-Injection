@@ -4,7 +4,6 @@
 // contact@sschmid.com
 //
 
-
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import "GIInjectionMapper.h"

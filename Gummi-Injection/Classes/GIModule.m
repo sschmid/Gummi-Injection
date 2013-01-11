@@ -4,7 +4,6 @@
 // contact@sschmid.com
 //
 
-
 #import "GIModule.h"
 #import "GIInjector.h"
 #import "GIInjectorEntry.h"

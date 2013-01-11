@@ -4,11 +4,9 @@
 // contact@sschmid.com
 //
 
-
 #import "SingletonModule.h"
 #import "GIInjector.h"
 #import "SingletonFoo.h"
-
 
 @implementation SingletonModule
 

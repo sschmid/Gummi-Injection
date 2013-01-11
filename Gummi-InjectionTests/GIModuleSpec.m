@@ -4,11 +4,9 @@
 // contact@sschmid.com
 //
 
-
 #import "Kiwi.h"
 #import "GIModule.h"
 #import "GIInjector.h"
-
 
 SPEC_BEGIN(GIModuleSpec)
 

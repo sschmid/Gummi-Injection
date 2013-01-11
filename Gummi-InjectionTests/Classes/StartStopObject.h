@@ -4,9 +4,7 @@
 // contact@sschmid.com
 //
 
-
 #import <Foundation/Foundation.h>
-
 
 @interface StartStopObject : NSObject
 @property(nonatomic) BOOL started;

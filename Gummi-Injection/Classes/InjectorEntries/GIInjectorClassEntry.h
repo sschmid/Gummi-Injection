@@ -4,10 +4,8 @@
 // contact@sschmid.com
 //
 
-
 #import <Foundation/Foundation.h>
 #import "GIInjectorEntry.h"
-
 
 @interface GIInjectorClassEntry : GIInjectorEntry {
     id _singletonCache;

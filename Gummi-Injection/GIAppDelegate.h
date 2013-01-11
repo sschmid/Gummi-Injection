@@ -8,5 +8,4 @@
 
 @interface GIAppDelegate : UIResponder <UIApplicationDelegate>
 @property(strong, nonatomic) UIWindow *window;
-
 @end

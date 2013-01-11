@@ -4,7 +4,6 @@
 // contact@sschmid.com
 //
 
-
 #import "GIInjectorEntryFactory.h"
 #import "GIInjectorEntry.h"
 #import "GIInjectorInstanceEntry.h"
@@ -12,13 +11,11 @@
 #import "GIInjectorClassEntry.h"
 #import "GIInjector.h"
 
-
 @interface GIInjectorEntryFactory ()
 @property(nonatomic, strong) GIInjector *injector;
 @end
 
 @implementation GIInjectorEntryFactory
-@synthesize injector = _injector;
 
 - (id)initWithInjector:(GIInjector *)injector {
     self = [super init];

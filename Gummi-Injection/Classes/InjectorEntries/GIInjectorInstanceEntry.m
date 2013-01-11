@@ -4,11 +4,9 @@
 // contact@sschmid.com
 //
 
-
 #import "GIInjectorInstanceEntry.h"
 #import "GIInjector.h"
 #import "GRReflection.h"
-
 
 @implementation GIInjectorInstanceEntry
 

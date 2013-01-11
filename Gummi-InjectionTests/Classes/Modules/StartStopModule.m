@@ -4,14 +4,11 @@
 // contact@sschmid.com
 //
 
-
 #import "StartStopModule.h"
 #import "GIInjector.h"
 #import "StartStopObject.h"
 
-
 @implementation StartStopModule
-@synthesize startStopObject = _startStopObject;
 
 - (void)configure:(GIInjector *)injector {
     [super configure:injector];

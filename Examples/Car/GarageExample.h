@@ -4,7 +4,6 @@
 // contact@sschmid.com
 //
 
-
 #import <Foundation/Foundation.h>
 
 @class GIInjector;

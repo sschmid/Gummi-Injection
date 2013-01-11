@@ -4,14 +4,11 @@
 // contact@sschmid.com
 //
 
-
 #import "GIInjectorClassEntry.h"
 #import "GIInjector.h"
 #import "GRReflection.h"
 
-
 @implementation GIInjectorClassEntry
-@synthesize asSingleton = _asSingleton;
 
 - (id)initWithObject:(id)object mappedTo:(id)keyObject injector:(GIInjector *)injector {
     self = [super initWithObject:object mappedTo:keyObject injector:injector];

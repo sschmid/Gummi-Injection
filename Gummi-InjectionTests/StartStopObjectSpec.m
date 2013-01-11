@@ -4,10 +4,8 @@
 // contact@sschmid.com
 //
 
-
 #import "Kiwi.h"
 #import "StartStopObject.h"
-
 
 SPEC_BEGIN(StartStopObjectSpec)
 

@@ -4,9 +4,7 @@
 // contact@sschmid.com
 //
 
-
 #import "Wheel.h"
-
 
 @implementation Wheel
 

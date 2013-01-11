@@ -4,13 +4,11 @@
 // contact@sschmid.com
 //
 
-
 #import "GarageExample.h"
 #import "Motor.h"
 #import "GIInjector.h"
 #import "HybridMotor.h"
 #import "Garage.h"
-
 
 @implementation GarageExample
 

@@ -4,14 +4,10 @@
 // contact@sschmid.com
 //
 
-
 #import "GIInjectorEntry.h"
 #import "GIInjector.h"
 
-
 @implementation GIInjectorEntry
-@synthesize object = _object;
-@synthesize keyObject = _keyObject;
 
 - (id)initWithObject:(id)object mappedTo:(id)keyObject injector:(GIInjector *)injector {
     self = [super init];
