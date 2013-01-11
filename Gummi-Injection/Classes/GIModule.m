@@ -61,7 +61,7 @@
 
 - (void)addEntryForKeyObject:(id)keyObject {
     GIInjectorEntry *entry = [_injector entryForKeyObject:keyObject];
-    [_context setObject:entry forKey:[self keyForObject:entry.keyObject]];
+    _context[[self keyForObject:entry.keyObject]] = entry;
 }
 
 - (NSString *)keyForObject:(id)object {

@@ -101,7 +101,7 @@ static GIInjector *sInjector;
 }
 
 - (GIInjectorEntry *)entryForKeyObject:(id)keyObject {
-    return [self.context objectForKey:[self keyForObject:keyObject]];
+    return self.context[[self keyForObject:keyObject]];
 }
 
 - (NSDictionary *)getDependenciesForObject:(id)object withProperties:(NSSet *)properties {
