@@ -17,6 +17,8 @@
 #import "SingletonModule.h"
 #import "StartStopModule.h"
 #import "StartStopObject.h"
+#import "GIInjectorEntry.h"
+#import "GIInjectorClassEntry.h"
 
 SPEC_BEGIN(GIInjectorSpec)
 
@@ -37,6 +39,10 @@ SPEC_BEGIN(GIInjectorSpec)
 
             it(@"has no mappings", ^{
                 [[theValue([injector isObject:[Car class] mappedTo:[Car class]]) should] beNo];
+            });
+
+            it(@"returns no mappings", ^{
+                [[injector entryForKeyObject:[Car class]] shouldBeNil];
             });
 
             it(@"retrieves objects from empty context", ^{
@@ -83,6 +89,12 @@ SPEC_BEGIN(GIInjectorSpec)
                     [[theValue(m1) should] beYes];
                     [[theValue(m2) should] beYes];
                     [[theValue(m3) should] beYes];
+                });
+
+                it(@"returns mappings", ^{
+                    [[[injector entryForKeyObject:[Car class]] should] beKindOfClass:[GIInjectorClassEntry class]];
+                    [[[injector entryForKeyObject:[Garage class]] should] beKindOfClass:[GIInjectorClassEntry class]];
+                    [[[injector entryForKeyObject:@protocol(Motor)] should] beKindOfClass:[GIInjectorClassEntry class]];
                 });
 
                 it(@"pulls object from context", ^{
@@ -152,8 +164,8 @@ SPEC_BEGIN(GIInjectorSpec)
                 __block Car *car;
                 __block Garage *garage;
                 beforeEach(^{
-                    [injector mapSingleton:[Car class] to:@protocol(Vehicle) lazy:YES];
-                    [injector mapSingleton:[Garage class] to:[Garage class] lazy:YES];
+                    [injector mapSingleton:[Car class] to:@protocol(Vehicle)];
+                    [injector mapSingleton:[Garage class] to:[Garage class]];
                     [injector map:[HybridMotor class] to:@protocol(Motor)];
                     car = [injector getObject:@protocol(Vehicle)];
                     garage = [injector getObject:[Garage class]];
@@ -194,8 +206,8 @@ SPEC_BEGIN(GIInjectorSpec)
             context(@"when circular dependency", ^{
 
                 it(@"will be resolved for singletons", ^{
-                    [injector mapSingleton:[SingletonFoo class] to:[SingletonFoo class] lazy:YES];
-                    [injector mapSingleton:[SingletonBar class] to:[SingletonBar class] lazy:YES];
+                    [injector mapSingleton:[SingletonFoo class] to:[SingletonFoo class]];
+                    [injector mapSingleton:[SingletonBar class] to:[SingletonBar class]];
                     SingletonFoo *foo = [injector getObject:[SingletonFoo class]];
                     SingletonBar *bar = [injector getObject:[SingletonBar class]];
 
@@ -267,18 +279,18 @@ SPEC_BEGIN(GIInjectorSpec)
 
             });
 
-            context(@"when context has eager", ^{
+            context(@"when context has eager singleton mapped", ^{
 
                 it(@"creates instance", ^{
                     BOOL wasToggled = [SingletonFoo isInitialized];
-                    [injector mapSingleton:[SingletonFoo class] to:[SingletonFoo class] lazy:NO];
+                    [injector mapEagerSingleton:[SingletonFoo class] to:[SingletonFoo class]];
                     BOOL isToggled = [SingletonFoo isInitialized];
 
                     [[theValue(wasToggled) shouldNot] equal:theValue(isToggled)];
                 });
 
                 it(@"always return same instance", ^{
-                    [injector mapSingleton:[SingletonFoo class] to:[SingletonFoo class] lazy:NO];
+                    [injector mapEagerSingleton:[SingletonFoo class] to:[SingletonFoo class]];
 
                     [[[injector getObject:[SingletonFoo class]] should] equal:[injector getObject:[SingletonFoo class]]];
                 });

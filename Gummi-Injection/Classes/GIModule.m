@@ -8,7 +8,7 @@
 #import "GIModule.h"
 #import "GIInjector.h"
 #import "GIInjectorEntry.h"
-#import "GIReflector.h"
+#import "GRReflection.h"
 
 @implementation GIModule
 
@@ -26,23 +26,24 @@
 }
 
 - (void)unload {
-    for (NSString *key in [_context copy]) {
-        GIInjectorEntry *entry = _context[key];
+    for (GIInjectorEntry *entry in [_context allValues])
         [self unMap:entry.object from:entry.keyObject];
-    }
+
     _injector = nil;
 }
 
 - (void)map:(id)object to:(id)keyObject {
     [_injector map:object to:keyObject];
-    GIInjectorEntry *entry = [_injector entryForKeyObject:keyObject];
-    [_context setObject:entry forKey:[self keyForObject:entry.keyObject]];
+    [self addEntryForKeyObject:keyObject];
 }
 
-- (void)mapSingleton:(id)object to:(id)keyObject lazy:(BOOL)lazy {
-    [_injector mapSingleton:object to:keyObject lazy:lazy];
-    GIInjectorEntry *entry = [_injector entryForKeyObject:keyObject];
-    [_context setObject:entry forKey:[self keyForObject:entry.keyObject]];
+- (void)mapSingleton:(id)object to:(id)keyObject {
+    [_injector mapSingleton:object to:keyObject];
+    [self addEntryForKeyObject:keyObject];}
+
+- (void)mapEagerSingleton:(id)object to:(id)keyObject {
+    [_injector mapEagerSingleton:object to:keyObject];
+    [self addEntryForKeyObject:keyObject];
 }
 
 - (BOOL)isObject:(id)object mappedTo:(id)keyObject {
@@ -58,8 +59,13 @@
     return [_injector entryForKeyObject:keyObject];
 }
 
+- (void)addEntryForKeyObject:(id)keyObject {
+    GIInjectorEntry *entry = [_injector entryForKeyObject:keyObject];
+    [_context setObject:entry forKey:[self keyForObject:entry.keyObject]];
+}
+
 - (NSString *)keyForObject:(id)object {
-    if ([GIReflector isProtocol:object])
+    if ([GRReflection isProtocol:object])
         return [NSString stringWithFormat:@"<%@>", NSStringFromProtocol(object)];
 
     return NSStringFromClass(object);

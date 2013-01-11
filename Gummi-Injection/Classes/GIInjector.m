@@ -7,7 +7,7 @@
 
 #import "GIInjector.h"
 #import "GIInjectorEntry.h"
-#import "GIReflector.h"
+#import "GRReflection.h"
 #import "GIModule.h"
 #import "GIInjectorEntryFactory.h"
 
@@ -65,12 +65,16 @@ static GIInjector *sInjector;
     self.context[[self keyForObject:entry.keyObject]] = entry;
 }
 
-- (void)mapSingleton:(id)object to:(id)keyObject lazy:(BOOL)lazy {
+- (void)mapSingleton:(id)object to:(id)keyObject {
     GIInjectorEntry *entry = [self.entryFactory createEntryForObject:object mappedTo:keyObject asSingleton:YES];
     self.context[[self keyForObject:entry.keyObject]] = entry;
-    if (!lazy)
-        [self getObject:object];
 }
+
+- (void)mapEagerSingleton:(id)object to:(id)keyObject {
+    [self mapSingleton:object to:keyObject];
+    [self getObject:object];
+}
+
 
 - (BOOL)isObject:(id)object mappedTo:(id)keyObject {
     GIInjectorEntry *entry = self.context[[self keyForObject:keyObject]];
@@ -89,14 +93,16 @@ static GIInjector *sInjector;
 - (NSDictionary *)getDependenciesForObject:(id)object withProperties:(NSSet *)properties {
     NSMutableDictionary *dependencies = [[NSMutableDictionary alloc] init];
     for (NSString *propertyName in properties)
-        dependencies[propertyName] = [self getObject:[GIReflector getTypeForProperty:propertyName ofClass:[object class]]];
+        dependencies[propertyName] = [self getObject:[GRReflection getTypeForProperty:propertyName ofClass:[object class]]];
 
     return dependencies;
 }
 
 - (id)createObjectForType:(id)type {
-    if ([GIReflector isProtocol:type])
-        @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])] reason:[NSString stringWithFormat:@"Can not create an object for <%@>. Make sure you have set up a rule for it", NSStringFromProtocol(type)] userInfo:nil];
+    if ([GRReflection isProtocol:type])
+        @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
+                                       reason:[NSString stringWithFormat:@"Can not create an object for <%@>. Make sure you have set up a rule for it", NSStringFromProtocol(type)]
+                                     userInfo:nil];
 
     id object = [[type alloc] init];
     [self injectIntoObject:object];
@@ -104,7 +110,7 @@ static GIInjector *sInjector;
 }
 
 - (NSString *)keyForObject:(id)object {
-    if ([GIReflector isProtocol:object])
+    if ([GRReflection isProtocol:object])
         return [NSString stringWithFormat:@"<%@>", NSStringFromProtocol(object)];
 
     return NSStringFromClass(object);
