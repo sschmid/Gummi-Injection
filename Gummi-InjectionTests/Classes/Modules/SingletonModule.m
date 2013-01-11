@@ -15,7 +15,7 @@
 - (void)configure:(GIInjector *)injector {
     [super configure:injector];
 
-    [self mapSingleton:[SingletonFoo class] to:[SingletonFoo class] lazy:YES];
+    [self mapSingleton:[SingletonFoo class] to:[SingletonFoo class]];
 }
 
 @end

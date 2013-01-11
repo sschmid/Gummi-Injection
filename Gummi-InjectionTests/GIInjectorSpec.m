@@ -164,8 +164,8 @@ SPEC_BEGIN(GIInjectorSpec)
                 __block Car *car;
                 __block Garage *garage;
                 beforeEach(^{
-                    [injector mapSingleton:[Car class] to:@protocol(Vehicle) lazy:YES];
-                    [injector mapSingleton:[Garage class] to:[Garage class] lazy:YES];
+                    [injector mapSingleton:[Car class] to:@protocol(Vehicle)];
+                    [injector mapSingleton:[Garage class] to:[Garage class]];
                     [injector map:[HybridMotor class] to:@protocol(Motor)];
                     car = [injector getObject:@protocol(Vehicle)];
                     garage = [injector getObject:[Garage class]];
@@ -206,8 +206,8 @@ SPEC_BEGIN(GIInjectorSpec)
             context(@"when circular dependency", ^{
 
                 it(@"will be resolved for singletons", ^{
-                    [injector mapSingleton:[SingletonFoo class] to:[SingletonFoo class] lazy:YES];
-                    [injector mapSingleton:[SingletonBar class] to:[SingletonBar class] lazy:YES];
+                    [injector mapSingleton:[SingletonFoo class] to:[SingletonFoo class]];
+                    [injector mapSingleton:[SingletonBar class] to:[SingletonBar class]];
                     SingletonFoo *foo = [injector getObject:[SingletonFoo class]];
                     SingletonBar *bar = [injector getObject:[SingletonBar class]];
 
@@ -279,18 +279,18 @@ SPEC_BEGIN(GIInjectorSpec)
 
             });
 
-            context(@"when context has eager", ^{
+            context(@"when context has eager singleton mapped", ^{
 
                 it(@"creates instance", ^{
                     BOOL wasToggled = [SingletonFoo isInitialized];
-                    [injector mapSingleton:[SingletonFoo class] to:[SingletonFoo class] lazy:NO];
+                    [injector mapEagerSingleton:[SingletonFoo class] to:[SingletonFoo class]];
                     BOOL isToggled = [SingletonFoo isInitialized];
 
                     [[theValue(wasToggled) shouldNot] equal:theValue(isToggled)];
                 });
 
                 it(@"always return same instance", ^{
-                    [injector mapSingleton:[SingletonFoo class] to:[SingletonFoo class] lazy:NO];
+                    [injector mapEagerSingleton:[SingletonFoo class] to:[SingletonFoo class]];
 
                     [[[injector getObject:[SingletonFoo class]] should] equal:[injector getObject:[SingletonFoo class]]];
                 });

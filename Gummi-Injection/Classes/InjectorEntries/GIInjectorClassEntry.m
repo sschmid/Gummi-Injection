@@ -17,7 +17,9 @@
     self = [super initWithObject:object mappedTo:keyObject injector:injector];
     if (self) {
         if ([GRReflection isProtocol:keyObject] && ![object conformsToProtocol:keyObject])
-            @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])] reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", object, NSStringFromProtocol(keyObject)] userInfo:nil];
+            @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
+                                           reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", object, NSStringFromProtocol(keyObject)]
+                                         userInfo:nil];
     }
 
     return self;
