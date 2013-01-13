@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Gummi Injection by sschmid</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Gummi Injection</h1>
+          <h2>A lightweight dependency injection framework for Objective-C.</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/sschmid/Gummi-Injection/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/sschmid/Gummi-Injection/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/sschmid/Gummi-Injection" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h2>Gummi Injection</h2>
+
+<p><img src="http://sschmid.com/Libs/Gummi-Injection/Gummi-Injection-128.png" alt="Gummi Injection Logo"></p>
+
+<p>Gummi Injection is a lightweight dependency injection framework for Objective-C.</p>
+
+<h2>Features</h2>
+
+<ul>
+<li>Add and remove injection rules (mappings) at any time</li>
+<li>One api for different kind of mappings ([injector map: to:])</li>
+<li>Inject into existing objects</li>
+<li>Extend injector context with modules</li>
+<li>Add or remove modules at any time</li>
+<li>Map singletons and eager singletons</li>
+<li>Handles circular dependencies for singletons</li>
+<li>Injector can create unmapped dependencies, when they can be created like this [[MyObject alloc] init]</li>
+<li>Specify custom selector for objects to get notified when injection is complete</li>
+</ul><h2>How to use Gummi Injection</h2>
+
+<h4>Get an injector</h4>
+
+<div class="highlight"><pre><span class="c1">// Create your own injector</span>
+<span class="n">GIInjector</span> <span class="o">*</span><span class="n">injector</span> <span class="o">=</span> <span class="p">[[</span><span class="n">GIInjector</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+
+<span class="c1">// or use the shared injector</span>
+<span class="n">GIInjector</span> <span class="o">*</span><span class="n">injector</span> <span class="o">=</span> <span class="p">[</span><span class="n">GIInjector</span> <span class="n">sharedInjector</span><span class="p">];</span>
+</pre></div>
+
+<h4>Add injection rules [injector map:object to:keyObject]</h4>
+
+<div class="highlight"><pre><span class="c1">// Map classes</span>
+<span class="p">[</span><span class="n">injector</span> <span class="nl">map:</span><span class="p">[</span><span class="n">MyImplementation</span> <span class="n">class</span><span class="p">]</span> <span class="nl">to:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">MyProtocol</span><span class="p">)];</span>
+
+<span class="c1">// You don't have to do this. Gummi Injection will figure it out itself.</span>
+<span class="p">[</span><span class="n">injector</span> <span class="nl">map:</span><span class="p">[</span><span class="n">MyImplementation</span> <span class="n">class</span><span class="p">]</span> <span class="nl">to:</span><span class="p">[</span><span class="n">MyImplementation</span> <span class="n">class</span><span class="p">]];</span>
+
+<span class="c1">// But you could do this</span>
+<span class="p">[</span><span class="n">injector</span> <span class="nl">map:</span><span class="p">[</span><span class="n">MyImplementation1</span> <span class="n">class</span><span class="p">]</span> <span class="nl">to:</span><span class="p">[</span><span class="n">MyImplementation2</span> <span class="n">class</span><span class="p">]];</span>
+
+<span class="c1">// Map instances</span>
+<span class="p">[</span><span class="n">injector</span> <span class="nl">map:</span><span class="n">car</span> <span class="nl">to:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]]</span>
+<span class="p">[</span><span class="n">injector</span> <span class="nl">map:</span><span class="n">car</span> <span class="nl">to:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">Vehicle</span><span class="p">)]</span>
+
+<span class="c1">// Map singletons and eager singletons.</span>
+<span class="c1">// Eager singletons will be instantiated immediately</span>
+<span class="p">[</span><span class="n">injector</span> <span class="nl">mapEagerSingleton:</span><span class="p">[</span><span class="n">Service</span> <span class="n">class</span><span class="p">]</span> <span class="nl">to:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">RemoteService</span><span class="p">)];</span>
+<span class="p">[</span><span class="n">injector</span> <span class="nl">mapSingleton:</span><span class="p">[</span><span class="n">Model</span> <span class="n">class</span><span class="p">]</span> <span class="nl">to:</span><span class="p">[</span><span class="n">Model</span> <span class="n">class</span><span class="p">]];</span>
+
+<span class="c1">// You can remove mappings at any time</span>
+<span class="p">[</span><span class="n">injector</span> <span class="nl">unMap:</span><span class="p">[</span><span class="n">Service</span> <span class="n">class</span><span class="p">]</span> <span class="nl">from:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">RemoteService</span><span class="p">)];</span>
+</pre></div>
+
+<h4>Mark properties for injection with "inject"</h4>
+
+<div class="highlight"><pre><span class="k">@interface</span> <span class="nc">Car</span> : <span class="nc">NSObject</span> <span class="o">&lt;</span><span class="n">Vehicle</span><span class="o">&gt;</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">Wheel</span> <span class="o">*</span><span class="n">leftFrontWheel</span><span class="p">;</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">Wheel</span> <span class="o">*</span><span class="n">rightFrontWheel</span><span class="p">;</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">Wheel</span> <span class="o">*</span><span class="n">leftRearWheel</span><span class="p">;</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">Wheel</span> <span class="o">*</span><span class="n">rightRearWheel</span><span class="p">;</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="kt">id</span> <span class="o">&lt;</span><span class="n">Motor</span><span class="o">&gt;</span> <span class="n">motor</span><span class="p">;</span>
+<span class="k">@end</span>
+
+
+<span class="k">@implementation</span> <span class="nc">Car</span>
+
+<span class="n">inject</span><span class="p">(</span><span class="s">@"leftFrontWheel"</span><span class="p">,</span> <span class="s">@"rightFrontWheel"</span><span class="p">,</span> <span class="s">@"leftRearWheel"</span><span class="p">,</span> <span class="s">@"rightRearWheel"</span><span class="p">,</span> <span class="s">@"motor"</span><span class="p">);</span>
+
+<span class="c1">// Optional selector gets performed, when injection is complete</span>
+<span class="n">injection_complete</span><span class="p">(</span><span class="s">@"startEngine"</span><span class="p">)</span>
+
+<span class="k">@synthesize</span> <span class="n">leftFrontWheel</span> <span class="o">=</span> <span class="n">_leftFrontWheel</span><span class="p">;</span>
+<span class="k">@synthesize</span> <span class="n">rightFrontWheel</span> <span class="o">=</span> <span class="n">_rightFrontWheel</span><span class="p">;</span>
+<span class="k">@synthesize</span> <span class="n">leftRearWheel</span> <span class="o">=</span> <span class="n">_leftRearWheel</span><span class="p">;</span>
+<span class="k">@synthesize</span> <span class="n">rightRearWheel</span> <span class="o">=</span> <span class="n">_rightRearWheel</span><span class="p">;</span>
+<span class="k">@synthesize</span> <span class="n">motor</span> <span class="o">=</span> <span class="n">_motor</span><span class="p">;</span>
+
+<span class="p">...</span>
+<span class="k">@end</span>
+</pre></div>
+
+<h4>Create an object with all dependencies set</h4>
+
+<p>When an object gets created by calling injector#getObject, all its dependencies will be satisfied as well.</p>
+
+<div class="highlight"><pre><span class="c1">// No need to set up rules for simple injections like Wheel that can be created with alloc init.</span>
+<span class="c1">// For protocols there's no way to know which implementation to return - we need to set up a rule for it.</span>
+<span class="p">[</span><span class="n">injector</span> <span class="nl">map:</span><span class="p">[</span><span class="n">HybridMotor</span> <span class="n">class</span><span class="p">]</span> <span class="nl">to:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">Motor</span><span class="p">)];</span>
+
+<span class="n">Car</span> <span class="o">*</span><span class="n">car</span> <span class="o">=</span> <span class="p">[</span><span class="n">injector</span> <span class="nl">getObject:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
+
+<span class="c1">// or use protocols</span>
+<span class="p">[</span><span class="n">injector</span> <span class="nl">map:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]</span> <span class="nl">to:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">Vehicle</span><span class="p">)];</span>
+<span class="n">Car</span> <span class="o">*</span><span class="n">car</span> <span class="o">=</span> <span class="p">[</span><span class="n">injector</span> <span class="nl">getObject:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">Vehicle</span><span class="p">)];</span>
+
+<span class="c1">// or inject into existing objects</span>
+<span class="n">Car</span> <span class="o">*</span><span class="n">car</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Car</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="p">[</span><span class="n">injector</span> <span class="nl">injectIntoObject:</span><span class="n">car</span><span class="p">];</span>
+</pre></div>
+
+<h2>Modules</h2>
+
+<p>Modules are a wrapper for related mappings. They extend the context of the injector and can be added and removed at any time.</p>
+
+<div class="highlight"><pre><span class="n">GIModule</span> <span class="o">*</span><span class="n">module</span> <span class="o">=</span> <span class="p">[[</span><span class="n">GameModule</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="p">[</span><span class="n">injector</span> <span class="nl">addModule:</span><span class="n">module</span><span class="p">];</span>
+
+<span class="c1">// After the game, remove the Module by class</span>
+<span class="p">[</span><span class="n">injector</span> <span class="nl">removeModuleClass:</span><span class="p">[</span><span class="n">GameModule</span> <span class="n">class</span><span class="p">]];</span>
+<span class="c1">// or by instance</span>
+<span class="p">[</span><span class="n">injector</span> <span class="nl">removeModule:</span><span class="n">gameModule</span><span class="p">];</span>
+</pre></div>
+
+<div class="highlight"><pre><span class="k">@interface</span> <span class="nc">GameModule</span> : <span class="nc">GIModule</span>
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">GameModule</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">configure:</span><span class="p">(</span><span class="n">GIInjector</span> <span class="o">*</span><span class="p">)</span><span class="nv">injector</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">super</span> <span class="nl">configure:</span><span class="n">injector</span><span class="p">];</span>
+
+    <span class="p">[</span><span class="n">self</span> <span class="nl">mapSingleton:</span><span class="p">[</span><span class="n">MyGameModel</span> <span class="n">class</span><span class="p">]</span> <span class="nl">to:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">GameModel</span><span class="p">)];</span>
+
+    <span class="c1">// Example Service starts automatically on init</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nl">mapEagerSingleton:</span><span class="p">[</span><span class="n">MyRemoteService</span> <span class="n">class</span><span class="p">]</span> <span class="nl">to:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">RemoteService</span><span class="p">)];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">unload</span> <span class="p">{</span>
+    <span class="c1">// For convenience, close all connections to stop service</span>
+    <span class="n">Service</span> <span class="o">*</span><span class="n">service</span> <span class="o">=</span> <span class="p">[</span><span class="n">_injector</span> <span class="nl">getObject:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">RemoteService</span><span class="p">)];</span>
+    <span class="p">[</span><span class="n">service</span> <span class="n">close</span><span class="p">];</span>
+
+    <span class="p">[</span><span class="n">super</span> <span class="n">unload</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">dealloc</span> <span class="p">{</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@"Service and Model get dealloced with me."</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</pre></div>
+
+<h2>Other projects using Gummi Injection</h2>
+
+<ul>
+<li>
+<a href="https://github.com/sschmid/Gummi-Commander">Gummi Commander</a> Event Command Mapping System for Objective-C</li>
+</ul><p>If you enjoy using Gummi Injection in your projects let me know, and I'll mention your projects here.</p>
+        </section>
+
+        <footer>
+          Gummi Injection is maintained by <a href="https://github.com/sschmid">sschmid</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
