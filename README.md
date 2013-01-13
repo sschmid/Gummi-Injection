@@ -1,7 +1,11 @@
-## Gummi Injection
+# Gummi Injection
 ![Gummi Injection Logo](http://sschmid.com/Libs/Gummi-Injection/Gummi-Injection-128.png)
 
+## Description
 Gummi Injection is a lightweight dependency injection framework for Objective-C.
+
+## Dependencies
+Gummi-Injection uses [Gummi Reflection](https://github.com/sschmid/Gummi-Reflection) to inspect objects.
 
 ## Features
 * Add and remove injection rules (mappings) at any time
@@ -12,10 +16,9 @@ Gummi Injection is a lightweight dependency injection framework for Objective-C.
 * Map singletons and eager singletons
 * Handles circular dependencies for singletons
 * Injector can create unmapped dependencies, when they can be created like this [[MyObject alloc] init]
-* Specify custom selector for objects to get notified when injection is complete
+* Specify a custom selector for objects to get notified when injection is complete
 
 ## How to use Gummi Injection
-
 #### Get an injector
 ```objective-c
 // Create your own injector
@@ -62,7 +65,8 @@ GIInjector *injector = [GIInjector sharedInjector];
 
 @implementation Car
 
-inject(@"leftFrontWheel", @"rightFrontWheel", @"leftRearWheel", @"rightRearWheel", @"motor");
+inject(@"leftFrontWheel", @"rightFrontWheel", @"leftRearWheel",
+       @"rightRearWheel", @"motor");
 
 // Optional selector gets performed, when injection is complete
 injection_complete(@"startEngine")
@@ -81,8 +85,10 @@ injection_complete(@"startEngine")
 When an object gets created by calling injector#getObject, all its dependencies will be satisfied as well.
 
 ```objective-c
-// No need to set up rules for simple injections like Wheel that can be created with alloc init.
-// For protocols there's no way to know which implementation to return - we need to set up a rule for it.
+// No need to set up rules for simple injections like Wheel
+// that can be created with alloc init.
+// For protocols there's no way to know which implementation to return -
+// we need to set up a rule for it.
 [injector map:[HybridMotor class] to:@protocol(Motor)];
 
 Car *car = [injector getObject:[Car class]];
@@ -117,10 +123,12 @@ GIModule *module = [[GameModule alloc] init];
 - (void)configure:(GIInjector *)injector {
     [super configure:injector];
 
-    [self mapSingleton:[MyGameModel class] to:@protocol(GameModel)];
+    [self mapSingleton:[MyGameModel class]
+                    to:@protocol(GameModel)];
     
     // Example Service starts automatically on init
-    [self mapEagerSingleton:[MyRemoteService class] to:@protocol(RemoteService)];
+    [self mapEagerSingleton:[MyRemoteService class]
+                         to:@protocol(RemoteService)];
 }
 
 - (void)unload {
@@ -138,26 +146,21 @@ GIModule *module = [[GameModule alloc] init];
 @end
 ```
 
-## Use Gummi Injection in your project
-You find the source files you need in Gummi-Injection/Classes
+## Ideas / Roadmap
+* Child injectors
 
-#### Dependencies
-Gummi-Injection uses [Gummi-Reflection](https://github.com/sschmid/Gummi-Reflection) to inspect objects.
+## Install Gummi Injection
+You find the source files you need in Gummi-Injection/Classes.
 
+You also need:
+* [Gummi Reflection] (https://github.com/sschmid/Gummi-Reflection) - Reflection for Objective-C
 
 ## CocoaPods
-Create a Podfile and put it into your root folder of your project
-
-#### Edit your Podfile
+Install [CocoaPods] (http://cocoapods.org) and add the Gummi Injection reference to your Podfile
 ```
 platform :ios, '5.0'
-pod 'Gummi-Injection'
-```
-
-#### Setup [CocoaPods] (http://cocoapods.org/), if not done already
-```
-$ sudo gem install cocoapods
-$ pod setup
+  pod 'Gummi-Injection'
+end
 ```
 
 #### Add this remote
@@ -170,10 +173,7 @@ $ pod repo add sschmid-cocoapods-specs https://github.com/sschmid/cocoapods-spec
 $ cd path/to/project
 $ pod install
 ```
+Open the created Xcode Workspace file.
 
-## Other projects using Gummi Injection
-
+## Projects that use Gummi Injection
 * [Gummi Commander] (https://github.com/sschmid/Gummi-Commander) Event Command Mapping System for Objective-C
-
-If you enjoy using Gummi Injection in your projects let me know, and I'll mention your projects here.
-
