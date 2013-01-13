@@ -97,7 +97,8 @@
 
 <span class="k">@implementation</span> <span class="nc">Car</span>
 
-<span class="n">inject</span><span class="p">(</span><span class="s">@"leftFrontWheel"</span><span class="p">,</span> <span class="s">@"rightFrontWheel"</span><span class="p">,</span> <span class="s">@"leftRearWheel"</span><span class="p">,</span> <span class="s">@"rightRearWheel"</span><span class="p">,</span> <span class="s">@"motor"</span><span class="p">);</span>
+<span class="n">inject</span><span class="p">(</span><span class="s">@"leftFrontWheel"</span><span class="p">,</span> <span class="s">@"rightFrontWheel"</span><span class="p">,</span> <span class="s">@"leftRearWheel"</span><span class="p">,</span>
+       <span class="s">@"rightRearWheel"</span><span class="p">,</span> <span class="s">@"motor"</span><span class="p">);</span>
 
 <span class="c1">// Optional selector gets performed, when injection is complete</span>
 <span class="n">injection_complete</span><span class="p">(</span><span class="s">@"startEngine"</span><span class="p">)</span>
@@ -116,8 +117,10 @@
 
 <p>When an object gets created by calling injector#getObject, all its dependencies will be satisfied as well.</p>
 
-<div class="highlight"><pre><span class="c1">// No need to set up rules for simple injections like Wheel that can be created with alloc init.</span>
-<span class="c1">// For protocols there's no way to know which implementation to return - we need to set up a rule for it.</span>
+<div class="highlight"><pre><span class="c1">// No need to set up rules for simple injections like Wheel that can be</span>
+<span class="c1">// created with alloc init.</span>
+<span class="c1">// For protocols there's no way to know which implementation to return -</span>
+<span class="c1">// we need to set up a rule for it.</span>
 <span class="p">[</span><span class="n">injector</span> <span class="nl">map:</span><span class="p">[</span><span class="n">HybridMotor</span> <span class="n">class</span><span class="p">]</span> <span class="nl">to:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">Motor</span><span class="p">)];</span>
 
 <span class="n">Car</span> <span class="o">*</span><span class="n">car</span> <span class="o">=</span> <span class="p">[</span><span class="n">injector</span> <span class="nl">getObject:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
@@ -155,7 +158,8 @@
     <span class="p">[</span><span class="n">self</span> <span class="nl">mapSingleton:</span><span class="p">[</span><span class="n">MyGameModel</span> <span class="n">class</span><span class="p">]</span> <span class="nl">to:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">GameModel</span><span class="p">)];</span>
 
     <span class="c1">// Example Service starts automatically on init</span>
-    <span class="p">[</span><span class="n">self</span> <span class="nl">mapEagerSingleton:</span><span class="p">[</span><span class="n">MyRemoteService</span> <span class="n">class</span><span class="p">]</span> <span class="nl">to:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">RemoteService</span><span class="p">)];</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nl">mapEagerSingleton:</span><span class="p">[</span><span class="n">MyRemoteService</span> <span class="n">class</span><span class="p">]</span>
+                         <span class="nl">to:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">RemoteService</span><span class="p">)];</span>
 <span class="p">}</span>
 
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">unload</span> <span class="p">{</span>
@@ -177,7 +181,7 @@
 
 <ul>
 <li>
-<a href="https://github.com/sschmid/Gummi-Commander">Gummi Commander</a> Event Command Mapping System for Objective-C</li>
+<a href="http://sschmid.github.com/Gummi-Commander">Gummi Commander</a> Event Command Mapping System for Objective-C</li>
 </ul><p>If you enjoy using Gummi Injection in your projects let me know, and I'll mention your projects here.</p>
         </section>
 
