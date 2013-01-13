@@ -31,11 +31,17 @@
         <hr>
 
         <section id="main_content">
-          <h2>Gummi Injection</h2>
+          <h1>Gummi Injection</h1>
 
 <p><img src="http://sschmid.com/Libs/Gummi-Injection/Gummi-Injection-128.png" alt="Gummi Injection Logo"></p>
 
+<h2>Description</h2>
+
 <p>Gummi Injection is a lightweight dependency injection framework for Objective-C.</p>
+
+<h2>Dependencies</h2>
+
+<p>Gummi-Injection uses <a href="http://sschmid.github.com/Gummi-Reflection">Gummi Reflection</a> to inspect objects.</p>
 
 <h2>Features</h2>
 
@@ -48,7 +54,7 @@
 <li>Map singletons and eager singletons</li>
 <li>Handles circular dependencies for singletons</li>
 <li>Injector can create unmapped dependencies, when they can be created like this [[MyObject alloc] init]</li>
-<li>Specify custom selector for objects to get notified when injection is complete</li>
+<li>Specify a custom selector for objects to get notified when injection is complete</li>
 </ul><h2>How to use Gummi Injection</h2>
 
 <h4>Get an injector</h4>
@@ -117,8 +123,8 @@
 
 <p>When an object gets created by calling injector#getObject, all its dependencies will be satisfied as well.</p>
 
-<div class="highlight"><pre><span class="c1">// No need to set up rules for simple injections like Wheel that can be</span>
-<span class="c1">// created with alloc init.</span>
+<div class="highlight"><pre><span class="c1">// No need to set up rules for simple injections like Wheel</span>
+<span class="c1">// that can be created with alloc init.</span>
 <span class="c1">// For protocols there's no way to know which implementation to return -</span>
 <span class="c1">// we need to set up a rule for it.</span>
 <span class="p">[</span><span class="n">injector</span> <span class="nl">map:</span><span class="p">[</span><span class="n">HybridMotor</span> <span class="n">class</span><span class="p">]</span> <span class="nl">to:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">Motor</span><span class="p">)];</span>
@@ -155,7 +161,8 @@
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">configure:</span><span class="p">(</span><span class="n">GIInjector</span> <span class="o">*</span><span class="p">)</span><span class="nv">injector</span> <span class="p">{</span>
     <span class="p">[</span><span class="n">super</span> <span class="nl">configure:</span><span class="n">injector</span><span class="p">];</span>
 
-    <span class="p">[</span><span class="n">self</span> <span class="nl">mapSingleton:</span><span class="p">[</span><span class="n">MyGameModel</span> <span class="n">class</span><span class="p">]</span> <span class="nl">to:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">GameModel</span><span class="p">)];</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nl">mapSingleton:</span><span class="p">[</span><span class="n">MyGameModel</span> <span class="n">class</span><span class="p">]</span>
+                    <span class="nl">to:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">GameModel</span><span class="p">)];</span>
 
     <span class="c1">// Example Service starts automatically on init</span>
     <span class="p">[</span><span class="n">self</span> <span class="nl">mapEagerSingleton:</span><span class="p">[</span><span class="n">MyRemoteService</span> <span class="n">class</span><span class="p">]</span>
@@ -177,12 +184,47 @@
 <span class="k">@end</span>
 </pre></div>
 
-<h2>Other projects using Gummi Injection</h2>
+<h2>Ideas / Roadmap</h2>
+
+<ul>
+<li>Child injectors</li>
+</ul><h2>Install Gummi Injection</h2>
+
+<p>You find the source files you need in Gummi-Injection/Classes.</p>
+
+<p>You also need:</p>
+
+<ul>
+<li>
+<a href="http://sschmid.github.com/Gummi-Reflection">Gummi Reflection</a> - Reflection for Objective-C</li>
+</ul><h2>CocoaPods</h2>
+
+<p>Install <a href="http://cocoapods.org">CocoaPods</a> and add the Gummi Injection reference to your Podfile</p>
+
+<pre><code>platform :ios, '5.0'
+  pod 'Gummi-Injection'
+end
+</code></pre>
+
+<h4>Add this remote</h4>
+
+<pre><code>$ pod repo add sschmid-cocoapods-specs https://github.com/sschmid/cocoapods-specs
+</code></pre>
+
+<h4>Install Gummi Injection</h4>
+
+<pre><code>$ cd path/to/project
+$ pod install
+</code></pre>
+
+<p>Open the created Xcode Workspace file.</p>
+
+<h2>Projects that use Gummi Injection</h2>
 
 <ul>
 <li>
 <a href="http://sschmid.github.com/Gummi-Commander">Gummi Commander</a> Event Command Mapping System for Objective-C</li>
-</ul><p>If you enjoy using Gummi Injection in your projects let me know, and I'll mention your projects here.</p>
+</ul>
         </section>
 
         <footer>
