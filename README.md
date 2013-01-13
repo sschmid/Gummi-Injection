@@ -4,7 +4,7 @@
 Gummi Injection is a lightweight dependency injection framework for Objective-C.
 
 ## Features
-* Add and remove mappings at any time
+* Add and remove injection rules (mappings) at any time
 * One api for different kind of mappings ([injector map: to:])
 * Inject into existing objects
 * Extend injector context with modules
@@ -12,6 +12,7 @@ Gummi Injection is a lightweight dependency injection framework for Objective-C.
 * Map singletons and eager singletons
 * Handles circular dependencies for singletons
 * Injector can create unmapped dependencies, when they can be created like this [[MyObject alloc] init]
+* Specify custom selector for objects to get notified when injection is complete
 
 ## How to use Gummi Injection
 
@@ -24,7 +25,7 @@ GIInjector *injector = [[GIInjector alloc] init];
 GIInjector *injector = [GIInjector sharedInjector];
 ```
 
-#### Add rules to injector [injector map:object to:keyObject]
+#### Add injection rules [injector map:object to:keyObject]
 ```objective-c
 // Map classes
 [injector map:[MyImplementation class] to:@protocol(MyProtocol)];
@@ -63,7 +64,7 @@ GIInjector *injector = [GIInjector sharedInjector];
 
 inject(@"leftFrontWheel", @"rightFrontWheel", @"leftRearWheel", @"rightRearWheel", @"motor");
 
-// Optional selector, when injection is complete
+// Optional selector gets performed, when injection is complete
 injection_complete(@"startEngine")
 
 @synthesize leftFrontWheel = _leftFrontWheel;
@@ -77,7 +78,8 @@ injection_complete(@"startEngine")
 ```
 
 #### Create an object with all dependencies set
-When an object gets created by calling injector#getObject, all its dependecies will be satisfied as well.
+When an object gets created by calling injector#getObject, all its dependencies will be satisfied as well.
+
 ```objective-c
 // No need to set up rules for simple injections like Wheel that can be created with alloc init.
 // For protocols there's no way to know which implementation to return - we need to set up a rule for it.
@@ -89,7 +91,7 @@ Car *car = [injector getObject:[Car class]];
 [injector map:[Car class] to:@protocol(Vehicle)];
 Car *car = [injector getObject:@protocol(Vehicle)];
 
-// or injecti into existing objects
+// or inject into existing objects
 Car *car = [[Car alloc] init];
 [injector injectIntoObject:car];
 ```
@@ -137,7 +139,6 @@ GIModule *module = [[GameModule alloc] init];
 ```
 
 ## Use Gummi Injection in your project
-
 You find the source files you need in Gummi-Injection/Classes
 
 #### Dependencies
@@ -150,12 +151,10 @@ Create a Podfile and put it into your root folder of your project
 #### Edit your Podfile
 ```
 platform :ios, '5.0'
-
 pod 'Gummi-Injection'
 ```
 
 #### Setup [CocoaPods] (http://cocoapods.org/), if not done already
-
 ```
 $ sudo gem install cocoapods
 $ pod setup
