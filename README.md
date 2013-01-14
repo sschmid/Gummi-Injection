@@ -19,7 +19,9 @@ Gummi-Injection uses [Gummi Reflection](https://github.com/sschmid/Gummi-Reflect
 * Specify a custom selector for objects to get notified when injection is complete
 
 ## How to use Gummi Injection
+
 #### Get an injector
+
 ```objective-c
 // Create your own injector
 GIInjector *injector = [[GIInjector alloc] init];
@@ -29,6 +31,7 @@ GIInjector *injector = [GIInjector sharedInjector];
 ```
 
 #### Add injection rules [injector map:object to:keyObject]
+
 ```objective-c
 // Map classes
 [injector map:[MyImplementation class] to:@protocol(MyProtocol)];
@@ -53,6 +56,7 @@ GIInjector *injector = [GIInjector sharedInjector];
 ```
 
 #### Mark properties for injection with "inject"
+
 ```objective-c
 @interface Car : NSObject <Vehicle>
 @property(nonatomic, strong) Wheel *leftFrontWheel;
@@ -104,6 +108,7 @@ Car *car = [[Car alloc] init];
 
 ## Modules
 Modules are a wrapper for related mappings. They extend the context of the injector and can be added and removed at any time.
+
 ```objective-c
 GIModule *module = [[GameModule alloc] init];
 [injector addModule:module];
@@ -146,9 +151,6 @@ GIModule *module = [[GameModule alloc] init];
 @end
 ```
 
-## Ideas / Roadmap
-* Child injectors
-
 ## Install Gummi Injection
 You find the source files you need in Gummi-Injection/Classes.
 
@@ -157,6 +159,7 @@ You also need:
 
 ## CocoaPods
 Install [CocoaPods] (http://cocoapods.org) and add the Gummi Injection reference to your Podfile
+
 ```
 platform :ios, '5.0'
   pod 'Gummi-Injection'
@@ -164,11 +167,13 @@ end
 ```
 
 #### Add this remote
+
 ```
 $ pod repo add sschmid-cocoapods-specs https://github.com/sschmid/cocoapods-specs
 ```
 
 #### Install Gummi Injection
+
 ```
 $ cd path/to/project
 $ pod install
