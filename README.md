@@ -17,6 +17,7 @@ Gummi-Injection uses [Gummi Reflection](https://github.com/sschmid/Gummi-Reflect
 * Handles circular dependencies for singletons
 * Injector can create unmapped dependencies, when they can be created like this [[MyObject alloc] init]
 * Specify a custom selector for objects to get notified when injection is complete
+* Child Injector
 
 ## How to use Gummi Injection
 
@@ -28,6 +29,10 @@ GIInjector *injector = [[GIInjector alloc] init];
 
 // or use the shared injector
 GIInjector *injector = [GIInjector sharedInjector];
+
+// Child Injector
+GIInjector *childInjector = [injector createChildInjector];
+
 ```
 
 #### Add injection rules [injector map:object to:keyObject]

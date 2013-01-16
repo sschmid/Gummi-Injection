@@ -13,6 +13,7 @@
 static GIInjector *sInjector;
 
 @interface GIInjector ()
+@property(nonatomic, weak) GIInjector *parent;
 @property(nonatomic, strong) NSMutableDictionary *context;
 @property(nonatomic, strong) NSMutableArray *modules;
 @property(nonatomic, strong) GIInjectorEntryFactory *entryFactory;
@@ -38,13 +39,26 @@ static GIInjector *sInjector;
     return self;
 }
 
+- (GIInjector *)createChildInjector {
+    GIInjector *childInjector = [[GIInjector alloc] init];
+    childInjector.parent = self;
+    return childInjector;
+}
+
 - (id)getObject:(id)keyObject {
     if (!keyObject)
         return nil;
 
     GIInjectorEntry *entry = self.context[[self keyForObject:keyObject]];
-    if (!entry)
-        return [self createObjectForType:keyObject];
+
+    if (!entry) {
+        id object = [self.parent getObject:keyObject];
+
+        if (!object)
+            return [self createObjectForType:keyObject];
+
+        return object;
+    }
 
     return entry.extractObject;
 }

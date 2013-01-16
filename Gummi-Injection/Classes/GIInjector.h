@@ -32,6 +32,8 @@
 
 + (GIInjector *)sharedInjector;
 
+- (GIInjector *)createChildInjector;
+
 - (id)getObject:(id)keyObject;
 
 - (void)injectIntoObject:(id)object;

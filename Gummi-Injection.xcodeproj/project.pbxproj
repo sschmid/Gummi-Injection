@@ -17,6 +17,7 @@
 		8D4DF32A16886BDB19EB9E57 /* PostConstructObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFDE880C08A7B9F3F1F65 /* PostConstructObject.m */; };
 		8D4DF3F5725D47B177364742 /* GIInjector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF9BCCC5B198872BCF39A /* GIInjector.m */; };
 		8D4DF425A4E0CFEAACC4FA94 /* GIInjectorEntryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF735A4C5A13506F5640A /* GIInjectorEntryFactory.m */; };
+		8D4DF4375703E5131EADDFD5 /* ChildInjectiorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF38EF884B87E4B31D76B /* ChildInjectiorSpec.m */; };
 		8D4DF47BE21F911FB071B37F /* SubObject2.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF1BBDFC1B11DE5E514EB /* SubObject2.m */; };
 		8D4DF489FB63B1C14E070E5E /* BaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF8A939BE5AE9D1716636 /* BaseObject.m */; };
 		8D4DF58861882C9CD4E9D9F5 /* GarageExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF5C96EFD245E0678A32B /* GarageExample.m */; };
@@ -81,6 +82,7 @@
 		8D4DF3090AB7398F01D78F24 /* SubObject2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubObject2.h; sourceTree = "<group>"; };
 		8D4DF31F4681417B49B86925 /* GIInjectorEntryFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectorEntryFactory.h; sourceTree = "<group>"; };
 		8D4DF34C0D570BCE5B469CAD /* StartStopModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartStopModule.h; sourceTree = "<group>"; };
+		8D4DF38EF884B87E4B31D76B /* ChildInjectiorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildInjectiorSpec.m; sourceTree = "<group>"; };
 		8D4DF3D21A4DB08280E20647 /* StartStopObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartStopObject.h; sourceTree = "<group>"; };
 		8D4DF3D33C0C5BBAF1784CC8 /* GIModuleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIModuleSpec.m; sourceTree = "<group>"; };
 		8D4DF47E48BBC36474B539AA /* GIModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIModule.h; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				8D4DF3D33C0C5BBAF1784CC8 /* GIModuleSpec.m */,
 				8D4DFC7C3016162007357F5A /* GIInjectorEntryFactorySpec.m */,
 				8D4DFD362B912957B442B028 /* StartStopObjectSpec.m */,
+				8D4DF38EF884B87E4B31D76B /* ChildInjectiorSpec.m */,
 			);
 			path = "Gummi-InjectionTests";
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				8D4DF5991008CB1F7AD1DF9D /* Sub2Dependency.m in Sources */,
 				8D4DF32A16886BDB19EB9E57 /* PostConstructObject.m in Sources */,
 				8D4DFF750C9A0C89C61C135D /* DefectPostConstructObject.m in Sources */,
+				8D4DF4375703E5131EADDFD5 /* ChildInjectiorSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
