@@ -49,16 +49,9 @@ static GIInjector *sInjector;
     if (!keyObject)
         return nil;
 
-    GIInjectorEntry *entry = self.context[[self keyForObject:keyObject]];
-
-    if (!entry) {
-        id object = [self.parent getObject:keyObject];
-
-        if (!object)
-            return [self createObjectForType:keyObject];
-
-        return object;
-    }
+    GIInjectorEntry *entry = [self entryForKeyObject:keyObject];
+    if (!entry)
+        return [self createObjectForType:keyObject];
 
     return entry.extractObject;
 }
@@ -72,16 +65,16 @@ static GIInjector *sInjector;
 }
 
 - (void)notifyObjectOfInjectionComplete:(id)object {
-     if ([[object class] respondsToSelector:@selector(injectionCompleteSelector)]) {
-         NSString *onCompleteName = [[object class] performSelector:@selector(injectionCompleteSelector)];
-         SEL onComplete = NSSelectorFromString(onCompleteName);
-         if (![object respondsToSelector:onComplete])
-             @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
-                                            reason:[NSString stringWithFormat:@"Object '%@' does not respond to selector '%@'", NSStringFromClass([object class]), onCompleteName]
-                                          userInfo:nil];
-         else
+    if ([[object class] respondsToSelector:@selector(injectionCompleteSelector)]) {
+        NSString *onCompleteName = [[object class] performSelector:@selector(injectionCompleteSelector)];
+        SEL onComplete = NSSelectorFromString(onCompleteName);
+        if (![object respondsToSelector:onComplete])
+            @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
+                                           reason:[NSString stringWithFormat:@"Object '%@' does not respond to selector '%@'", NSStringFromClass([object class]), onCompleteName]
+                                         userInfo:nil];
+        else
             [object performSelector:onComplete];
-     }
+    }
 }
 
 - (void)map:(id)object to:(id)keyObject {
@@ -111,7 +104,11 @@ static GIInjector *sInjector;
 }
 
 - (GIInjectorEntry *)entryForKeyObject:(id)keyObject {
-    return self.context[[self keyForObject:keyObject]];
+    GIInjectorEntry *entry = self.context[[self keyForObject:keyObject]];
+    if (!entry)
+        entry = [self.parent entryForKeyObject:keyObject];
+
+    return entry;
 }
 
 - (NSDictionary *)getDependenciesForObject:(id)object withProperties:(NSSet *)properties {

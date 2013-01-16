@@ -6,6 +6,8 @@
 
 #import "Kiwi.h"
 #import "GIInjector.h"
+#import "BaseDependency.h"
+#import "BaseObject.h"
 
 SPEC_BEGIN(ChildInjectiorSpec)
 
@@ -54,6 +56,36 @@ SPEC_BEGIN(ChildInjectiorSpec)
                 [[parentObject should] equal:objectForParent];
 
                 [[childObject shouldNot] equal:parentObject];
+            });
+
+            it(@"child injector satisfies dependencies with child context", ^{
+                BaseDependency *baseDependencyForParent = [[BaseDependency alloc] init];
+                BaseDependency *baseDependencyForChild = [[BaseDependency alloc] init];
+
+                [injector map:baseDependencyForParent to:[BaseDependency class]];
+
+                GIInjector *childInjector = [injector createChildInjector];
+                [childInjector map:baseDependencyForChild to:[BaseDependency class]];
+
+                BaseObject *baseObjectFromParent = [injector getObject:[BaseObject class]];
+                BaseObject *baseObjectFromChild = [childInjector getObject:[BaseObject class]];
+
+                [[baseObjectFromParent.baseDependency should] equal:baseDependencyForParent];
+                [[baseObjectFromChild.baseDependency should] equal:baseDependencyForChild];
+            });
+
+            it(@"child injector satisfies dependencies with parent context, when not available", ^{
+                BaseDependency *baseDependencyForParent = [[BaseDependency alloc] init];
+
+                [injector map:baseDependencyForParent to:[BaseDependency class]];
+
+                GIInjector *childInjector = [injector createChildInjector];
+
+                BaseObject *baseObjectFromParent = [injector getObject:[BaseObject class]];
+                BaseObject *baseObjectFromChild = [childInjector getObject:[BaseObject class]];
+
+                [[baseObjectFromParent.baseDependency should] equal:baseDependencyForParent];
+                [[baseObjectFromChild.baseDependency should] equal:baseDependencyForParent];
             });
 
         });
