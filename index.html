@@ -92,28 +92,27 @@
 
 <h4>Mark properties for injection with "inject"</h4>
 
-<div class="highlight"><pre><span class="k">@interface</span> <span class="nc">Car</span> : <span class="nc">NSObject</span> <span class="o">&lt;</span><span class="n">Vehicle</span><span class="o">&gt;</span>
-<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">Wheel</span> <span class="o">*</span><span class="n">leftFrontWheel</span><span class="p">;</span>
-<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">Wheel</span> <span class="o">*</span><span class="n">rightFrontWheel</span><span class="p">;</span>
-<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">Wheel</span> <span class="o">*</span><span class="n">leftRearWheel</span><span class="p">;</span>
-<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">Wheel</span> <span class="o">*</span><span class="n">rightRearWheel</span><span class="p">;</span>
+<div class="highlight"><pre><span class="k">@class</span> <span class="nc">Wheel</span>;
+
+<span class="k">@interface</span> <span class="nc">Car</span> : <span class="nc">NSObject</span> <span class="o">&lt;</span><span class="n">Vehicle</span><span class="o">&gt;</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">Wheel</span> <span class="o">*</span><span class="n">wheel1</span><span class="p">;</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">Wheel</span> <span class="o">*</span><span class="n">wheel2</span><span class="p">;</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">Wheel</span> <span class="o">*</span><span class="n">wheel3</span><span class="p">;</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">Wheel</span> <span class="o">*</span><span class="n">wheel4</span><span class="p">;</span>
 <span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="kt">id</span> <span class="o">&lt;</span><span class="n">Motor</span><span class="o">&gt;</span> <span class="n">motor</span><span class="p">;</span>
 <span class="k">@end</span>
 
-
 <span class="k">@implementation</span> <span class="nc">Car</span>
 
-<span class="n">inject</span><span class="p">(</span><span class="s">@"leftFrontWheel"</span><span class="p">,</span> <span class="s">@"rightFrontWheel"</span><span class="p">,</span> <span class="s">@"leftRearWheel"</span><span class="p">,</span>
-       <span class="s">@"rightRearWheel"</span><span class="p">,</span> <span class="s">@"motor"</span><span class="p">);</span>
+<span class="n">inject</span><span class="p">(</span><span class="s">@"wheel1"</span><span class="p">,</span> <span class="s">@"wheel2"</span><span class="p">,</span> <span class="s">@"wheel3"</span><span class="p">,</span> <span class="s">@"wheel4"</span><span class="p">,</span> <span class="s">@"motor"</span><span class="p">);</span>
 
 <span class="c1">// Optional selector gets performed, when injection is complete</span>
 <span class="n">injection_complete</span><span class="p">(</span><span class="s">@"startEngine"</span><span class="p">)</span>
 
-<span class="k">@synthesize</span> <span class="n">leftFrontWheel</span> <span class="o">=</span> <span class="n">_leftFrontWheel</span><span class="p">;</span>
-<span class="k">@synthesize</span> <span class="n">rightFrontWheel</span> <span class="o">=</span> <span class="n">_rightFrontWheel</span><span class="p">;</span>
-<span class="k">@synthesize</span> <span class="n">leftRearWheel</span> <span class="o">=</span> <span class="n">_leftRearWheel</span><span class="p">;</span>
-<span class="k">@synthesize</span> <span class="n">rightRearWheel</span> <span class="o">=</span> <span class="n">_rightRearWheel</span><span class="p">;</span>
-<span class="k">@synthesize</span> <span class="n">motor</span> <span class="o">=</span> <span class="n">_motor</span><span class="p">;</span>
+<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">startEngine</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">motor</span><span class="p">)</span>
+        <span class="n">NSLog</span><span class="p">(</span><span class="s">@"[%@] Brrrmmmmm...."</span><span class="p">,</span> <span class="n">NSStringFromClass</span><span class="p">([</span><span class="n">self</span> <span class="n">class</span><span class="p">]));</span>
+<span class="p">}</span>
 
 <span class="p">...</span>
 <span class="k">@end</span>
@@ -138,6 +137,16 @@
 <span class="c1">// or inject into existing objects</span>
 <span class="n">Car</span> <span class="o">*</span><span class="n">car</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Car</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
 <span class="p">[</span><span class="n">injector</span> <span class="nl">injectIntoObject:</span><span class="n">car</span><span class="p">];</span>
+
+<span class="c1">// This will happen:</span>
+<span class="c1">// - getObject looks up type Car -&gt; no rule set -&gt; Instantiate Car and inject into object</span>
+<span class="c1">//     - Each Car wants Wheels</span>
+<span class="c1">//         - Look up type Wheel -&gt; no rule set -&gt; Instantiate Wheel and inject into object</span>
+<span class="c1">//     - Car wants &lt;Motor&gt;</span>
+<span class="c1">//         - Look up type &lt;Motor&gt; -&gt; rule found: [HybridMotor class]</span>
+<span class="c1">//         - Instantiate HybridMotor and inject into object</span>
+<span class="c1">// Done</span>
+
 </pre></div>
 
 <h2>Modules</h2>
