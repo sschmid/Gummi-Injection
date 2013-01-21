@@ -17,7 +17,7 @@
     [self addIcon];
 
     GarageExample *example = [[GarageExample alloc] init];
-    
+
     return YES;
 }
 

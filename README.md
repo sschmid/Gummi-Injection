@@ -63,28 +63,27 @@ GIInjector *childInjector = [injector createChildInjector];
 #### Mark properties for injection with "inject"
 
 ```objective-c
+@class Wheel;
+
 @interface Car : NSObject <Vehicle>
-@property(nonatomic, strong) Wheel *leftFrontWheel;
-@property(nonatomic, strong) Wheel *rightFrontWheel;
-@property(nonatomic, strong) Wheel *leftRearWheel;
-@property(nonatomic, strong) Wheel *rightRearWheel;
+@property(nonatomic, strong) Wheel *wheel1;
+@property(nonatomic, strong) Wheel *wheel2;
+@property(nonatomic, strong) Wheel *wheel3;
+@property(nonatomic, strong) Wheel *wheel4;
 @property(nonatomic) id <Motor> motor;
 @end
 
-
 @implementation Car
 
-inject(@"leftFrontWheel", @"rightFrontWheel", @"leftRearWheel",
-       @"rightRearWheel", @"motor");
+inject(@"wheel1", @"wheel2", @"wheel3", @"wheel4", @"motor");
 
 // Optional selector gets performed, when injection is complete
 injection_complete(@"startEngine")
 
-@synthesize leftFrontWheel = _leftFrontWheel;
-@synthesize rightFrontWheel = _rightFrontWheel;
-@synthesize leftRearWheel = _leftRearWheel;
-@synthesize rightRearWheel = _rightRearWheel;
-@synthesize motor = _motor;
+- (void)startEngine {
+    if (self.motor)
+        NSLog(@"[%@] Brrrmmmmm....", NSStringFromClass([self class]));
+}
 
 ...
 @end
@@ -109,6 +108,17 @@ Car *car = [injector getObject:@protocol(Vehicle)];
 // or inject into existing objects
 Car *car = [[Car alloc] init];
 [injector injectIntoObject:car];
+
+// This will happen:
+// - getObject looks up type Car -> no rule set -> Instantiate Car and inject into object
+//     - Each Car wants Wheels
+//         - Look up type Wheel -> no rule set -> Instantiate Wheel and inject into object
+//     - Car wants <Motor>
+//         - Look up type <Motor> -> rule found: [HybridMotor class]
+//         - Instantiate HybridMotor and inject into object
+// Done
+
+
 ```
 
 ## Modules

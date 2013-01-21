@@ -11,6 +11,7 @@
 @implementation Car
 
 inject(@"wheel1", @"wheel2", @"wheel3", @"wheel4", @"motor");
+injection_complete(@"startEngine")
 
 + (id)car {
     return [[self alloc] init];
@@ -38,6 +39,11 @@ inject(@"wheel1", @"wheel2", @"wheel3", @"wheel4", @"motor");
     BOOL hasWheel4 = [self.wheel4 isKindOfClass:[Wheel class]];
 
     return hasAllWheels && hasWheel1 && hasWheel2 && hasWheel3 && hasWheel4 && self.motor != nil;
+}
+
+- (void)startEngine {
+    if (self.motor)
+        NSLog(@"[%@] Brrrmmmmm....", NSStringFromClass([self class]));
 }
 
 @end
