@@ -45,25 +45,25 @@ SPEC_BEGIN(CarSpec)
             });
 
             it(@"adds wheels", ^{
-                car.leftFrontWheel = [Wheel wheel];
-                car.rightFrontWheel = [Wheel wheel];
-                car.leftRearWheel = [Wheel wheel];
-                car.rightRearWheel = [Wheel wheel];
+                car.wheel1 = [Wheel wheel];
+                car.wheel2 = [Wheel wheel];
+                car.wheel3 = [Wheel wheel];
+                car.wheel4 = [Wheel wheel];
 
                 BOOL hasAllWheels = car.numWheels == 4;
-                BOOL hasFLW = [car.leftFrontWheel isKindOfClass:[Wheel class]];
-                BOOL hasFRW = [car.rightFrontWheel isKindOfClass:[Wheel class]];
-                BOOL hasBLW = [car.leftRearWheel isKindOfClass:[Wheel class]];
-                BOOL hasBRW = [car.rightRearWheel isKindOfClass:[Wheel class]];
+                BOOL hasWheel1 = [car.wheel1 isKindOfClass:[Wheel class]];
+                BOOL hasWheel2 = [car.wheel2 isKindOfClass:[Wheel class]];
+                BOOL hasWheel3 = [car.wheel3 isKindOfClass:[Wheel class]];
+                BOOL hasWheel4 = [car.wheel4 isKindOfClass:[Wheel class]];
 
-                [[theValue(hasAllWheels && hasBLW && hasFLW && hasFRW && hasBRW) should] beYes];
+                [[theValue(hasAllWheels && hasWheel1 && hasWheel2 && hasWheel3 && hasWheel4) should] beYes];
             });
 
             it(@"can not drive without motor", ^{
-                car.leftFrontWheel = [Wheel wheel];
-                car.rightFrontWheel = [Wheel wheel];
-                car.leftRearWheel = [Wheel wheel];
-                car.rightRearWheel = [Wheel wheel];
+                car.wheel1 = [Wheel wheel];
+                car.wheel2 = [Wheel wheel];
+                car.wheel3 = [Wheel wheel];
+                car.wheel4 = [Wheel wheel];
 
                 [[theValue(car.canDrive) should] beNo];
             });
@@ -81,10 +81,10 @@ SPEC_BEGIN(CarSpec)
             });
 
             it(@"can drive", ^{
-                car.leftFrontWheel = [Wheel wheel];
-                car.rightFrontWheel = [Wheel wheel];
-                car.leftRearWheel = [Wheel wheel];
-                car.rightRearWheel = [Wheel wheel];
+                car.wheel1 = [Wheel wheel];
+                car.wheel2 = [Wheel wheel];
+                car.wheel3 = [Wheel wheel];
+                car.wheel4 = [Wheel wheel];
                 car.motor = [HybridMotor motor];
 
                 [[theValue(car.canDrive) should] beYes];

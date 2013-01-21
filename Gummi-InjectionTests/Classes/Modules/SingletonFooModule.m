@@ -4,11 +4,11 @@
 // contact@sschmid.com
 //
 
-#import "SingletonModule.h"
+#import "SingletonFooModule.h"
 #import "GIInjector.h"
 #import "SingletonFoo.h"
 
-@implementation SingletonModule
+@implementation SingletonFooModule
 
 - (void)configure:(GIInjector *)injector {
     [super configure:injector];

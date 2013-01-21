@@ -6,7 +6,5 @@
 
 #import <Foundation/Foundation.h>
 
-@class GIInjector;
-
 @interface GarageExample : NSObject
 @end

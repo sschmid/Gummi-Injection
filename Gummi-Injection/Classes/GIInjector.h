@@ -14,7 +14,7 @@
 #define inject(args...) \
     + (NSSet *)desiredProperties { \
         NSMutableSet *requirements = [NSMutableSet setWithObjects:args, nil]; \
-        Class superClass = class_getSuperclass([self class]); \
+        Class superClass = [self superclass]; \
         if ([superClass respondsToSelector:@selector(desiredProperties)]) { \
             NSSet *parentRequirements = [superClass performSelector:@selector(desiredProperties)]; \
             [requirements unionSet:parentRequirements]; \
@@ -26,7 +26,6 @@
     + (NSString *)injectionCompleteSelector { \
         return selectorName; \
     }
-
 
 @interface GIInjector : NSObject <GIInjectionMapper>
 

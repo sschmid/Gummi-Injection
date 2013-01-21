@@ -10,5 +10,4 @@
 
 @interface SingletonBar : NSObject
 @property(nonatomic, strong) SingletonFoo *foo;
-
 @end

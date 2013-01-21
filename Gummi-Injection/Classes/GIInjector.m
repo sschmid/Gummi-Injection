@@ -64,19 +64,6 @@ static GIInjector *sInjector;
     [self notifyObjectOfInjectionComplete:object];
 }
 
-- (void)notifyObjectOfInjectionComplete:(id)object {
-    if ([[object class] respondsToSelector:@selector(injectionCompleteSelector)]) {
-        NSString *onCompleteName = [[object class] performSelector:@selector(injectionCompleteSelector)];
-        SEL onComplete = NSSelectorFromString(onCompleteName);
-        if (![object respondsToSelector:onComplete])
-            @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
-                                           reason:[NSString stringWithFormat:@"Object '%@' does not respond to selector '%@'", NSStringFromClass([object class]), onCompleteName]
-                                         userInfo:nil];
-        else
-            [object performSelector:onComplete];
-    }
-}
-
 - (void)map:(id)object to:(id)keyObject {
     GIInjectorEntry *entry = [self.entryFactory createEntryForObject:object mappedTo:keyObject asSingleton:NO];
     self.context[[self keyForObject:entry.keyObject]] = entry;
@@ -91,7 +78,6 @@ static GIInjector *sInjector;
     [self mapSingleton:object to:keyObject];
     [self getObject:object];
 }
-
 
 - (BOOL)isObject:(id)object mappedTo:(id)keyObject {
     GIInjectorEntry *entry = self.context[[self keyForObject:keyObject]];
@@ -117,6 +103,19 @@ static GIInjector *sInjector;
         dependencies[propertyName] = [self getObject:[GRReflection getTypeForProperty:propertyName ofClass:[object class]]];
 
     return dependencies;
+}
+
+- (void)notifyObjectOfInjectionComplete:(id)object {
+    if ([[object class] respondsToSelector:@selector(injectionCompleteSelector)]) {
+        NSString *onCompleteName = [[object class] performSelector:@selector(injectionCompleteSelector)];
+        SEL onComplete = NSSelectorFromString(onCompleteName);
+        if (![object respondsToSelector:onComplete])
+            @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
+                                           reason:[NSString stringWithFormat:@"Object '%@' does not respond to selector '%@'", NSStringFromClass([object class]), onCompleteName]
+                                         userInfo:nil];
+        else
+            [object performSelector:onComplete];
+    }
 }
 
 - (id)createObjectForType:(id)type {
@@ -152,11 +151,8 @@ static GIInjector *sInjector;
 
 - (void)removeModuleClass:(Class)moduleClass {
     for (GIModule *module in [self.modules copy]) {
-        if ([module isKindOfClass:moduleClass]) {
+        if ([module isKindOfClass:moduleClass])
             [self removeModule:module];
-
-            return;
-        }
     }
 }
 

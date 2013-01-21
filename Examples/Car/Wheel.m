@@ -7,9 +7,7 @@
 #import "Wheel.h"
 
 @implementation Wheel
-
 + (id)wheel {
     return [[self alloc] init];
 }
-
 @end

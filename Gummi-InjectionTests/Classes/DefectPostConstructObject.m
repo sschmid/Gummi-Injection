@@ -9,9 +9,4 @@
 
 @implementation DefectPostConstructObject
 injection_complete(@"unknownSelector")
-
-- (void)allSet {
-    self.ready = YES;
-}
-
 @end

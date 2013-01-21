@@ -12,13 +12,17 @@
 
 - (void)configure:(GIInjector *)injector {
     [super configure:injector];
-    
-    self.startStopObject = [_injector getObject:[StartStopObject class]];
-    [self.startStopObject start];
+
+    [self mapSingleton:[StartStopObject class] to:[StartStopObject class]];
+
+    StartStopObject *startStopObject = [_injector getObject:[StartStopObject class]];
+    [startStopObject start];
 }
 
 - (void)unload {
-    [self.startStopObject stop];
+    StartStopObject *startStopObject = [_injector getObject:[StartStopObject class]];
+    [startStopObject stop];
+
     [super unload];
 }
 

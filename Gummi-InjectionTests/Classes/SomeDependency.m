@@ -4,7 +4,7 @@
 // contact@sschmid.com
 //
 
-#import "BaseDependency.h"
+#import "SomeDependency.h"
 
-@implementation BaseDependency
+@implementation SomeDependency
 @end

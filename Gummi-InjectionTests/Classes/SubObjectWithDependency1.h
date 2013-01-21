@@ -5,10 +5,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BaseObject.h"
+#import "ObjectWithDependency.h"
 
 @class Sub1Dependency;
 
-@interface SubObject1 : BaseObject
+@interface SubObjectWithDependency1 : ObjectWithDependency
 @property(nonatomic, strong) Sub1Dependency *sub1Dependency;
 @end

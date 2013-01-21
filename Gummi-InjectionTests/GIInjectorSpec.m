@@ -13,13 +13,13 @@
 #import "HybridMotor.h"
 #import "Wheel.h"
 #import "GIModule.h"
-#import "SingletonModule.h"
+#import "SingletonFooModule.h"
 #import "StartStopModule.h"
 #import "StartStopObject.h"
 #import "GIInjectorEntry.h"
 #import "GIInjectorClassEntry.h"
-#import "SubObject2.h"
-#import "BaseDependency.h"
+#import "SubObjectWithDependency2.h"
+#import "SomeDependency.h"
 #import "Sub1Dependency.h"
 #import "Sub2Dependency.h"
 #import "PostConstructObject.h"
@@ -324,9 +324,9 @@ SPEC_BEGIN(GIInjectorSpec)
 
             context(@"when added a module", ^{
 
-                __block SingletonModule *singletonModule;
+                __block SingletonFooModule *singletonModule;
                 beforeEach(^{
-                    singletonModule = [[SingletonModule alloc] init];
+                    singletonModule = [[SingletonFooModule alloc] init];
                     [injector addModule:singletonModule];
                 });
 
@@ -336,7 +336,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 });
 
                 it(@"has module class", ^{
-                    BOOL has = [injector hasModuleClass:[SingletonModule class]];
+                    BOOL has = [injector hasModuleClass:[SingletonFooModule class]];
                     [[theValue(has) should] beYes];
                 });
 
@@ -357,7 +357,7 @@ SPEC_BEGIN(GIInjectorSpec)
                     });
 
                     it(@"has no module class", ^{
-                        BOOL has = [injector hasModuleClass:[SingletonModule class]];
+                        BOOL has = [injector hasModuleClass:[SingletonFooModule class]];
                         [[theValue(has) should] beNo];
                     });
 
@@ -371,7 +371,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 context(@"when removed module class", ^{
 
                     beforeEach(^{
-                        [injector removeModuleClass:[SingletonModule class]];
+                        [injector removeModuleClass:[SingletonFooModule class]];
                     });
 
                     it(@"has no module", ^{
@@ -380,7 +380,7 @@ SPEC_BEGIN(GIInjectorSpec)
                     });
 
                     it(@"has no module class", ^{
-                        BOOL has = [injector hasModuleClass:[SingletonModule class]];
+                        BOOL has = [injector hasModuleClass:[SingletonFooModule class]];
                         [[theValue(has) should] beNo];
                     });
 
@@ -396,23 +396,25 @@ SPEC_BEGIN(GIInjectorSpec)
             context(@"module lifecycle", ^{
 
                 __block StartStopModule *startStopModule;
+                __block StartStopObject *startStopObject;
                 beforeEach(^{
                     startStopModule = [[StartStopModule alloc] init];
                     [injector addModule:startStopModule];
+                    startStopObject = [injector getObject:[StartStopObject class]];
                 });
 
                 it(@"module is configured", ^{
-                    [[theValue(startStopModule.startStopObject.started) should] beYes];
+                    [[theValue(startStopObject.started) should] beYes];
                 });
 
                 it(@"module is unloaded", ^{
                     [injector removeModule:startStopModule];
-                    [[theValue(startStopModule.startStopObject.started) should] beNo];
+                    [[theValue(startStopObject.started) should] beNo];
                 });
 
                 it(@"module is unloaded", ^{
                     [injector reset];
-                    [[theValue(startStopModule.startStopObject.started) should] beNo];
+                    [[theValue(startStopObject.started) should] beNo];
                 });
 
             });
@@ -420,16 +422,16 @@ SPEC_BEGIN(GIInjectorSpec)
             context(@"when sublassing", ^{
 
                 it(@"inherits dependencies", ^{
-                    SubObject2 *subObject2 = [injector getObject:[SubObject2 class]];
+                    SubObjectWithDependency2 *subObject2 = [injector getObject:[SubObjectWithDependency2 class]];
 
-                    [[subObject2.baseDependency should] beKindOfClass:[BaseDependency class]];
+                    [[subObject2.someDependency should] beKindOfClass:[SomeDependency class]];
                     [[subObject2.sub1Dependency should] beKindOfClass:[Sub1Dependency class]];
                     [[subObject2.sub2Dependency should] beKindOfClass:[Sub2Dependency class]];
                 });
                 
             });
 
-            context(@"post construc", ^{
+            context(@"post construct", ^{
 
                 it(@"desired selector after dependencies set gets called", ^{
                     PostConstructObject *object = [injector getObject:[PostConstructObject class]];

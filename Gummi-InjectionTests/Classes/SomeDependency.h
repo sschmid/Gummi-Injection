@@ -6,5 +6,5 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BaseDependency : NSObject
+@interface SomeDependency : NSObject
 @end

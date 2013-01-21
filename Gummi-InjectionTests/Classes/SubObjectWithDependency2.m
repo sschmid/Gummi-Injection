@@ -4,9 +4,9 @@
 // contact@sschmid.com
 //
 
-#import "SubObject2.h"
+#import "SubObjectWithDependency2.h"
 #import "GIInjector.h"
 
-@implementation SubObject2
+@implementation SubObjectWithDependency2
 inject(@"sub2Dependency")
 @end

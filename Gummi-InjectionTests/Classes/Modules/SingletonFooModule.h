@@ -7,5 +7,5 @@
 #import <Foundation/Foundation.h>
 #import "GIModule.h"
 
-@interface SingletonModule : GIModule
+@interface SingletonFooModule : GIModule
 @end

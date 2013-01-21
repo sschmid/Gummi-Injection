@@ -6,8 +6,8 @@
 
 #import "Kiwi.h"
 #import "GIInjector.h"
-#import "BaseDependency.h"
-#import "BaseObject.h"
+#import "SomeDependency.h"
+#import "ObjectWithDependency.h"
 
 SPEC_BEGIN(ChildInjectiorSpec)
 
@@ -59,33 +59,33 @@ SPEC_BEGIN(ChildInjectiorSpec)
             });
 
             it(@"child injector satisfies dependencies with child context", ^{
-                BaseDependency *baseDependencyForParent = [[BaseDependency alloc] init];
-                BaseDependency *baseDependencyForChild = [[BaseDependency alloc] init];
+                SomeDependency *baseDependencyForParent = [[SomeDependency alloc] init];
+                SomeDependency *baseDependencyForChild = [[SomeDependency alloc] init];
 
-                [injector map:baseDependencyForParent to:[BaseDependency class]];
+                [injector map:baseDependencyForParent to:[SomeDependency class]];
 
                 GIInjector *childInjector = [injector createChildInjector];
-                [childInjector map:baseDependencyForChild to:[BaseDependency class]];
+                [childInjector map:baseDependencyForChild to:[SomeDependency class]];
 
-                BaseObject *baseObjectFromParent = [injector getObject:[BaseObject class]];
-                BaseObject *baseObjectFromChild = [childInjector getObject:[BaseObject class]];
+                ObjectWithDependency *baseObjectFromParent = [injector getObject:[ObjectWithDependency class]];
+                ObjectWithDependency *baseObjectFromChild = [childInjector getObject:[ObjectWithDependency class]];
 
-                [[baseObjectFromParent.baseDependency should] equal:baseDependencyForParent];
-                [[baseObjectFromChild.baseDependency should] equal:baseDependencyForChild];
+                [[baseObjectFromParent.someDependency should] equal:baseDependencyForParent];
+                [[baseObjectFromChild.someDependency should] equal:baseDependencyForChild];
             });
 
             it(@"child injector satisfies dependencies with parent context, when not available", ^{
-                BaseDependency *baseDependencyForParent = [[BaseDependency alloc] init];
+                SomeDependency *baseDependencyForParent = [[SomeDependency alloc] init];
 
-                [injector map:baseDependencyForParent to:[BaseDependency class]];
+                [injector map:baseDependencyForParent to:[SomeDependency class]];
 
                 GIInjector *childInjector = [injector createChildInjector];
 
-                BaseObject *baseObjectFromParent = [injector getObject:[BaseObject class]];
-                BaseObject *baseObjectFromChild = [childInjector getObject:[BaseObject class]];
+                ObjectWithDependency *baseObjectFromParent = [injector getObject:[ObjectWithDependency class]];
+                ObjectWithDependency *baseObjectFromChild = [childInjector getObject:[ObjectWithDependency class]];
 
-                [[baseObjectFromParent.baseDependency should] equal:baseDependencyForParent];
-                [[baseObjectFromChild.baseDependency should] equal:baseDependencyForParent];
+                [[baseObjectFromParent.someDependency should] equal:baseDependencyForParent];
+                [[baseObjectFromChild.someDependency should] equal:baseDependencyForParent];
             });
 
         });
