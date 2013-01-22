@@ -51,6 +51,7 @@
 <li>Inject into existing objects</li>
 <li>Extend injector context with modules</li>
 <li>Add or remove modules at any time</li>
+<li>Map blocks to classes or protocols</li>
 <li>Map singletons and eager singletons</li>
 <li>Handles circular dependencies for singletons</li>
 <li>Injector can create unmapped dependencies, when they can be created like this [[MyObject alloc] init]</li>
@@ -85,6 +86,12 @@
 <span class="c1">// Eager singletons will be instantiated immediately</span>
 <span class="p">[</span><span class="n">injector</span> <span class="nl">mapEagerSingleton:</span><span class="p">[</span><span class="n">Service</span> <span class="n">class</span><span class="p">]</span> <span class="nl">to:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">RemoteService</span><span class="p">)];</span>
 <span class="p">[</span><span class="n">injector</span> <span class="nl">mapSingleton:</span><span class="p">[</span><span class="n">Model</span> <span class="n">class</span><span class="p">]</span> <span class="nl">to:</span><span class="p">[</span><span class="n">Model</span> <span class="n">class</span><span class="p">]];</span>
+
+<span class="c1">// Map blocks</span>
+<span class="kt">id</span> <span class="p">(</span><span class="o">^</span><span class="n">factoryBlock</span><span class="p">)(</span><span class="n">GIInjector</span> <span class="o">*</span><span class="p">)</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="n">GIInjector</span> <span class="o">*</span><span class="n">injector</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">theInjector</span> <span class="nl">getObject:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
+<span class="p">};</span>
+<span class="p">[</span><span class="n">injector</span> <span class="nl">map:</span><span class="n">factoryBlock</span> <span class="nl">to:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">Vehicle</span><span class="p">)];</span>
 
 <span class="c1">// You can remove mappings at any time</span>
 <span class="p">[</span><span class="n">injector</span> <span class="nl">unMap:</span><span class="p">[</span><span class="n">Service</span> <span class="n">class</span><span class="p">]</span> <span class="nl">from:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">RemoteService</span><span class="p">)];</span>
