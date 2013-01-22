@@ -10,6 +10,7 @@
 #import "GIInjectorEntry.h"
 #import "GIInjectorClassEntry.h"
 #import "GIInjectorInstanceEntry.h"
+#import "GIInjectorBlockEntry.h"
 
 SPEC_BEGIN(GIInjectorEntryFactorySpec)
 
@@ -28,6 +29,16 @@ SPEC_BEGIN(GIInjectorEntryFactorySpec)
                 GIInjectorEntry *entry = [factory createEntryForObject:[[NSObject alloc] init] mappedTo:[NSObject class] asSingleton:NO];
 
                 [[entry should] beKindOfClass:[GIInjectorInstanceEntry class]];
+            });
+
+            it(@"returns a block entry", ^{
+                id (^factoryBlock)(GIInjector *) = ^(GIInjector *injector) {
+                    return [[NSObject alloc] init];
+                };
+                
+                GIInjectorEntry *entry = [factory createEntryForObject:factoryBlock mappedTo:[NSObject class] asSingleton:NO];
+
+                [[entry should] beKindOfClass:[GIInjectorBlockEntry class]];
             });
 
             it(@"returns an instance entry", ^{

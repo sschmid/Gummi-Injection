@@ -284,6 +284,23 @@ SPEC_BEGIN(GIInjectorSpec)
 
             });
 
+            context(@"when context has block mapped", ^{
+
+                it(@"executes block", ^{
+                    id (^factoryBlock)(GIInjector *) = ^(GIInjector *theInjector) {
+                        return [theInjector getObject:[Car class]];
+                    };
+
+                    [injector map:[HybridMotor class] to:@protocol(Motor)];
+                    [injector map:factoryBlock to:@protocol(Vehicle)];
+                    Car *car = [injector getObject:@protocol(Vehicle)];
+
+                    [[car should] beKindOfClass:[Car class]];
+                    [[theValue(car.canDrive) should] beYes];
+                });
+
+            });
+
             context(@"when context has eager singleton mapped", ^{
 
                 it(@"creates instance", ^{

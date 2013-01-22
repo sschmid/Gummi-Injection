@@ -36,6 +36,7 @@
 		8D4DFC2BA93125407E5FCB40 /* GIInjectorInstanceEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFE936F4AE4A03352E906 /* GIInjectorInstanceEntry.m */; };
 		8D4DFC98BFDD0D3CBE02407F /* GIModuleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF3D33C0C5BBAF1784CC8 /* GIModuleSpec.m */; };
 		8D4DFD3803079FC3DE557711 /* Garage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF7B14C2323AE564B66F0 /* Garage.m */; };
+		8D4DFE23571861635A54A8D1 /* GIInjectorBlockEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF7B4F7D1322F4C87835E /* GIInjectorBlockEntry.m */; };
 		8D4DFEDA5E69ED38424E9978 /* Wheel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFB56D5AB82AAB64223C5 /* Wheel.m */; };
 		8D4DFF2651348B9A4027F55E /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF5B11E79D896FFC6BDB2 /* Car.m */; };
 		8D4DFF750C9A0C89C61C135D /* DefectPostConstructObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFDCF55042AC81E0C11ED /* DefectPostConstructObject.m */; };
@@ -99,11 +100,13 @@
 		8D4DF75940E4702A25A22C8E /* GarageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GarageSpec.m; sourceTree = "<group>"; };
 		8D4DF78ADD00DEC591FF9290 /* GIInjectionMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectionMapper.h; sourceTree = "<group>"; };
 		8D4DF7B14C2323AE564B66F0 /* Garage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Garage.m; sourceTree = "<group>"; };
+		8D4DF7B4F7D1322F4C87835E /* GIInjectorBlockEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorBlockEntry.m; sourceTree = "<group>"; };
 		8D4DF7EF4F52A4394F7303FE /* Wheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wheel.h; sourceTree = "<group>"; };
 		8D4DF89DBB86D0493952E85E /* SingletonFoo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonFoo.m; sourceTree = "<group>"; };
 		8D4DF8A939BE5AE9D1716636 /* ObjectWithDependency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithDependency.m; sourceTree = "<group>"; };
 		8D4DF8F76D62C09C1292EDCA /* HybridMotor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HybridMotor.h; sourceTree = "<group>"; };
 		8D4DF9BCCC5B198872BCF39A /* GIInjector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjector.m; sourceTree = "<group>"; };
+		8D4DF9EA946C2092314E8D70 /* GIInjectorBlockEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectorBlockEntry.h; sourceTree = "<group>"; };
 		8D4DFA3C871549465C03BDB8 /* GIInjectorInstanceEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectorInstanceEntry.h; sourceTree = "<group>"; };
 		8D4DFB56D5AB82AAB64223C5 /* Wheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wheel.m; sourceTree = "<group>"; };
 		8D4DFB5D8C3E70D65896C9C1 /* SubObjectWithDependency1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubObjectWithDependency1.h; sourceTree = "<group>"; };
@@ -268,6 +271,8 @@
 				8D4DFEA257E128570D74DF6B /* GIInjectorEntry.m */,
 				8D4DFA3C871549465C03BDB8 /* GIInjectorInstanceEntry.h */,
 				8D4DFE936F4AE4A03352E906 /* GIInjectorInstanceEntry.m */,
+				8D4DF7B4F7D1322F4C87835E /* GIInjectorBlockEntry.m */,
+				8D4DF9EA946C2092314E8D70 /* GIInjectorBlockEntry.h */,
 			);
 			path = InjectorEntries;
 			sourceTree = "<group>";
@@ -542,6 +547,7 @@
 				8D4DF58861882C9CD4E9D9F5 /* GarageExample.m in Sources */,
 				8D4DF6181A01808A5A2643A6 /* HybridMotor.m in Sources */,
 				8D4DFEDA5E69ED38424E9978 /* Wheel.m in Sources */,
+				8D4DFE23571861635A54A8D1 /* GIInjectorBlockEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

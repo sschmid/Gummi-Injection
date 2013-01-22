@@ -13,6 +13,7 @@ Gummi-Injection uses [Gummi Reflection](https://github.com/sschmid/Gummi-Reflect
 * Inject into existing objects
 * Extend injector context with modules
 * Add or remove modules at any time
+* Map blocks to classes or protocols
 * Map singletons and eager singletons
 * Handles circular dependencies for singletons
 * Injector can create unmapped dependencies, when they can be created like this [[MyObject alloc] init]
@@ -55,6 +56,12 @@ GIInjector *childInjector = [injector createChildInjector];
 // Eager singletons will be instantiated immediately
 [injector mapEagerSingleton:[Service class] to:@protocol(RemoteService)];
 [injector mapSingleton:[Model class] to:[Model class]];
+
+// Map blocks
+id (^factoryBlock)(GIInjector *) = ^(GIInjector *injector) {
+    return [theInjector getObject:[Car class]];
+};
+[injector map:factoryBlock to:@protocol(Vehicle)];
 
 // You can remove mappings at any time
 [injector unMap:[Service class] from:@protocol(RemoteService)];
