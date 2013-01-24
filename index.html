@@ -89,7 +89,9 @@
 
 <span class="c1">// Map blocks</span>
 <span class="kt">id</span> <span class="p">(</span><span class="o">^</span><span class="n">factoryBlock</span><span class="p">)(</span><span class="n">GIInjector</span> <span class="o">*</span><span class="p">)</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="n">GIInjector</span> <span class="o">*</span><span class="n">injector</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">theInjector</span> <span class="nl">getObject:</span><span class="p">[</span><span class="n">Car</span> <span class="n">class</span><span class="p">]];</span>
+    <span class="kt">id</span> <span class="n">stuff</span> <span class="o">=</span> <span class="p">[</span><span class="n">injector</span> <span class="nl">getObject:</span><span class="p">[</span><span class="n">SomeStuff</span> <span class="n">class</span><span class="p">]];</span>
+    <span class="n">Car</span> <span class="o">*</span><span class="n">car</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Car</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithStuff:</span><span class="n">stuff</span><span class="p">];</span>
+    <span class="k">return</span> <span class="n">car</span><span class="p">;</span>
 <span class="p">};</span>
 <span class="p">[</span><span class="n">injector</span> <span class="nl">map:</span><span class="n">factoryBlock</span> <span class="nl">to:</span><span class="err">@</span><span class="n">protocol</span><span class="p">(</span><span class="n">Vehicle</span><span class="p">)];</span>
 
