@@ -59,7 +59,9 @@ GIInjector *childInjector = [injector createChildInjector];
 
 // Map blocks
 id (^factoryBlock)(GIInjector *) = ^(GIInjector *injector) {
-    return [theInjector getObject:[Car class]];
+    id stuff = [injector getObject:[SomeStuff class]];
+    Car *car = [[Car alloc] initWithStuff:stuff];
+    return car;
 };
 [injector map:factoryBlock to:@protocol(Vehicle)];
 
