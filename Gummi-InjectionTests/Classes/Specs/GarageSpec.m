@@ -7,8 +7,20 @@
 #import "Kiwi.h"
 #import "Garage.h"
 #import "Car.h"
+#import "Wheel.h"
+#import "HybridMotor.h"
 
 SPEC_BEGIN(GarageSpec)
+
+        Car *(^buildCar)() = ^() {
+            Car *car = [[Car alloc] init];
+            car.wheel1 = [[Wheel alloc] init];
+            car.wheel2 = [[Wheel alloc] init];
+            car.wheel3 = [[Wheel alloc] init];
+            car.wheel4 = [[Wheel alloc] init];
+            car.motor = [[HybridMotor alloc] init];
+            return car;
+        };
 
         describe(@"Garage", ^{
 
@@ -32,10 +44,10 @@ SPEC_BEGIN(GarageSpec)
                 [[theValue(garage.isFull) should] beNo];
             });
 
-            pending(@"is full", ^{
-                garage.audi = [Car car];
-                garage.bmw = [Car car];
-                garage.mercedes = [Car car];
+            it(@"is full", ^{
+                garage.audi = buildCar();
+                garage.bmw = buildCar();
+                garage.mercedes = buildCar();
 
                 [[theValue(garage.isFull) should] beYes];
             });
