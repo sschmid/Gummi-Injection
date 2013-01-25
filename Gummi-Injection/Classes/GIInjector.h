@@ -22,9 +22,9 @@
         return requirements; \
     }
 
-#define injection_complete(selectorName) \
+#define injection_complete(selector) \
     + (NSString *)injectionCompleteSelector { \
-        return selectorName; \
+        return NSStringFromSelector(selector); \
     }
 
 @interface GIInjector : NSObject <GIInjectionMapper>

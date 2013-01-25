@@ -107,14 +107,15 @@ static GIInjector *sInjector;
 
 - (void)notifyObjectOfInjectionComplete:(id)object {
     if ([[object class] respondsToSelector:@selector(injectionCompleteSelector)]) {
-        NSString *onCompleteName = [[object class] performSelector:@selector(injectionCompleteSelector)];
-        SEL onComplete = NSSelectorFromString(onCompleteName);
-        if (![object respondsToSelector:onComplete])
+        NSString *onCompleteSelectorName = [[object class] performSelector:@selector(injectionCompleteSelector)];
+        SEL onCompleteSelector = NSSelectorFromString(onCompleteSelectorName);
+        if (![object respondsToSelector:onCompleteSelector])
             @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
-                                           reason:[NSString stringWithFormat:@"Object '%@' does not respond to selector '%@'", NSStringFromClass([object class]), onCompleteName]
+                                           reason:[NSString stringWithFormat:@"Object '%@' does not respond to selector '%@'",
+                                                           NSStringFromClass([object class]), onCompleteSelectorName]
                                          userInfo:nil];
         else
-            [object performSelector:onComplete];
+            [object performSelector:onCompleteSelector];
     }
 }
 

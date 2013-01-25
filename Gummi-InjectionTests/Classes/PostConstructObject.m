@@ -8,7 +8,7 @@
 #import "GIInjector.h"
 
 @implementation PostConstructObject
-injection_complete(@"allSet")
+injection_complete(@selector(allSet))
 
 - (void)allSet {
     self.ready = YES;

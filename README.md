@@ -87,7 +87,7 @@ id (^factoryBlock)(GIInjector *) = ^(GIInjector *injector) {
 inject(@"wheel1", @"wheel2", @"wheel3", @"wheel4", @"motor");
 
 // Optional selector gets performed, when injection is complete
-injection_complete(@"startEngine")
+injection_complete(@selector(startEngine))
 
 - (void)startEngine {
     if (self.motor)

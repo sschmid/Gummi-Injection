@@ -8,5 +8,5 @@
 #import "GIInjector.h"
 
 @implementation DefectPostConstructObject
-injection_complete(@"unknownSelector")
+injection_complete(@selector(unknownSelector))
 @end

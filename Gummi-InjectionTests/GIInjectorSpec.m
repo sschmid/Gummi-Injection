@@ -448,7 +448,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 
             });
 
-            context(@"post construct", ^{
+            context(@"injection complete", ^{
 
                 it(@"desired selector after dependencies set gets called", ^{
                     PostConstructObject *object = [injector getObject:[PostConstructObject class]];

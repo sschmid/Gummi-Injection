@@ -11,7 +11,7 @@
 @implementation Car
 
 inject(@"wheel1", @"wheel2", @"wheel3", @"wheel4", @"motor");
-injection_complete(@"startEngine")
+injection_complete(@selector(startEngine))
 
 + (id)car {
     return [[self alloc] init];
