@@ -14,7 +14,7 @@
 @property(nonatomic, strong) Wheel *wheel2;
 @property(nonatomic, strong) Wheel *wheel3;
 @property(nonatomic, strong) Wheel *wheel4;
-@property(nonatomic) id <Motor> motor;
+@property(nonatomic) id <Engine> engine;
 
 + (id)car;
 @end

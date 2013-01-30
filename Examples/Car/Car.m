@@ -10,7 +10,7 @@
 
 @implementation Car
 
-inject(@"wheel1", @"wheel2", @"wheel3", @"wheel4", @"motor");
+inject(@"wheel1", @"wheel2", @"wheel3", @"wheel4", @"engine");
 injection_complete(@selector(startEngine))
 
 + (id)car {
@@ -38,11 +38,11 @@ injection_complete(@selector(startEngine))
     BOOL hasWheel3 = [self.wheel3 isKindOfClass:[Wheel class]];
     BOOL hasWheel4 = [self.wheel4 isKindOfClass:[Wheel class]];
 
-    return hasAllWheels && hasWheel1 && hasWheel2 && hasWheel3 && hasWheel4 && self.motor != nil;
+    return hasAllWheels && hasWheel1 && hasWheel2 && hasWheel3 && hasWheel4 && self.engine != nil;
 }
 
 - (void)startEngine {
-    if (self.motor)
+    if (self.engine)
         NSLog(@"[%@] Brrrmmmmm....", NSStringFromClass([self class]));
 }
 

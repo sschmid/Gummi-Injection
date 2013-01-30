@@ -10,7 +10,6 @@
 #import "Garage.h"
 #import "SingletonFoo.h"
 #import "SingletonBar.h"
-#import "HybridMotor.h"
 #import "Wheel.h"
 #import "GIModule.h"
 #import "SingletonFooModule.h"
@@ -24,6 +23,7 @@
 #import "Sub2Dependency.h"
 #import "PostConstructObject.h"
 #import "DefectPostConstructObject.h"
+#import "HybridEngine.h"
 
 SPEC_BEGIN(GIInjectorSpec)
 
@@ -81,7 +81,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 beforeEach(^{
                     [injector map:[Car class] to:[Car class]];
                     [injector map:[Garage class] to:[Garage class]];
-                    [injector map:[HybridMotor class] to:@protocol(Motor)];
+                    [injector map:[HybridEngine class] to:@protocol(Engine)];
                     car = [injector getObject:[Car class]];
                     garage = [injector getObject:[Garage class]];
                 });
@@ -89,7 +89,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 it(@"has mapping", ^{
                     BOOL m1 = [injector isObject:[Car class] mappedTo:[Car class]];
                     BOOL m2 = [injector isObject:[Garage class] mappedTo:[Garage class]];
-                    BOOL m3 = [injector isObject:[HybridMotor class] mappedTo:@protocol(Motor)];
+                    BOOL m3 = [injector isObject:[HybridEngine class] mappedTo:@protocol(Engine)];
 
                     [[theValue(m1) should] beYes];
                     [[theValue(m2) should] beYes];
@@ -99,7 +99,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 it(@"returns mappings", ^{
                     [[[injector entryForKeyObject:[Car class]] should] beKindOfClass:[GIInjectorClassEntry class]];
                     [[[injector entryForKeyObject:[Garage class]] should] beKindOfClass:[GIInjectorClassEntry class]];
-                    [[[injector entryForKeyObject:@protocol(Motor)] should] beKindOfClass:[GIInjectorClassEntry class]];
+                    [[[injector entryForKeyObject:@protocol(Engine)] should] beKindOfClass:[GIInjectorClassEntry class]];
                 });
 
                 it(@"pulls object from context", ^{
@@ -131,7 +131,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 beforeEach(^{
                     [injector map:[Car class] to:@protocol(Vehicle)];
                     [injector map:[Garage class] to:[Garage class]];
-                    [injector map:[HybridMotor class] to:@protocol(Motor)];
+                    [injector map:[HybridEngine class] to:@protocol(Engine)];
                     car = [injector getObject:@protocol(Vehicle)];
                     garage = [injector getObject:[Garage class]];
                 });
@@ -139,7 +139,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 it(@"has mapping", ^{
                     BOOL m1 = [injector isObject:[Car class] mappedTo:@protocol(Vehicle)];
                     BOOL m2 = [injector isObject:[Garage class] mappedTo:[Garage class]];
-                    BOOL m3 = [injector isObject:[HybridMotor class] mappedTo:@protocol(Motor)];
+                    BOOL m3 = [injector isObject:[HybridEngine class] mappedTo:@protocol(Engine)];
 
                     [[theValue(m1) should] beYes];
                     [[theValue(m2) should] beYes];
@@ -171,7 +171,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 beforeEach(^{
                     [injector mapSingleton:[Car class] to:@protocol(Vehicle)];
                     [injector mapSingleton:[Garage class] to:[Garage class]];
-                    [injector map:[HybridMotor class] to:@protocol(Motor)];
+                    [injector map:[HybridEngine class] to:@protocol(Engine)];
                     car = [injector getObject:@protocol(Vehicle)];
                     garage = [injector getObject:[Garage class]];
 
@@ -180,7 +180,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 it(@"has mapping", ^{
                     BOOL m1 = [injector isObject:[Car class] mappedTo:@protocol(Vehicle)];
                     BOOL m2 = [injector isObject:[Garage class] mappedTo:[Garage class]];
-                    BOOL m3 = [injector isObject:[HybridMotor class] mappedTo:@protocol(Motor)];
+                    BOOL m3 = [injector isObject:[HybridEngine class] mappedTo:@protocol(Engine)];
 
                     [[theValue(m1) should] beYes];
                     [[theValue(m2) should] beYes];
@@ -228,7 +228,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 __block Car *retrievedCar;
                 __block Garage *garage;
                 beforeEach(^{
-                    [injector map:[HybridMotor class] to:@protocol(Motor)];
+                    [injector map:[HybridEngine class] to:@protocol(Engine)];
                     mappedCar = [Car car];
                     garage = [[Garage alloc] init];
                     [injector map:mappedCar to:@protocol(Vehicle)];
@@ -237,7 +237,7 @@ SPEC_BEGIN(GIInjectorSpec)
                 });
 
                 it(@"has mapping", ^{
-                    BOOL m1 = [injector isObject:[HybridMotor class] mappedTo:@protocol(Motor)];
+                    BOOL m1 = [injector isObject:[HybridEngine class] mappedTo:@protocol(Engine)];
                     BOOL m2 = [injector isObject:mappedCar mappedTo:@protocol(Vehicle)];
                     BOOL m3 = [injector isObject:garage mappedTo:[Garage class]];
 
@@ -291,7 +291,7 @@ SPEC_BEGIN(GIInjectorSpec)
                         return [theInjector getObject:[Car class]];
                     };
 
-                    [injector map:[HybridMotor class] to:@protocol(Motor)];
+                    [injector map:[HybridEngine class] to:@protocol(Engine)];
                     [injector map:factoryBlock to:@protocol(Vehicle)];
                     Car *car = [injector getObject:@protocol(Vehicle)];
 

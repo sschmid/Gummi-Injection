@@ -79,18 +79,18 @@ id (^factoryBlock)(GIInjector *) = ^(GIInjector *injector) {
 @property(nonatomic, strong) Wheel *wheel2;
 @property(nonatomic, strong) Wheel *wheel3;
 @property(nonatomic, strong) Wheel *wheel4;
-@property(nonatomic) id <Motor> motor;
+@property(nonatomic) id <Engine> engine;
 @end
 
 @implementation Car
 
-inject(@"wheel1", @"wheel2", @"wheel3", @"wheel4", @"motor");
+inject(@"wheel1", @"wheel2", @"wheel3", @"wheel4", @"engine");
 
 // Optional selector gets performed, when injection is complete
 injection_complete(@selector(startEngine))
 
 - (void)startEngine {
-    if (self.motor)
+    if (self.engine)
         NSLog(@"[%@] Brrrmmmmm....", NSStringFromClass([self class]));
 }
 
@@ -106,7 +106,7 @@ When an object gets created by calling injector#getObject, all its dependencies 
 // that can be created with alloc init.
 // For protocols there's no way to know which implementation to return -
 // we need to set up a rule for it.
-[injector map:[HybridMotor class] to:@protocol(Motor)];
+[injector map:[HybridEngine class] to:@protocol(Engine)];
 
 Car *car = [injector getObject:[Car class]];
 
@@ -122,9 +122,9 @@ Car *car = [[Car alloc] init];
 // - getObject looks up type Car -> no rule set -> Instantiate Car and inject into object
 //     - Each Car wants Wheels
 //         - Look up type Wheel -> no rule set -> Instantiate Wheel and inject into object
-//     - Car wants <Motor>
-//         - Look up type <Motor> -> rule found: [HybridMotor class]
-//         - Instantiate HybridMotor and inject into object
+//     - Car wants <Engine>
+//         - Look up type <Engine> -> rule found: [HybridEngine class]
+//         - Instantiate HybridEngine and inject into object
 // Done
 
 

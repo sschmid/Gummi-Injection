@@ -5,8 +5,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Motor.h"
+#import "Engine.h"
 
-@interface HybridMotor : NSObject <Motor>
-+ (id)motor;
+@interface HybridEngine : NSObject <Engine>
++ (id)engine;
 @end

@@ -4,10 +4,10 @@
 // contact@sschmid.com
 //
 
-#import "HybridMotor.h"
+#import "HybridEngine.h"
 
-@implementation HybridMotor
-+ (id)motor {
+@implementation HybridEngine
++ (id)engine {
     return [[self alloc] init];
 }
 @end

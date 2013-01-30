@@ -122,7 +122,8 @@ static GIInjector *sInjector;
 - (id)createObjectForType:(id)type {
     if ([GRReflection isProtocol:type])
         @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
-                                       reason:[NSString stringWithFormat:@"Can not create an object for <%@>. Make sure you have set up a rule for it", NSStringFromProtocol(type)]
+                                       reason:[NSString stringWithFormat:@"Can not create an object for <%@>. Make sure you have set up a rule for it",
+                                                       NSStringFromProtocol(type)]
                                      userInfo:nil];
 
     id object = [[type alloc] init];

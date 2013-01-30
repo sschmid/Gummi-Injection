@@ -8,7 +8,7 @@
 #import "Garage.h"
 #import "Car.h"
 #import "Wheel.h"
-#import "HybridMotor.h"
+#import "HybridEngine.h"
 
 SPEC_BEGIN(GarageSpec)
 
@@ -18,7 +18,7 @@ SPEC_BEGIN(GarageSpec)
             car.wheel2 = [[Wheel alloc] init];
             car.wheel3 = [[Wheel alloc] init];
             car.wheel4 = [[Wheel alloc] init];
-            car.motor = [[HybridMotor alloc] init];
+            car.engine = [[HybridEngine alloc] init];
             return car;
         };
 

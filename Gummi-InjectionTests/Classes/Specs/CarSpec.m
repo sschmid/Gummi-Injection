@@ -7,7 +7,7 @@
 #import "Kiwi.h"
 #import "Car.h"
 #import "Wheel.h"
-#import "HybridMotor.h"
+#import "HybridEngine.h"
 
 SPEC_BEGIN(CarSpec)
 
@@ -26,9 +26,9 @@ SPEC_BEGIN(CarSpec)
                 [[theValue(car.numWheels) should] equal:theValue(0)];
             });
 
-            it(@"has no motor", ^{
-                BOOL hasMotor = car.motor != nil;
-                [[theValue(hasMotor) should] beNo];
+            it(@"has no engine", ^{
+                BOOL hasEngine = car.engine != nil;
+                [[theValue(hasEngine) should] beNo];
             });
 
             it(@"can not drive", ^{
@@ -39,9 +39,9 @@ SPEC_BEGIN(CarSpec)
                 [[[Wheel wheel] should] beKindOfClass:[Wheel class]];
             });
 
-            it(@"creates a motor", ^{
-                [[[HybridMotor motor] should] beKindOfClass:[HybridMotor class]];
-                [[[HybridMotor motor] should] conformsToProtocol:@protocol(Motor)];
+            it(@"creates a engine", ^{
+                [[[HybridEngine engine] should] beKindOfClass:[HybridEngine class]];
+                [[[HybridEngine engine] should] conformsToProtocol:@protocol(Engine)];
             });
 
             it(@"adds wheels", ^{
@@ -59,7 +59,7 @@ SPEC_BEGIN(CarSpec)
                 [[theValue(hasAllWheels && hasWheel1 && hasWheel2 && hasWheel3 && hasWheel4) should] beYes];
             });
 
-            it(@"can not drive without motor", ^{
+            it(@"can not drive without engine", ^{
                 car.wheel1 = [Wheel wheel];
                 car.wheel2 = [Wheel wheel];
                 car.wheel3 = [Wheel wheel];
@@ -68,15 +68,15 @@ SPEC_BEGIN(CarSpec)
                 [[theValue(car.canDrive) should] beNo];
             });
 
-            it(@"adds a motor", ^{
-                car.motor = [HybridMotor motor];
-                BOOL hasMotor = car.motor != nil;
+            it(@"adds a engine", ^{
+                car.engine = [HybridEngine engine];
+                BOOL hasEngine = car.engine != nil;
 
-                [[theValue(hasMotor) should] beYes];
+                [[theValue(hasEngine) should] beYes];
             });
 
             it(@"can not drive without wheels", ^{
-                car.motor = [HybridMotor motor];
+                car.engine = [HybridEngine engine];
                 [[theValue(car.canDrive) should] beNo];
             });
 
@@ -85,7 +85,7 @@ SPEC_BEGIN(CarSpec)
                 car.wheel2 = [Wheel wheel];
                 car.wheel3 = [Wheel wheel];
                 car.wheel4 = [Wheel wheel];
-                car.motor = [HybridMotor motor];
+                car.engine = [HybridEngine engine];
 
                 [[theValue(car.canDrive) should] beYes];
             });
