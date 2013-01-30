@@ -30,14 +30,17 @@
 		8D4DF8F18888C58417501FF8 /* SingletonFooModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF6A29F3587F955BF319D /* SingletonFooModule.m */; };
 		8D4DF9272750EF44BAA85C68 /* GIInjectorEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFEA257E128570D74DF6B /* GIInjectorEntry.m */; };
 		8D4DFA3668AF552DE68A4C87 /* CarSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF19958AD90EF9C4E879B /* CarSpec.m */; };
+		8D4DFA96E340CB5B9393AC7D /* ExternalConfigSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF35D7B0FD3BF94F80478 /* ExternalConfigSpec.m */; };
 		8D4DFAFBE5C6F351C4E9D705 /* SingletonBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF516EAF70902ADA70D65 /* SingletonBar.m */; };
 		8D4DFB4D4DBA853DC95BD19B /* StartStopModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFE4FBA072A92A9AEAEC6 /* StartStopModule.m */; };
 		8D4DFB9E35E13AFE6EDC1495 /* SomeDependency.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFEE152B571FF50B04641 /* SomeDependency.m */; };
 		8D4DFC2BA93125407E5FCB40 /* GIInjectorInstanceEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFE936F4AE4A03352E906 /* GIInjectorInstanceEntry.m */; };
+		8D4DFC57C07D8CAA14307917 /* ExternalSubClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFF6BD8F740BAE2EE0197 /* ExternalSubClass.m */; };
 		8D4DFC98BFDD0D3CBE02407F /* GIModuleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF3D33C0C5BBAF1784CC8 /* GIModuleSpec.m */; };
 		8D4DFD3803079FC3DE557711 /* Garage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF7B14C2323AE564B66F0 /* Garage.m */; };
 		8D4DFE23571861635A54A8D1 /* GIInjectorBlockEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF7B4F7D1322F4C87835E /* GIInjectorBlockEntry.m */; };
 		8D4DFEDA5E69ED38424E9978 /* Wheel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFB56D5AB82AAB64223C5 /* Wheel.m */; };
+		8D4DFEEF587441623235844D /* ExternalClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF38DBE19336A32070ACC /* ExternalClass.m */; };
 		8D4DFF2651348B9A4027F55E /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF5B11E79D896FFC6BDB2 /* Car.m */; };
 		8D4DFF750C9A0C89C61C135D /* DefectPostConstructObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFDCF55042AC81E0C11ED /* DefectPostConstructObject.m */; };
 		8D4DFFC43441C6A3417260F8 /* GarageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF75940E4702A25A22C8E /* GarageSpec.m */; };
@@ -83,6 +86,8 @@
 		8D4DF3090AB7398F01D78F24 /* SubObjectWithDependency2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubObjectWithDependency2.h; sourceTree = "<group>"; };
 		8D4DF31F4681417B49B86925 /* GIInjectorEntryFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectorEntryFactory.h; sourceTree = "<group>"; };
 		8D4DF34C0D570BCE5B469CAD /* StartStopModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartStopModule.h; sourceTree = "<group>"; };
+		8D4DF35D7B0FD3BF94F80478 /* ExternalConfigSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternalConfigSpec.m; sourceTree = "<group>"; };
+		8D4DF38DBE19336A32070ACC /* ExternalClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternalClass.m; sourceTree = "<group>"; };
 		8D4DF38EF884B87E4B31D76B /* ChildInjectiorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildInjectiorSpec.m; sourceTree = "<group>"; };
 		8D4DF3D21A4DB08280E20647 /* StartStopObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartStopObject.h; sourceTree = "<group>"; };
 		8D4DF3D33C0C5BBAF1784CC8 /* GIModuleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIModuleSpec.m; sourceTree = "<group>"; };
@@ -95,8 +100,10 @@
 		8D4DF62B5EAC30ED8BCFFC16 /* SubObjectWithDependency1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubObjectWithDependency1.m; sourceTree = "<group>"; };
 		8D4DF6695B3DF017D2C62446 /* GarageExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GarageExample.h; sourceTree = "<group>"; };
 		8D4DF6A29F3587F955BF319D /* SingletonFooModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonFooModule.m; sourceTree = "<group>"; };
+		8D4DF6A6A55501C6621C0047 /* ExternalSubClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalSubClass.h; sourceTree = "<group>"; };
 		8D4DF70C6FE5C78213CBE1EB /* SingletonFoo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonFoo.h; sourceTree = "<group>"; };
 		8D4DF735A4C5A13506F5640A /* GIInjectorEntryFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorEntryFactory.m; sourceTree = "<group>"; };
+		8D4DF7388AF846D6D7F571BB /* ExternalClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalClass.h; sourceTree = "<group>"; };
 		8D4DF75940E4702A25A22C8E /* GarageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GarageSpec.m; sourceTree = "<group>"; };
 		8D4DF78ADD00DEC591FF9290 /* GIInjectionMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectionMapper.h; sourceTree = "<group>"; };
 		8D4DF7B14C2323AE564B66F0 /* Garage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Garage.m; sourceTree = "<group>"; };
@@ -130,6 +137,7 @@
 		8D4DFEA257E128570D74DF6B /* GIInjectorEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorEntry.m; sourceTree = "<group>"; };
 		8D4DFEE152B571FF50B04641 /* SomeDependency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomeDependency.m; sourceTree = "<group>"; };
 		8D4DFF0E89577AA8D6A3834D /* GIInjector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjector.h; sourceTree = "<group>"; };
+		8D4DFF6BD8F740BAE2EE0197 /* ExternalSubClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternalSubClass.m; sourceTree = "<group>"; };
 		8D4DFF816B26D453B05E5405 /* GIInjectorClassEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorClassEntry.m; sourceTree = "<group>"; };
 		8D4DFFB46B13037A1E1D94CD /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Engine.h; sourceTree = "<group>"; };
 		8D4DFFCBEF202BC280DF31FC /* SingletonFooModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonFooModule.h; sourceTree = "<group>"; };
@@ -219,6 +227,7 @@
 				8D4DFE4A0EF4630A5047153D /* Sub1Dependency.m */,
 				8D4DFBEBAEA7CA0FCB667CFE /* Sub2Dependency.h */,
 				8D4DF0A7253FE9066AB0D169 /* Sub2Dependency.m */,
+				8D4DFFE3D3B004EDE72931BB /* ExternConfig */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -307,6 +316,17 @@
 			path = Modules;
 			sourceTree = "<group>";
 		};
+		8D4DFFE3D3B004EDE72931BB /* ExternConfig */ = {
+			isa = PBXGroup;
+			children = (
+				8D4DF38DBE19336A32070ACC /* ExternalClass.m */,
+				8D4DF7388AF846D6D7F571BB /* ExternalClass.h */,
+				8D4DFF6BD8F740BAE2EE0197 /* ExternalSubClass.m */,
+				8D4DF6A6A55501C6621C0047 /* ExternalSubClass.h */,
+			);
+			path = ExternConfig;
+			sourceTree = "<group>";
+		};
 		CB248C72169B48DA001F4B01 = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +394,7 @@
 				8D4DF3D33C0C5BBAF1784CC8 /* GIModuleSpec.m */,
 				8D4DFC7C3016162007357F5A /* GIInjectorEntryFactorySpec.m */,
 				8D4DF38EF884B87E4B31D76B /* ChildInjectiorSpec.m */,
+				8D4DF35D7B0FD3BF94F80478 /* ExternalConfigSpec.m */,
 			);
 			path = "Gummi-InjectionTests";
 			sourceTree = "<group>";
@@ -575,6 +596,9 @@
 				8D4DF32A16886BDB19EB9E57 /* PostConstructObject.m in Sources */,
 				8D4DFF750C9A0C89C61C135D /* DefectPostConstructObject.m in Sources */,
 				8D4DF4375703E5131EADDFD5 /* ChildInjectiorSpec.m in Sources */,
+				8D4DFA96E340CB5B9393AC7D /* ExternalConfigSpec.m in Sources */,
+				8D4DFEEF587441623235844D /* ExternalClass.m in Sources */,
+				8D4DFC57C07D8CAA14307917 /* ExternalSubClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

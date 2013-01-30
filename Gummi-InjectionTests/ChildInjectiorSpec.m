@@ -27,7 +27,7 @@ SPEC_BEGIN(ChildInjectiorSpec)
                 [[childInjector should] beKindOfClass:[GIInjector class]];
             });
 
-            it(@"child injector returns parent mapping", ^{
+            it(@"child injector returns parentInjector mapping", ^{
                 NSObject *objectForParent = [[NSObject alloc] init];
                 [injector map:objectForParent to:[objectForParent class]];
 
@@ -74,7 +74,7 @@ SPEC_BEGIN(ChildInjectiorSpec)
                 [[baseObjectFromChild.someDependency should] equal:baseDependencyForChild];
             });
 
-            it(@"child injector satisfies dependencies with parent context, when not available", ^{
+            it(@"child injector satisfies dependencies with parentInjector context, when not available", ^{
                 SomeDependency *baseDependencyForParent = [[SomeDependency alloc] init];
 
                 [injector map:baseDependencyForParent to:[SomeDependency class]];

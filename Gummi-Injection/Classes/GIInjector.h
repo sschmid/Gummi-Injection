@@ -11,27 +11,16 @@
 @class GIModule;
 @class GIInjectorEntryFactory;
 
-#define inject(args...) \
-    + (NSSet *)desiredProperties { \
-        NSMutableSet *requirements = [NSMutableSet setWithObjects:args, nil]; \
-        Class superClass = [self superclass]; \
-        if ([superClass respondsToSelector:@selector(desiredProperties)]) { \
-            NSSet *parentRequirements = [superClass performSelector:@selector(desiredProperties)]; \
-            [requirements unionSet:parentRequirements]; \
-        } \
-        return requirements; \
-    }
-
-#define injection_complete(selector) \
-    + (NSString *)injectionCompleteSelector { \
-        return NSStringFromSelector(selector); \
-    }
+#define inject(args...) + (NSSet *)requiredProperties {return [NSSet setWithObjects:args, nil];}
+#define injection_complete(selector) + (NSString *)injectionCompleteSelector {return NSStringFromSelector(selector);}
 
 @interface GIInjector : NSObject <GIInjectionMapper>
 
 + (GIInjector *)sharedInjector;
 
 - (GIInjector *)createChildInjector;
+
+- (void)setDependencies:(NSArray *)propertyNames forClass:(id)aClass;
 
 - (id)getObject:(id)keyObject;
 

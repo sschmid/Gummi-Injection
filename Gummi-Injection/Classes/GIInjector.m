@@ -13,8 +13,9 @@
 static GIInjector *sInjector;
 
 @interface GIInjector ()
-@property(nonatomic, weak) GIInjector *parent;
+@property(nonatomic, weak) GIInjector *parentInjector;
 @property(nonatomic, strong) NSMutableDictionary *context;
+@property(nonatomic, strong) NSMutableDictionary *propertyNamesCache;
 @property(nonatomic, strong) NSMutableArray *modules;
 @property(nonatomic, strong) GIInjectorEntryFactory *entryFactory;
 @end
@@ -32,6 +33,7 @@ static GIInjector *sInjector;
     self = [super init];
     if (self) {
         self.context = [[NSMutableDictionary alloc] init];
+        self.propertyNamesCache = [[NSMutableDictionary alloc] init];
         self.modules = [[NSMutableArray alloc] init];
         self.entryFactory = [[GIInjectorEntryFactory alloc] initWithInjector:self];
     }
@@ -41,8 +43,13 @@ static GIInjector *sInjector;
 
 - (GIInjector *)createChildInjector {
     GIInjector *childInjector = [[GIInjector alloc] init];
-    childInjector.parent = self;
+    childInjector.parentInjector = self;
     return childInjector;
+}
+
+- (void)setDependencies:(NSArray *)propertyNames forClass:(id)aClass {
+    NSMutableSet *propertyNamesForClass = [self getPropertyNamesForClass:aClass];
+    [propertyNamesForClass unionSet:[NSSet setWithArray:propertyNames]];
 }
 
 - (id)getObject:(id)keyObject {
@@ -57,10 +64,8 @@ static GIInjector *sInjector;
 }
 
 - (void)injectIntoObject:(id)object {
-    if ([[object class] respondsToSelector:@selector(desiredProperties)]) {
-        NSSet *properties = [[object class] performSelector:@selector(desiredProperties)];
-        [object setValuesForKeysWithDictionary:[self getDependenciesForObject:object withProperties:properties]];
-    }
+    NSMutableSet *properties = [self getPropertyNamesForClass:[object class]];
+    [object setValuesForKeysWithDictionary:[self getDependenciesOfClass:[object class] forProperties:properties]];
     [self notifyObjectOfInjectionComplete:object];
 }
 
@@ -92,15 +97,40 @@ static GIInjector *sInjector;
 - (GIInjectorEntry *)entryForKeyObject:(id)keyObject {
     GIInjectorEntry *entry = self.context[[self keyForObject:keyObject]];
     if (!entry)
-        entry = [self.parent entryForKeyObject:keyObject];
+        entry = [self.parentInjector entryForKeyObject:keyObject];
 
     return entry;
 }
 
-- (NSDictionary *)getDependenciesForObject:(id)object withProperties:(NSSet *)properties {
+- (NSMutableSet *)getPropertyNamesForClass:(Class)aClass {
+    NSString *key = [self keyForObject:aClass];
+    NSMutableSet *propertyNames = self.propertyNamesCache[key];
+    if (!propertyNames) {
+        propertyNames = [[NSMutableSet alloc] init];
+        self.propertyNamesCache[key] = propertyNames;
+
+        if ([aClass respondsToSelector:@selector(requiredProperties)])
+            [propertyNames unionSet:[aClass performSelector:@selector(requiredProperties)]];
+
+        id superClass = class_getSuperclass(aClass);
+        while (superClass != nil) {
+            NSSet *parentDependencies = self.propertyNamesCache[[self keyForObject:superClass]];
+            [propertyNames unionSet:parentDependencies];
+            if ([superClass respondsToSelector:@selector(requiredProperties)])
+                [propertyNames unionSet:[superClass performSelector:@selector(requiredProperties)]];
+            superClass = class_getSuperclass(superClass);
+        }
+
+        return propertyNames;
+    }
+
+    return propertyNames;
+}
+
+- (NSDictionary *)getDependenciesOfClass:(id)aClass forProperties:(NSSet *)properties {
     NSMutableDictionary *dependencies = [[NSMutableDictionary alloc] init];
     for (NSString *propertyName in properties)
-        dependencies[propertyName] = [self getObject:[GRReflection getTypeForProperty:propertyName ofClass:[object class]]];
+        dependencies[propertyName] = [self getObject:[GRReflection getTypeForProperty:propertyName ofClass:aClass]];
 
     return dependencies;
 }
