@@ -15,7 +15,7 @@ static GIInjector *sInjector;
 @interface GIInjector ()
 @property(nonatomic, weak) GIInjector *parentInjector;
 @property(nonatomic, strong) NSMutableDictionary *context;
-@property(nonatomic, strong) NSMutableDictionary *propertyNamesCache;
+@property(nonatomic, strong) NSMutableDictionary *propertyNames;
 @property(nonatomic, strong) NSMutableArray *modules;
 @property(nonatomic, strong) GIInjectorEntryFactory *entryFactory;
 @end
@@ -33,7 +33,7 @@ static GIInjector *sInjector;
     self = [super init];
     if (self) {
         self.context = [[NSMutableDictionary alloc] init];
-        self.propertyNamesCache = [[NSMutableDictionary alloc] init];
+        self.propertyNames = [[NSMutableDictionary alloc] init];
         self.modules = [[NSMutableArray alloc] init];
         self.entryFactory = [[GIInjectorEntryFactory alloc] initWithInjector:self];
     }
@@ -47,7 +47,7 @@ static GIInjector *sInjector;
     return childInjector;
 }
 
-- (void)setDependencies:(NSArray *)propertyNames forClass:(id)aClass {
+- (void)addDependencies:(NSArray *)propertyNames forClass:(id)aClass {
     NSMutableSet *propertyNamesForClass = [self getPropertyNamesForClass:aClass];
     [propertyNamesForClass unionSet:[NSSet setWithArray:propertyNames]];
 }
@@ -64,7 +64,7 @@ static GIInjector *sInjector;
 }
 
 - (void)injectIntoObject:(id)object {
-    NSMutableSet *properties = [self getPropertyNamesForClass:[object class]];
+    NSMutableSet *properties = [self mergedPropertyNamesForClass:[object class]];
     [object setValuesForKeysWithDictionary:[self getDependenciesOfClass:[object class] forProperties:properties]];
     [self notifyObjectOfInjectionComplete:object];
 }
@@ -104,27 +104,31 @@ static GIInjector *sInjector;
 
 - (NSMutableSet *)getPropertyNamesForClass:(Class)aClass {
     NSString *key = [self keyForObject:aClass];
-    NSMutableSet *propertyNames = self.propertyNamesCache[key];
+    NSMutableSet *propertyNames = self.propertyNames[key];
     if (!propertyNames) {
         propertyNames = [[NSMutableSet alloc] init];
-        self.propertyNamesCache[key] = propertyNames;
-
-        if ([aClass respondsToSelector:@selector(requiredProperties)])
-            [propertyNames unionSet:[aClass performSelector:@selector(requiredProperties)]];
-
-        id superClass = class_getSuperclass(aClass);
-        while (superClass != nil) {
-            NSSet *parentDependencies = self.propertyNamesCache[[self keyForObject:superClass]];
-            [propertyNames unionSet:parentDependencies];
-            if ([superClass respondsToSelector:@selector(requiredProperties)])
-                [propertyNames unionSet:[superClass performSelector:@selector(requiredProperties)]];
-            superClass = class_getSuperclass(superClass);
-        }
-
-        return propertyNames;
+        self.propertyNames[key] = propertyNames;
     }
 
     return propertyNames;
+}
+
+- (NSMutableSet *)mergedPropertyNamesForClass:(Class)aClass {
+    NSMutableSet *propertyNamesForClass = [self getPropertyNamesForClass:aClass];
+    if ([aClass respondsToSelector:@selector(requiredProperties:)])
+        [aClass performSelector:@selector(requiredProperties:) withObject:self];
+
+    id superClass = class_getSuperclass(aClass);
+    while (superClass != nil) {
+        NSMutableSet *parentDependencies = [self getPropertyNamesForClass:superClass];
+        if ([superClass respondsToSelector:@selector(requiredProperties:)])
+            [superClass performSelector:@selector(requiredProperties:) withObject:self];
+
+        [propertyNamesForClass unionSet:parentDependencies];
+        superClass = class_getSuperclass(superClass);
+    }
+
+    return propertyNamesForClass;
 }
 
 - (NSDictionary *)getDependenciesOfClass:(id)aClass forProperties:(NSSet *)properties {

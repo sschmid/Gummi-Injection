@@ -11,7 +11,9 @@
 @class GIModule;
 @class GIInjectorEntryFactory;
 
-#define inject(args...) + (NSSet *)requiredProperties {return [NSSet setWithObjects:args, nil];}
+#define inject(args...) + (void)requiredProperties:(GIInjector *)injector \
+                        {[injector addDependencies:[NSArray arrayWithObjects:args, nil] forClass:self];}
+
 #define injection_complete(selector) + (NSString *)injectionCompleteSelector {return NSStringFromSelector(selector);}
 
 @interface GIInjector : NSObject <GIInjectionMapper>
@@ -20,7 +22,7 @@
 
 - (GIInjector *)createChildInjector;
 
-- (void)setDependencies:(NSArray *)propertyNames forClass:(id)aClass;
+- (void)addDependencies:(NSArray *)propertyNames forClass:(id)aClass;
 
 - (id)getObject:(id)keyObject;
 
