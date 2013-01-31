@@ -16,6 +16,7 @@ static GIInjector *sInjector;
 @property(nonatomic, weak) GIInjector *parentInjector;
 @property(nonatomic, strong) NSMutableDictionary *context;
 @property(nonatomic, strong) NSMutableDictionary *propertyNames;
+@property(nonatomic, strong) NSMutableDictionary *initializerForClass;
 @property(nonatomic, strong) NSMutableArray *modules;
 @property(nonatomic, strong) GIInjectorEntryFactory *entryFactory;
 @end
@@ -34,6 +35,7 @@ static GIInjector *sInjector;
     if (self) {
         self.context = [[NSMutableDictionary alloc] init];
         self.propertyNames = [[NSMutableDictionary alloc] init];
+        self.initializerForClass = [[NSMutableDictionary alloc] init];
         self.modules = [[NSMutableArray alloc] init];
         self.entryFactory = [[GIInjectorEntryFactory alloc] initWithInjector:self];
     }
@@ -52,15 +54,32 @@ static GIInjector *sInjector;
     [propertyNamesForClass unionSet:[NSSet setWithArray:propertyNames]];
 }
 
+- (void)setDefaultInitializer:(SEL)selector forClass:(Class)aClass {
+    self.initializerForClass[[self keyForObject:aClass]] = NSStringFromSelector(selector);
+}
+
 - (id)getObject:(id)keyObject {
     if (!keyObject)
         return nil;
 
     GIInjectorEntry *entry = [self entryForKeyObject:keyObject];
-    if (!entry)
-        return [self createObjectForType:keyObject];
+    if (!entry) {
+        id instance = [self instantiateClass:keyObject];
+        [self injectIntoObject:instance];
+        return instance;
+    }
 
     return entry.extractObject;
+}
+
+- (id)instantiateClass:(id)aClass {
+    if ([GRReflection isProtocol:aClass])
+        @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
+                                       reason:[NSString stringWithFormat:@"Can not create an instance for <%@>. Make sure you have set up a rule for it",
+                                                                         NSStringFromProtocol(aClass)]
+                                     userInfo:nil];
+
+    return [[aClass alloc] performSelector:[self initializerForClass:aClass]];
 }
 
 - (void)injectIntoObject:(id)object {
@@ -100,6 +119,17 @@ static GIInjector *sInjector;
         entry = [self.parentInjector entryForKeyObject:keyObject];
 
     return entry;
+}
+
+- (SEL)initializerForClass:(Class)aClass {
+    if ([aClass respondsToSelector:@selector(defaultInitializer:)])
+        [aClass performSelector:@selector(defaultInitializer:) withObject:self];
+
+    NSString *selectorName = self.initializerForClass[[self keyForObject:aClass]];
+    if (selectorName)
+        return NSSelectorFromString(selectorName);
+
+    return @selector(init);
 }
 
 - (NSMutableSet *)getPropertyNamesForClass:(Class)aClass {
@@ -151,18 +181,6 @@ static GIInjector *sInjector;
         else
             [object performSelector:onCompleteSelector];
     }
-}
-
-- (id)createObjectForType:(id)type {
-    if ([GRReflection isProtocol:type])
-        @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
-                                       reason:[NSString stringWithFormat:@"Can not create an object for <%@>. Make sure you have set up a rule for it",
-                                                       NSStringFromProtocol(type)]
-                                     userInfo:nil];
-
-    id object = [[type alloc] init];
-    [self injectIntoObject:object];
-    return object;
 }
 
 - (NSString *)keyForObject:(id)object {

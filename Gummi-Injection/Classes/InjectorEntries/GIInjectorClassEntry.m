@@ -25,14 +25,14 @@
 - (id)extractObject {
     if (self.asSingleton) {
         if (!_singletonCache) {
-            _singletonCache = [[_object alloc] init];
+            _singletonCache = [_injector instantiateClass:_object];
             [_injector injectIntoObject:_singletonCache];
         }
 
         return _singletonCache;
     }
 
-    id instance = [[_object alloc] init];
+    id instance = [_injector instantiateClass:_object];
     [_injector injectIntoObject:instance];
     return instance;
 }
