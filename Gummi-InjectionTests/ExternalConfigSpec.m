@@ -69,8 +69,8 @@ SPEC_BEGIN(ExternalConfigSpec)
             });
 
             it(@"returns external class with all dependencies and parent dependecies set", ^{
-                [injector addDependencies:@[@"frame"] forClass:[Component class]];
                 [injector addDependencies:@[@"target"] forClass:[Button class]];
+                [injector addDependencies:@[@"frame"] forClass:[Component class]];
                 [injector addDependencies:@[@"link"] forClass:[Teaser class]];
 
                 Teaser *teaser = [injector getObject:[Teaser class]];
@@ -82,9 +82,20 @@ SPEC_BEGIN(ExternalConfigSpec)
             });
 
             it(@"returns external class with all dependencies and parent dependecies set with unsorted order", ^{
-                [injector addDependencies:@[@"frame"] forClass:[Component class]];
                 [injector addDependencies:@[@"link"] forClass:[Teaser class]];
                 [injector addDependencies:@[@"target"] forClass:[Button class]];
+                [injector addDependencies:@[@"frame"] forClass:[Component class]];
+
+                Teaser *teaser = [injector getObject:[Teaser class]];
+
+                [[teaser should] beKindOfClass:[Teaser class]];
+                [[teaser.frame should] beKindOfClass:[Frame class]];
+                [[teaser.target should] beKindOfClass:[Target class]];
+                [[teaser.link should] beKindOfClass:[Link class]];
+            });
+
+            it(@"returns external class with all dependencies", ^{
+                [injector addDependencies:@[@"frame", @"link", @"target"] forClass:[Teaser class]];
 
                 Teaser *teaser = [injector getObject:[Teaser class]];
 

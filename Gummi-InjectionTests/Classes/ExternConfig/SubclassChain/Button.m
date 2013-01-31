@@ -5,7 +5,6 @@
 //
 
 #import "Button.h"
-#import "Target.h"
 
 @implementation Button
 @end

@@ -225,7 +225,6 @@
 				8D4DF684EFDF1204002BF6F4 /* Teaser.m */,
 				8D4DF576C2083C8C5D729382 /* Teaser.h */,
 				8D4DFE6FDF36EDE6E08A6E3A /* Properties */,
-				8D4DF46B9F9F35E051CFA8AA /* Link.m */,
 			);
 			path = SubclassChain;
 			sourceTree = "<group>";
@@ -362,6 +361,7 @@
 				8D4DF82FC07B09C2D0393CD7 /* Target.h */,
 				8D4DF614620C0066541696A8 /* Target.m */,
 				8D4DF1E7069D1067AD6BF166 /* Link.h */,
+				8D4DF46B9F9F35E051CFA8AA /* Link.m */,
 			);
 			path = Properties;
 			sourceTree = "<group>";

@@ -5,7 +5,6 @@
 //
 
 #import "Component.h"
-#import "Frame.h"
 
 @implementation Component
 @end
