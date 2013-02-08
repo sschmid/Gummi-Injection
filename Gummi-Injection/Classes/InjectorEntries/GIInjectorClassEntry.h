@@ -7,9 +7,6 @@
 #import <Foundation/Foundation.h>
 #import "GIInjectorEntry.h"
 
-@interface GIInjectorClassEntry : GIInjectorEntry {
-    id _singletonCache;
-}
-
-@property(nonatomic) BOOL asSingleton;
+@interface GIInjectorClassEntry : GIInjectorEntry
+- (id)initWithObject:(id)object mappedTo:(id)keyObject asSingleton:(BOOL)singleton injector:(GIInjector *)injector;
 @end
