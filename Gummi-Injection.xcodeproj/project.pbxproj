@@ -282,7 +282,7 @@
 			children = (
 				8D4DFE40FD44F82D8E81FCE6 /* Modules */,
 				8D4DFA1178887C5FDAEB1214 /* Specs */,
-				8D4DFFE3D3B004EDE72931BB /* ExternConfig */,
+				8D4DFFE3D3B004EDE72931BB /* ExternalConfig */,
 				8D4DF4A6D44BA00578B43320 /* TestObjects */,
 				8D4DF8D29EBA31B41883BC93 /* Robotlegs */,
 			);
@@ -399,7 +399,7 @@
 			path = Properties;
 			sourceTree = "<group>";
 		};
-		8D4DFFE3D3B004EDE72931BB /* ExternConfig */ = {
+		8D4DFFE3D3B004EDE72931BB /* ExternalConfig */ = {
 			isa = PBXGroup;
 			children = (
 				8D4DF38DBE19336A32070ACC /* ExternalClass.m */,
@@ -408,7 +408,8 @@
 				8D4DF6A6A55501C6621C0047 /* ExternalSubClass.h */,
 				8D4DF57F117E867E1806BEBB /* SubclassChain */,
 			);
-			path = ExternConfig;
+			lastKnownFileType = text;
+			path = ExternalConfig;
 			sourceTree = "<group>";
 		};
 		CB248C72169B48DA001F4B01 = {

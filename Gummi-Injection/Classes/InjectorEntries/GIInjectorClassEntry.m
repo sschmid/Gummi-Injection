@@ -8,15 +8,22 @@
 #import "GIInjector.h"
 #import "GRReflection.h"
 
+@interface GIInjectorClassEntry ()
+@property(nonatomic) BOOL asSingleton;
+@property(nonatomic) id singletonCache;
+@end
+
 @implementation GIInjectorClassEntry
 
-- (id)initWithObject:(id)object mappedTo:(id)keyObject injector:(GIInjector *)injector {
+- (id)initWithObject:(id)object mappedTo:(id)keyObject asSingleton:(BOOL)singleton injector:(GIInjector *)injector {
     self = [super initWithObject:object mappedTo:keyObject injector:injector];
     if (self) {
         if ([GRReflection isProtocol:keyObject] && ![object conformsToProtocol:keyObject])
             @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
                                            reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", object, NSStringFromProtocol(keyObject)]
                                          userInfo:nil];
+
+        self.asSingleton = singleton;
     }
 
     return self;
@@ -24,12 +31,12 @@
 
 - (id)extractObject {
     if (self.asSingleton) {
-        if (!_singletonCache) {
-            _singletonCache = [_injector instantiateClass:_object];
-            [_injector injectIntoObject:_singletonCache];
+        if (!self.singletonCache) {
+            self.singletonCache = [_injector instantiateClass:_object];
+            [_injector injectIntoObject:self.singletonCache];
         }
 
-        return _singletonCache;
+        return self.singletonCache;
     }
 
     id instance = [_injector instantiateClass:_object];

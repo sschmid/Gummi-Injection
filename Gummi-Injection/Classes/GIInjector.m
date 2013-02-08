@@ -51,7 +51,7 @@ static GIInjector *sInjector;
 
 - (void)addDependencies:(NSArray *)propertyNames forClass:(id)aClass {
     NSMutableSet *propertyNamesForClass = [self getPropertyNamesForClass:aClass];
-    [propertyNamesForClass unionSet:[NSSet setWithArray:propertyNames]];
+    [propertyNamesForClass addObjectsFromArray:propertyNames];
 }
 
 - (void)setDefaultInitializer:(SEL)selector forClass:(Class)aClass {
@@ -64,6 +64,14 @@ static GIInjector *sInjector;
 
     GIInjectorEntry *entry = [self entryForKeyObject:keyObject];
     if (!entry) {
+        if ([GRReflection isProtocol:keyObject]) {
+            NSString *protocol = NSStringFromProtocol(keyObject);
+            @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
+           reason:[NSString stringWithFormat:@"Can not create an instance for <%@>. Define a rule like this: [injector map:[Some%@ class] to:@protocol(%@)];",
+                                             protocol, protocol, protocol]
+                                         userInfo:nil];
+        }
+
         id instance = [self instantiateClass:keyObject];
         [self injectIntoObject:instance];
         return instance;
@@ -72,13 +80,7 @@ static GIInjector *sInjector;
     return entry.extractObject;
 }
 
-- (id)instantiateClass:(id)aClass {
-    if ([GRReflection isProtocol:aClass])
-        @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
-                                       reason:[NSString stringWithFormat:@"Can not create an instance for <%@>. Make sure you have set up a rule for it",
-                                                                         NSStringFromProtocol(aClass)]
-                                     userInfo:nil];
-
+- (id)instantiateClass:(Class)aClass {
     return [[aClass alloc] performSelector:[self initializerForClass:aClass]];
 }
 
@@ -204,10 +206,9 @@ static GIInjector *sInjector;
 }
 
 - (void)removeModuleClass:(Class)moduleClass {
-    for (GIModule *module in [self.modules copy]) {
+    for (GIModule *module in [self.modules copy])
         if ([module isKindOfClass:moduleClass])
             [self removeModule:module];
-    }
 }
 
 - (BOOL)hasModule:(GIModule *)module {
@@ -227,6 +228,8 @@ static GIInjector *sInjector;
         [self removeModule:module];
 
     [self.context removeAllObjects];
+    [self.propertyNames removeAllObjects];
+    [self.initializerForClass removeAllObjects];
 }
 
 @end

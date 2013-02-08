@@ -12,12 +12,13 @@
 @class GIInjectorEntryFactory;
 
 #define inject(args...) + (void)requiredProperties:(GIInjector *)injector \
-                        {[injector addDependencies:[NSArray arrayWithObjects:args, nil] forClass:self];}
+{[injector addDependencies:[NSArray arrayWithObjects:args, nil] forClass:self];}
 
 #define injection_defaultInitializer(selector) + (void)defaultInitializer:(GIInjector *)injector \
-                        {[injector setDefaultInitializer:selector forClass:self];}
+                                        {[injector setDefaultInitializer:selector forClass:self];}
 
-#define injection_complete(selector) + (NSString *)injectionCompleteSelector {return NSStringFromSelector(selector);}
+#define injection_complete(selector) + (NSString *)injectionCompleteSelector \
+                                      {return NSStringFromSelector(selector);}
 
 @interface GIInjector : NSObject <GIInjectionMapper>
 
@@ -29,7 +30,7 @@
 - (void)setDefaultInitializer:(SEL)selector forClass:(Class)aClass;
 
 - (id)getObject:(id)keyObject;
-- (id)instantiateClass:(id)aClass;
+- (id)instantiateClass:(Class)aClass;
 - (void)injectIntoObject:(id)object;
 
 - (void)addModule:(GIModule *)module;

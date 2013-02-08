@@ -33,17 +33,14 @@
                                        reason:[NSString stringWithFormat:@"You cannot create an injector entry using protocols (<%@>)", NSStringFromProtocol(object)]
                                      userInfo:nil];
 
-    if ([GRReflection isClass:object]) {
-        GIInjectorClassEntry *entry = [[GIInjectorClassEntry alloc] initWithObject:object mappedTo:keyObject injector:self.injector];
-        entry.asSingleton = asSingleton;
-        return entry;
-    }
-    else if ([GRReflection isBlock:object]) {
+    if ([GRReflection isClass:object])
+        return [[GIInjectorClassEntry alloc] initWithObject:object mappedTo:keyObject asSingleton:asSingleton injector:self.injector];
+
+    else if ([GRReflection isBlock:object])
         return [[GIInjectorBlockEntry alloc] initWithObject:object mappedTo:keyObject injector:self.injector];
-    }
-    else if ([GRReflection isInstance:object]) {
+
+    else if ([GRReflection isInstance:object])
         return [[GIInjectorInstanceEntry alloc] initWithObject:object mappedTo:keyObject injector:self.injector];
-    }
 
     return nil;
 }

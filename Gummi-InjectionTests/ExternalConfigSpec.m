@@ -35,7 +35,7 @@ SPEC_BEGIN(ExternalConfigSpec)
                 [[ec should] beKindOfClass:[ExternalClass class]];
                 [ec.car shouldBeNil];
                 [ec.wheel shouldBeNil];
-                NSObject *engine = ec.engine;
+                id engine = ec.engine;
                 [engine shouldBeNil];
             });
 
@@ -48,7 +48,7 @@ SPEC_BEGIN(ExternalConfigSpec)
                 [[ec should] beKindOfClass:[ExternalClass class]];
                 [[ec.car should] beKindOfClass:[Car class]];
                 [[ec.wheel should] beKindOfClass:[Wheel class]];
-                NSObject *engine = ec.engine;
+                id engine = ec.engine;
                 [[engine should] conformsToProtocol:@protocol(Engine)];
             });
 
@@ -64,7 +64,7 @@ SPEC_BEGIN(ExternalConfigSpec)
                 [[ec.car should] beKindOfClass:[Car class]];
                 [[ec.wheel should] beKindOfClass:[Wheel class]];
                 [[ec.otherWheel should] beKindOfClass:[Wheel class]];
-                NSObject *engine = ec.engine;
+                id engine = ec.engine;
                 [[engine should] conformsToProtocol:@protocol(Engine)];
             });
 
