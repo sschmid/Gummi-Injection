@@ -20,6 +20,8 @@
 #define injection_complete(selector) + (NSString *)injectionCompleteSelector \
                                       {return NSStringFromSelector(selector);}
 
+#define GIFactoryBlock(name) id (^name)(GIInjector *, NSArray *)
+
 @interface GIInjector : NSObject <GIInjectionMapper>
 
 + (GIInjector *)sharedInjector;
@@ -29,8 +31,10 @@
 - (void)addDependencies:(NSArray *)propertyNames forClass:(id)aClass;
 - (void)setDefaultInitializer:(SEL)selector forClass:(Class)aClass;
 
+- (id)getObject:(id)keyObject withArgs:(NSArray *)args;
 - (id)getObject:(id)keyObject;
-- (id)instantiateClass:(Class)aClass;
+
+- (id)instantiateClass:(Class)aClass withArgs:(NSArray *)args;
 - (void)injectIntoObject:(id)object;
 
 - (void)addModule:(GIModule *)module;

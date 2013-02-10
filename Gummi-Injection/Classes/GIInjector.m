@@ -58,7 +58,7 @@ static GIInjector *sInjector;
     self.initializerForClass[[self keyForObject:aClass]] = NSStringFromSelector(selector);
 }
 
-- (id)getObject:(id)keyObject {
+- (id)getObject:(id)keyObject withArgs:(NSArray *)args {
     if (!keyObject)
         return nil;
 
@@ -67,21 +67,39 @@ static GIInjector *sInjector;
         if ([GRReflection isProtocol:keyObject]) {
             NSString *protocol = NSStringFromProtocol(keyObject);
             @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
-           reason:[NSString stringWithFormat:@"Can not create an instance for <%@>. Define a rule like this: [injector map:[Some%@ class] to:@protocol(%@)];",
+            reason:[NSString stringWithFormat:@"Can not create an instance for <%@>. Define a rule like this: [injector map:[Some%@ class] to:@protocol(%@)];",
                                              protocol, protocol, protocol]
                                          userInfo:nil];
         }
 
-        id instance = [self instantiateClass:keyObject];
+        id instance = [self instantiateClass:keyObject withArgs:args];
         [self injectIntoObject:instance];
         return instance;
     }
-
-    return entry.extractObject;
+    return [entry extractObjectWithArgs:args];
 }
 
-- (id)instantiateClass:(Class)aClass {
-    return [[aClass alloc] performSelector:[self initializerForClass:aClass]];
+- (id)getObject:(id)keyObject {
+    return [self getObject:keyObject withArgs:nil];
+}
+
+- (id)instantiateClass:(Class)aClass withArgs:(NSArray *)args {
+    id instance = [aClass alloc];
+
+    SEL initializerForClass = [self initializerForClass:aClass];
+    NSMethodSignature *methodSignature = [instance methodSignatureForSelector:initializerForClass];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+    invocation.target = instance;
+    invocation.selector = initializerForClass;
+
+    for (NSUInteger i = 0; i < args.count; i++) {
+        id arg = args[i];
+        [invocation setArgument:&arg atIndex:i + 2];
+    }
+
+    [invocation invoke];
+    [invocation getReturnValue:&instance];
+    return instance;
 }
 
 - (void)injectIntoObject:(id)object {

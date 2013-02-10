@@ -32,10 +32,11 @@ SPEC_BEGIN(GIInjectorEntryFactorySpec)
             });
 
             it(@"returns a block entry", ^{
-                id (^factoryBlock)(GIInjector *) = ^(GIInjector *injector) {
+
+                GIFactoryBlock(factoryBlock) = ^id(GIInjector *injector, NSArray *array) {
                     return [[NSObject alloc] init];
                 };
-                
+
                 GIInjectorEntry *entry = [factory createEntryForObject:factoryBlock mappedTo:[NSObject class] asSingleton:NO];
 
                 [[entry should] beKindOfClass:[GIInjectorBlockEntry class]];

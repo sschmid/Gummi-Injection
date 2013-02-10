@@ -9,9 +9,9 @@
 
 @implementation GIInjectorBlockEntry
 
-- (id)extractObject {
-    id (^factoryBlock)(GIInjector *) = _object;
-    return factoryBlock(_injector);
+- (id)extractObjectWithArgs:(NSArray *)args {
+    GIFactoryBlock(factoryBlock) = _object;
+    return factoryBlock(_injector, args);
 }
 
 @end

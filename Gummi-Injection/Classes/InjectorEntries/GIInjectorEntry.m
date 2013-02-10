@@ -20,7 +20,7 @@
     return self;
 }
 
-- (id)extractObject {
+- (id)extractObjectWithArgs:(NSArray *)args {
     return _object;
 }
 

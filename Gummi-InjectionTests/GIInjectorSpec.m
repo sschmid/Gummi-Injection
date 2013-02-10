@@ -34,44 +34,54 @@ SPEC_BEGIN(GIInjectorSpec)
                 injector = [[GIInjector alloc] init];
             });
 
-            it(@"instantiates an injector", ^{
-                [[injector should] beKindOfClass:[GIInjector class]];
+            context(@"when first created", ^{
+
+                it(@"instantiates an injector", ^{
+                    [[injector should] beKindOfClass:[GIInjector class]];
+                });
+
+                it(@"returns shared injector", ^{
+                    [[[GIInjector sharedInjector] should] equal:[GIInjector sharedInjector]];
+                });
+
+                it(@"has no mappings", ^{
+                    [[theValue([injector isObject:[Car class] mappedTo:[Car class]]) should] beNo];
+                });
+
+                it(@"returns no mappings", ^{
+                    [[injector entryForKeyObject:[Car class]] shouldBeNil];
+                });
+
+                it(@"retrieves objects from empty context", ^{
+                    Wheel *wheel = [injector getObject:[Wheel class]];
+
+                    [[wheel should] beKindOfClass:[Wheel class]];
+                });
+
+                it(@"raises exception when asking for unmapped protocol", ^{
+                    [[theBlock(^{
+                        [injector getObject:@protocol(Vehicle)];
+                    }) should] raiseWithName:@"GIInjectorException"];
+                });
+
             });
 
-            it(@"returns shared injector", ^{
-                [[[GIInjector sharedInjector] should] equal:[GIInjector sharedInjector]];
-            });
 
-            it(@"has no mappings", ^{
-                [[theValue([injector isObject:[Car class] mappedTo:[Car class]]) should] beNo];
-            });
+            context(@"when invalid request are made", ^{
 
-            it(@"returns no mappings", ^{
-                [[injector entryForKeyObject:[Car class]] shouldBeNil];
-            });
+                it(@"raises exception when class does not conform to protocol", ^{
 
-            it(@"retrieves objects from empty context", ^{
-                Wheel *wheel = [injector getObject:[Wheel class]];
+                    [[theBlock(^{
+                        [injector map:[NSObject class] to:@protocol(Vehicle)];
+                    }) should] raiseWithName:@"GIInjectorClassEntryException"];
+                });
 
-                [[wheel should] beKindOfClass:[Wheel class]];
-            });
+                it(@"raises exception when instance does not conform to protocol", ^{
+                    [[theBlock(^{
+                        [injector map:[[NSObject alloc] init] to:@protocol(Vehicle)];
+                    }) should] raiseWithName:@"GIInjectorInstanceEntryException"];
+                });
 
-            it(@"raises exception when asking for unmapped protocol", ^{
-                [[theBlock(^{
-                    [injector getObject:@protocol(Vehicle)];
-                }) should] raiseWithName:@"GIInjectorException"];
-            });
-
-            it(@"raises exception when class does not conform to protocol", ^{
-                [[theBlock(^{
-                    [injector map:[NSObject class] to:@protocol(Vehicle)];
-                }) should] raiseWithName:@"GIInjectorClassEntryException"];
-            });
-
-            it(@"raises exception when instance does not conform to protocol", ^{
-                [[theBlock(^{
-                    [injector map:[[NSObject alloc] init] to:@protocol(Vehicle)];
-                }) should] raiseWithName:@"GIInjectorInstanceEntryException"];
             });
 
             context(@"when context has classes mapped", ^{
@@ -274,20 +284,10 @@ SPEC_BEGIN(GIInjectorSpec)
 
             });
 
-            context(@"when context has protocol mapped", ^{
-
-                it(@"raises exception", ^{
-                    [[theBlock(^{
-                        [injector map:[NSObject class] to:@protocol(Vehicle)];
-                    }) should] raiseWithName:@"GIInjectorClassEntryException"];
-                });
-
-            });
-
             context(@"when context has block mapped", ^{
 
                 it(@"executes block", ^{
-                    id (^factoryBlock)(GIInjector *) = ^(GIInjector *theInjector) {
+                    GIFactoryBlock(factoryBlock) = ^(GIInjector *theInjector, NSArray *args) {
                         return [theInjector getObject:[Car class]];
                     };
 

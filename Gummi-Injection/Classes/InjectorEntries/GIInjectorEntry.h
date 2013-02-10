@@ -18,6 +18,7 @@
 @property(nonatomic, strong, readonly) id keyObject;
 
 - (id)initWithObject:(id)object mappedTo:(id)keyObject injector:(GIInjector *)injector;
-- (id)extractObject;
+
+- (id)extractObjectWithArgs:(NSArray *)args;
 
 @end

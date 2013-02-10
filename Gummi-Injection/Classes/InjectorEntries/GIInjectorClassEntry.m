@@ -29,17 +29,17 @@
     return self;
 }
 
-- (id)extractObject {
+- (id)extractObjectWithArgs:(NSArray *)args {
     if (self.asSingleton) {
         if (!self.singletonCache) {
-            self.singletonCache = [_injector instantiateClass:_object];
+            self.singletonCache = [_injector instantiateClass:_object withArgs:args];
             [_injector injectIntoObject:self.singletonCache];
         }
 
         return self.singletonCache;
     }
 
-    id instance = [_injector instantiateClass:_object];
+    id instance = [_injector instantiateClass:_object withArgs:args];
     [_injector injectIntoObject:instance];
     return instance;
 }

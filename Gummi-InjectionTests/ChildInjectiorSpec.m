@@ -11,81 +11,86 @@
 
 SPEC_BEGIN(ChildInjectiorSpec)
 
-        describe(@"GIInjector", ^{
+        describe(@"GIInjector child injector", ^{
 
             __block GIInjector *injector;
             beforeEach(^{
                 injector = [[GIInjector alloc] init];
             });
 
-            it(@"instantiates GIInjector", ^{
-                [[injector should] beKindOfClass:[GIInjector class]];
+            context(@"when first created", ^{
+
+                it(@"instantiates GIInjector", ^{
+                    [[injector should] beKindOfClass:[GIInjector class]];
+                });
+
             });
 
-            it(@"instantiates a child injector", ^{
-                GIInjector *childInjector = [injector createChildInjector];
-                [[childInjector should] beKindOfClass:[GIInjector class]];
-            });
+            context(@"when child injector first created", ^{
 
-            it(@"child injector returns parentInjector mapping", ^{
-                NSObject *objectForParent = [[NSObject alloc] init];
-                [injector map:objectForParent to:[objectForParent class]];
+                __block GIInjector *childInjector;
+                beforeEach(^{
+                    childInjector = [injector createChildInjector];
+                });
 
-                GIInjector *childInjector = [injector createChildInjector];
+                it(@"instantiates a child injector", ^{
+                    [[childInjector should] beKindOfClass:[GIInjector class]];
+                });
 
-                id childObject = [childInjector getObject:[objectForParent class]];
-                [[childObject should] equal:objectForParent];
+                it(@"child injector returns parentInjector mapping", ^{
+                    NSObject *objectForParent = [[NSObject alloc] init];
+                    [injector map:objectForParent to:[objectForParent class]];
 
-                id parentObject = [injector getObject:[objectForParent class]];
-                [[parentObject should] equal:objectForParent];
-            });
+                    id childObject = [childInjector getObject:[objectForParent class]];
+                    [[childObject should] equal:objectForParent];
 
-            it(@"child injector returns child mapping", ^{
-                NSObject *objectForParent = [[NSObject alloc] init];
-                [injector map:objectForParent to:[objectForParent class]];
+                    id parentObject = [injector getObject:[objectForParent class]];
+                    [[parentObject should] equal:objectForParent];
+                });
 
-                GIInjector *childInjector = [injector createChildInjector];
+                context(@"when child injector has own mapping", ^{
 
-                NSObject *objectForChild = [[NSObject alloc] init];
-                [childInjector map:objectForChild to:[objectForChild class]];
+                    it(@"child injector returns own mapping", ^{
+                        NSObject *objectForParent = [[NSObject alloc] init];
+                        NSObject *objectForChild = [[NSObject alloc] init];
+                        [injector map:objectForParent to:[objectForParent class]];
+                        [childInjector map:objectForChild to:[objectForChild class]];
 
-                id childObject = [childInjector getObject:[NSObject class]];
-                [[childObject should] equal:objectForChild];
+                        id parentObject = [injector getObject:[NSObject class]];
+                        id childObject = [childInjector getObject:[NSObject class]];
 
-                id parentObject = [injector getObject:[NSObject class]];
-                [[parentObject should] equal:objectForParent];
+                        [[parentObject should] equal:objectForParent];
+                        [[childObject should] equal:objectForChild];
+                        [[childObject shouldNot] equal:parentObject];
+                    });
 
-                [[childObject shouldNot] equal:parentObject];
-            });
+                });
 
-            it(@"child injector satisfies dependencies with child context", ^{
-                SomeDependency *baseDependencyForParent = [[SomeDependency alloc] init];
-                SomeDependency *baseDependencyForChild = [[SomeDependency alloc] init];
+                it(@"child injector satisfies dependencies with child context", ^{
+                    SomeDependency *baseDependencyForParent = [[SomeDependency alloc] init];
+                    SomeDependency *baseDependencyForChild = [[SomeDependency alloc] init];
 
-                [injector map:baseDependencyForParent to:[SomeDependency class]];
+                    [injector map:baseDependencyForParent to:[SomeDependency class]];
+                    [childInjector map:baseDependencyForChild to:[SomeDependency class]];
 
-                GIInjector *childInjector = [injector createChildInjector];
-                [childInjector map:baseDependencyForChild to:[SomeDependency class]];
+                    ObjectWithDependency *baseObjectFromParent = [injector getObject:[ObjectWithDependency class]];
+                    ObjectWithDependency *baseObjectFromChild = [childInjector getObject:[ObjectWithDependency class]];
 
-                ObjectWithDependency *baseObjectFromParent = [injector getObject:[ObjectWithDependency class]];
-                ObjectWithDependency *baseObjectFromChild = [childInjector getObject:[ObjectWithDependency class]];
+                    [[baseObjectFromParent.someDependency should] equal:baseDependencyForParent];
+                    [[baseObjectFromChild.someDependency should] equal:baseDependencyForChild];
+                });
 
-                [[baseObjectFromParent.someDependency should] equal:baseDependencyForParent];
-                [[baseObjectFromChild.someDependency should] equal:baseDependencyForChild];
-            });
+                it(@"child injector satisfies dependencies with parentInjector context, when not available", ^{
+                    SomeDependency *baseDependencyForParent = [[SomeDependency alloc] init];
+                    [injector map:baseDependencyForParent to:[SomeDependency class]];
 
-            it(@"child injector satisfies dependencies with parentInjector context, when not available", ^{
-                SomeDependency *baseDependencyForParent = [[SomeDependency alloc] init];
+                    ObjectWithDependency *baseObjectFromParent = [injector getObject:[ObjectWithDependency class]];
+                    ObjectWithDependency *baseObjectFromChild = [childInjector getObject:[ObjectWithDependency class]];
 
-                [injector map:baseDependencyForParent to:[SomeDependency class]];
+                    [[baseObjectFromParent.someDependency should] equal:baseDependencyForParent];
+                    [[baseObjectFromChild.someDependency should] equal:baseDependencyForParent];
+                });
 
-                GIInjector *childInjector = [injector createChildInjector];
-
-                ObjectWithDependency *baseObjectFromParent = [injector getObject:[ObjectWithDependency class]];
-                ObjectWithDependency *baseObjectFromChild = [childInjector getObject:[ObjectWithDependency class]];
-
-                [[baseObjectFromParent.someDependency should] equal:baseDependencyForParent];
-                [[baseObjectFromChild.someDependency should] equal:baseDependencyForParent];
             });
 
         });
