@@ -108,6 +108,17 @@ SPEC_BEGIN(ExternalConfigSpec)
                     [[teaser.link should] beKindOfClass:[Link class]];
                 });
 
+                it(@"works with redundant dependencies", ^{
+                    [injector addDependencies:@[@"frame", @"frame", @"frame", @"link", @"link", @"link", @"target"] forClass:[Teaser class]];
+
+                    Teaser *teaser = [injector getObject:[Teaser class]];
+
+                    [[teaser should] beKindOfClass:[Teaser class]];
+                    [[teaser.frame should] beKindOfClass:[Frame class]];
+                    [[teaser.target should] beKindOfClass:[Target class]];
+                    [[teaser.link should] beKindOfClass:[Link class]];
+                });
+
             });
 
         });
