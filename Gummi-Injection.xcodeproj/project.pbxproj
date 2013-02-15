@@ -20,6 +20,7 @@
 		8D4DF2E70849AE917EE95FAB /* GetObjectWithArgsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF70D9F9864638183EDB1 /* GetObjectWithArgsSpec.m */; };
 		8D4DF307A5B904B71B4CB9D4 /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFB0FAD7A098C4C11D6D7 /* Frame.m */; };
 		8D4DF32A16886BDB19EB9E57 /* PostConstructObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFDE880C08A7B9F3F1F65 /* PostConstructObject.m */; };
+		8D4DF34136D6C953C68F07B3 /* ExternalConfigExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF427CF6A250AC0D0F366 /* ExternalConfigExample.m */; };
 		8D4DF3F5725D47B177364742 /* GIInjector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF9BCCC5B198872BCF39A /* GIInjector.m */; };
 		8D4DF425A4E0CFEAACC4FA94 /* GIInjectorEntryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF735A4C5A13506F5640A /* GIInjectorEntryFactory.m */; };
 		8D4DF4375703E5131EADDFD5 /* ChildInjectiorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF38EF884B87E4B31D76B /* ChildInjectiorSpec.m */; };
@@ -29,11 +30,13 @@
 		8D4DF5991008CB1F7AD1DF9D /* Sub2Dependency.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF0A7253FE9066AB0D169 /* Sub2Dependency.m */; };
 		8D4DF59FA26403237CC43332 /* GIInjectorEntryFactorySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFC7C3016162007357F5A /* GIInjectorEntryFactorySpec.m */; };
 		8D4DF6181A01808A5A2643A6 /* HybridEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFDF0C637C7F873A4E095 /* HybridEngine.m */; };
+		8D4DF637684DD42BE7A38D67 /* ExternalColoredBalloon.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFE904DA543D8DBC1DF10 /* ExternalColoredBalloon.m */; };
 		8D4DF68158306876250C4549 /* Sub1Dependency.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFE4A0EF4630A5047153D /* Sub1Dependency.m */; };
 		8D4DF75DF27D0FA3413723E4 /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF2A758DFF7291048E770 /* Button.m */; };
 		8D4DF76AB4D10543BDC6A69C /* OtherBall.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF9523D9B3B65D8724121 /* OtherBall.m */; };
 		8D4DF77361ADDF1A243D80F8 /* StartStopObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFD362B912957B442B028 /* StartStopObjectSpec.m */; };
 		8D4DF8E2B3DC7E01935624F3 /* StartStopObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFD95A17C73FC5A79C610 /* StartStopObject.m */; };
+		8D4DF8EAFC4447599D67B9D9 /* ExternalAir.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF9BCA190CA8928DC2883 /* ExternalAir.m */; };
 		8D4DF8F18888C58417501FF8 /* SingletonFooModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF6A29F3587F955BF319D /* SingletonFooModule.m */; };
 		8D4DF9272750EF44BAA85C68 /* GIInjectorEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DFEA257E128570D74DF6B /* GIInjectorEntry.m */; };
 		8D4DFA3668AF552DE68A4C87 /* CarSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF19958AD90EF9C4E879B /* CarSpec.m */; };
@@ -47,6 +50,7 @@
 		8D4DFC98BFDD0D3CBE02407F /* GIModuleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF3D33C0C5BBAF1784CC8 /* GIModuleSpec.m */; };
 		8D4DFD061F215347CA38B5E7 /* Teaser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF684EFDF1204002BF6F4 /* Teaser.m */; };
 		8D4DFD3803079FC3DE557711 /* Garage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF7B14C2323AE564B66F0 /* Garage.m */; };
+		8D4DFD7180CE10EAEEDEA49C /* ExternalConfigExampleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF65A33510966F8C00E27 /* ExternalConfigExampleModule.m */; };
 		8D4DFE1799DB8533A5B60C28 /* Component.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF50BE582DE5F15A4BA3A /* Component.m */; };
 		8D4DFE23571861635A54A8D1 /* GIInjectorBlockEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF7B4F7D1322F4C87835E /* GIInjectorBlockEntry.m */; };
 		8D4DFE82C9898A9DC7FFAB9E /* Target.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DF614620C0066541696A8 /* Target.m */; };
@@ -105,12 +109,16 @@
 		8D4DF34C0D570BCE5B469CAD /* StartStopModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartStopModule.h; sourceTree = "<group>"; };
 		8D4DF357FEE31B6907C988BE /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
 		8D4DF35D7B0FD3BF94F80478 /* ExternalConfigSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternalConfigSpec.m; sourceTree = "<group>"; };
+		8D4DF37F10AD29990FA62A9D /* ExternalConfigExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalConfigExample.h; sourceTree = "<group>"; };
 		8D4DF38DBE19336A32070ACC /* ExternalClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternalClass.m; sourceTree = "<group>"; };
 		8D4DF38EF884B87E4B31D76B /* ChildInjectiorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildInjectiorSpec.m; sourceTree = "<group>"; };
 		8D4DF3D21A4DB08280E20647 /* StartStopObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartStopObject.h; sourceTree = "<group>"; };
 		8D4DF3D33C0C5BBAF1784CC8 /* GIModuleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIModuleSpec.m; sourceTree = "<group>"; };
 		8D4DF41794FE28A84A2876A4 /* BagOfBalls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BagOfBalls.m; sourceTree = "<group>"; };
+		8D4DF4212786A90270FB42C0 /* ExternalConfigExampleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalConfigExampleModule.h; sourceTree = "<group>"; };
+		8D4DF427CF6A250AC0D0F366 /* ExternalConfigExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternalConfigExample.m; sourceTree = "<group>"; };
 		8D4DF46B9F9F35E051CFA8AA /* Link.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Link.m; sourceTree = "<group>"; };
+		8D4DF470AF4B96BC4BF7CD3A /* ExternalAir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalAir.h; sourceTree = "<group>"; };
 		8D4DF47E48BBC36474B539AA /* GIModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIModule.h; sourceTree = "<group>"; };
 		8D4DF4AD9FB7434EEA54B34F /* GIInjectorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorSpec.m; sourceTree = "<group>"; };
 		8D4DF502705C08373736D057 /* OtherBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherBall.h; sourceTree = "<group>"; };
@@ -122,6 +130,7 @@
 		8D4DF601503BBEE0A75EFB3E /* Garage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Garage.h; sourceTree = "<group>"; };
 		8D4DF614620C0066541696A8 /* Target.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Target.m; path = Target.m; sourceTree = "<group>"; };
 		8D4DF62B5EAC30ED8BCFFC16 /* SubObjectWithDependency1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubObjectWithDependency1.m; sourceTree = "<group>"; };
+		8D4DF65A33510966F8C00E27 /* ExternalConfigExampleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternalConfigExampleModule.m; sourceTree = "<group>"; };
 		8D4DF6695B3DF017D2C62446 /* GarageExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GarageExample.h; sourceTree = "<group>"; };
 		8D4DF684EFDF1204002BF6F4 /* Teaser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Teaser.m; sourceTree = "<group>"; };
 		8D4DF6A29F3587F955BF319D /* SingletonFooModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonFooModule.m; sourceTree = "<group>"; };
@@ -134,12 +143,14 @@
 		8D4DF78ADD00DEC591FF9290 /* GIInjectionMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectionMapper.h; sourceTree = "<group>"; };
 		8D4DF7B14C2323AE564B66F0 /* Garage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Garage.m; sourceTree = "<group>"; };
 		8D4DF7B4F7D1322F4C87835E /* GIInjectorBlockEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorBlockEntry.m; sourceTree = "<group>"; };
+		8D4DF7E93FE7C936E73350AE /* ExternalColoredBalloon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalColoredBalloon.h; sourceTree = "<group>"; };
 		8D4DF7EF4F52A4394F7303FE /* Wheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wheel.h; sourceTree = "<group>"; };
 		8D4DF82FC07B09C2D0393CD7 /* Target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Target.h; path = Target.h; sourceTree = "<group>"; };
 		8D4DF89DBB86D0493952E85E /* SingletonFoo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonFoo.m; sourceTree = "<group>"; };
 		8D4DF8A939BE5AE9D1716636 /* ObjectWithDependency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithDependency.m; sourceTree = "<group>"; };
 		8D4DF8F76D62C09C1292EDCA /* HybridEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HybridEngine.h; sourceTree = "<group>"; };
 		8D4DF9523D9B3B65D8724121 /* OtherBall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherBall.m; sourceTree = "<group>"; };
+		8D4DF9BCA190CA8928DC2883 /* ExternalAir.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternalAir.m; sourceTree = "<group>"; };
 		8D4DF9BCCC5B198872BCF39A /* GIInjector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjector.m; sourceTree = "<group>"; };
 		8D4DF9EA946C2092314E8D70 /* GIInjectorBlockEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectorBlockEntry.h; sourceTree = "<group>"; };
 		8D4DFA3C871549465C03BDB8 /* GIInjectorInstanceEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectorInstanceEntry.h; sourceTree = "<group>"; };
@@ -164,6 +175,7 @@
 		8D4DFE75B9272CB0E1776B14 /* GIInjectorClassEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIInjectorClassEntry.h; sourceTree = "<group>"; };
 		8D4DFE8079117C0AD4551DB3 /* Sub1Dependency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sub1Dependency.h; sourceTree = "<group>"; };
 		8D4DFE8D922C8B3C171A2556 /* DefectPostConstructObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefectPostConstructObject.h; sourceTree = "<group>"; };
+		8D4DFE904DA543D8DBC1DF10 /* ExternalColoredBalloon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternalColoredBalloon.m; sourceTree = "<group>"; };
 		8D4DFE936F4AE4A03352E906 /* GIInjectorInstanceEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorInstanceEntry.m; sourceTree = "<group>"; };
 		8D4DFEA257E128570D74DF6B /* GIInjectorEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIInjectorEntry.m; sourceTree = "<group>"; };
 		8D4DFEE152B571FF50B04641 /* SomeDependency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomeDependency.m; sourceTree = "<group>"; };
@@ -224,6 +236,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D4DF0AA48459EC9A7269470 /* ClassesThatYouDoNotOwn */ = {
+			isa = PBXGroup;
+			children = (
+				8D4DFE904DA543D8DBC1DF10 /* ExternalColoredBalloon.m */,
+				8D4DF7E93FE7C936E73350AE /* ExternalColoredBalloon.h */,
+				8D4DF9BCA190CA8928DC2883 /* ExternalAir.m */,
+				8D4DF470AF4B96BC4BF7CD3A /* ExternalAir.h */,
+			);
+			path = ClassesThatYouDoNotOwn;
+			sourceTree = "<group>";
+		};
 		8D4DF4A6D44BA00578B43320 /* TestObjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				8D4DFE1646CBB63A45C20564 /* Car */,
+				8D4DFDC49A51623D9E481969 /* ExternalConfig */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -355,6 +379,18 @@
 				8D4DF9EA946C2092314E8D70 /* GIInjectorBlockEntry.h */,
 			);
 			path = InjectorEntries;
+			sourceTree = "<group>";
+		};
+		8D4DFDC49A51623D9E481969 /* ExternalConfig */ = {
+			isa = PBXGroup;
+			children = (
+				8D4DF427CF6A250AC0D0F366 /* ExternalConfigExample.m */,
+				8D4DF37F10AD29990FA62A9D /* ExternalConfigExample.h */,
+				8D4DF65A33510966F8C00E27 /* ExternalConfigExampleModule.m */,
+				8D4DF4212786A90270FB42C0 /* ExternalConfigExampleModule.h */,
+				8D4DF0AA48459EC9A7269470 /* ClassesThatYouDoNotOwn */,
+			);
+			path = ExternalConfig;
 			sourceTree = "<group>";
 		};
 		8D4DFE1646CBB63A45C20564 /* Car */ = {
@@ -655,6 +691,10 @@
 				8D4DF6181A01808A5A2643A6 /* HybridEngine.m in Sources */,
 				8D4DFEDA5E69ED38424E9978 /* Wheel.m in Sources */,
 				8D4DFE23571861635A54A8D1 /* GIInjectorBlockEntry.m in Sources */,
+				8D4DF34136D6C953C68F07B3 /* ExternalConfigExample.m in Sources */,
+				8D4DFD7180CE10EAEEDEA49C /* ExternalConfigExampleModule.m in Sources */,
+				8D4DF637684DD42BE7A38D67 /* ExternalColoredBalloon.m in Sources */,
+				8D4DF8EAFC4447599D67B9D9 /* ExternalAir.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

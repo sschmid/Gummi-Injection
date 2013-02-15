@@ -6,6 +6,7 @@
 
 #import "GIAppDelegate.h"
 #import "GarageExample.h"
+#import "ExternalConfigExample.h"
 
 @implementation GIAppDelegate
 
@@ -17,6 +18,8 @@
     [self addIcon];
 
     GarageExample *example = [[GarageExample alloc] init];
+
+    ExternalConfigExample *externalConfigExample = [[ExternalConfigExample alloc] init];
 
     return YES;
 }
