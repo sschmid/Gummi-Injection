@@ -9,4 +9,5 @@
 
 @interface ExternalSubClass : ExternalClass
 @property(nonatomic, strong) Wheel *otherWheel;
+@property(nonatomic) BOOL opened;
 @end

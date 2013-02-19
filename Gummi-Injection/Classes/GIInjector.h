@@ -17,8 +17,8 @@
 #define injection_defaultInitializer(selector) + (void)defaultInitializer:(GIInjector *)injector \
                                         {[injector setDefaultInitializer:selector forClass:self];}
 
-#define injection_complete(selector) + (NSString *)injectionCompleteSelector \
-                                      {return NSStringFromSelector(selector);}
+#define injection_complete(selector) + (void)injectionCompleteSelector:(GIInjector *)injector \
+                                      {[injector setInjectionCompleteSelector:selector forClass:self];}
 
 #define getObject(keyObject) [[GIInjector sharedInjector] getObject:keyObject]
 #define getObjectWithArgs(keyObject, args) [[GIInjector sharedInjector] getObject:keyObject withArgs:args]
@@ -32,6 +32,7 @@
 
 - (void)addDependencies:(NSArray *)propertyNames forClass:(id)aClass;
 - (void)setDefaultInitializer:(SEL)selector forClass:(Class)aClass;
+- (void)setInjectionCompleteSelector:(SEL)selector forClass:(Class)aClass;
 
 - (id)getObject:(id)keyObject withArgs:(NSArray *)args;
 - (id)getObject:(id)keyObject;

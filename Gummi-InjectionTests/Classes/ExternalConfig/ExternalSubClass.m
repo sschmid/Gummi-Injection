@@ -7,4 +7,9 @@
 #import "ExternalSubClass.h"
 
 @implementation ExternalSubClass
+
+- (void)open{
+    self.opened = YES;
+}
+
 @end

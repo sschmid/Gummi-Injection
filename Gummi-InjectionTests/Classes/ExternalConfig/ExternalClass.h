@@ -14,4 +14,5 @@
 @property(nonatomic, strong) Car *car;
 @property(nonatomic, strong) Wheel *wheel;
 @property(nonatomic) id <Engine> engine;
+@property(nonatomic) BOOL started;
 @end

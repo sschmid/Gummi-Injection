@@ -119,6 +119,17 @@ SPEC_BEGIN(ExternalConfigSpec)
                     [[teaser.link should] beKindOfClass:[Link class]];
                 });
 
+                it(@"calls complete selector", ^{
+                    [injector setInjectionCompleteSelector:@selector(start) forClass:[ExternalClass class]];
+                    [injector setInjectionCompleteSelector:@selector(open) forClass:[ExternalSubClass class]];
+                    ExternalClass *externalClass = [injector getObject:[ExternalClass class]];
+                    ExternalSubClass *externalSubClass = [injector getObject:[ExternalSubClass class]];
+
+                    [[theValue(externalClass.started) should] beYes];
+                    [[theValue(externalSubClass.started) should] beNo];
+                    [[theValue(externalSubClass.opened) should] beYes];
+                });
+
             });
 
         });

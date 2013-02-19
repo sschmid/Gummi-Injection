@@ -16,7 +16,8 @@ static GIInjector *sInjector;
 @property(nonatomic, weak) GIInjector *parentInjector;
 @property(nonatomic, strong) NSMutableDictionary *context;
 @property(nonatomic, strong) NSMutableDictionary *propertyNames;
-@property(nonatomic, strong) NSMutableDictionary *initializerForClass;
+@property(nonatomic, strong) NSMutableDictionary *defaultInitializer;
+@property(nonatomic, strong) NSMutableDictionary *completeSelectors;
 @property(nonatomic, strong) NSMutableArray *modules;
 @property(nonatomic, strong) GIInjectorEntryFactory *entryFactory;
 @end
@@ -35,7 +36,8 @@ static GIInjector *sInjector;
     if (self) {
         self.context = [[NSMutableDictionary alloc] init];
         self.propertyNames = [[NSMutableDictionary alloc] init];
-        self.initializerForClass = [[NSMutableDictionary alloc] init];
+        self.defaultInitializer = [[NSMutableDictionary alloc] init];
+        self.completeSelectors = [[NSMutableDictionary alloc] init];
         self.modules = [[NSMutableArray alloc] init];
         self.entryFactory = [[GIInjectorEntryFactory alloc] initWithInjector:self];
     }
@@ -55,7 +57,11 @@ static GIInjector *sInjector;
 }
 
 - (void)setDefaultInitializer:(SEL)selector forClass:(Class)aClass {
-    self.initializerForClass[[self keyForObject:aClass]] = NSStringFromSelector(selector);
+    self.defaultInitializer[[self keyForObject:aClass]] = NSStringFromSelector(selector);
+}
+
+- (void)setInjectionCompleteSelector:(SEL)selector forClass:(Class)aClass {
+    self.completeSelectors[[self keyForObject:aClass]] = NSStringFromSelector(selector);
 }
 
 - (id)getObject:(id)keyObject withArgs:(NSArray *)args {
@@ -145,11 +151,22 @@ static GIInjector *sInjector;
     if ([aClass respondsToSelector:@selector(defaultInitializer:)])
         [aClass performSelector:@selector(defaultInitializer:) withObject:self];
 
-    NSString *selectorName = self.initializerForClass[[self keyForObject:aClass]];
+    NSString *selectorName = self.defaultInitializer[[self keyForObject:aClass]];
     if (selectorName)
         return NSSelectorFromString(selectorName);
 
     return @selector(init);
+}
+
+- (SEL)completeSelectorForClass:(Class)aClass {
+    if ([aClass respondsToSelector:@selector(injectionCompleteSelector:)])
+        [aClass performSelector:@selector(injectionCompleteSelector:) withObject:self];
+
+    NSString *selectorName = self.completeSelectors[[self keyForObject:aClass]];
+    if (selectorName)
+        return NSSelectorFromString(selectorName);
+
+    return nil;
 }
 
 - (NSMutableSet *)getPropertyNamesForClass:(Class)aClass {
@@ -190,16 +207,16 @@ static GIInjector *sInjector;
 }
 
 - (void)notifyObjectOfInjectionComplete:(id)object {
-    if ([[object class] respondsToSelector:@selector(injectionCompleteSelector)]) {
-        NSString *onCompleteSelectorName = [[object class] performSelector:@selector(injectionCompleteSelector)];
-        SEL onCompleteSelector = NSSelectorFromString(onCompleteSelectorName);
-        if (![object respondsToSelector:onCompleteSelector])
+    SEL completeSelector = [self completeSelectorForClass:[object class]];
+    if (completeSelector) {
+        if (![object respondsToSelector:completeSelector])
             @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
                                            reason:[NSString stringWithFormat:@"Object '%@' does not respond to selector '%@'",
-                                                           NSStringFromClass([object class]), onCompleteSelectorName]
+                                                                             NSStringFromClass([object class]), NSStringFromSelector(completeSelector)]
                                          userInfo:nil];
         else
-            [object performSelector:onCompleteSelector];
+            [object performSelector:completeSelector];
+
     }
 }
 
@@ -247,7 +264,8 @@ static GIInjector *sInjector;
 
     [self.context removeAllObjects];
     [self.propertyNames removeAllObjects];
-    [self.initializerForClass removeAllObjects];
+    [self.defaultInitializer removeAllObjects];
+    [self.completeSelectors removeAllObjects];
 }
 
 @end

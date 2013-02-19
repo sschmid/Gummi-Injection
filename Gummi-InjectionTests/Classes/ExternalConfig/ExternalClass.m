@@ -7,4 +7,9 @@
 #import "ExternalClass.h"
 
 @implementation ExternalClass
+
+- (void)start {
+    self.started = YES;
+}
+
 @end
