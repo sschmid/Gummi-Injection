@@ -8,7 +8,7 @@
 
 @implementation ExternalAir
 
-- (id)initDefaultInitializer {
+- (id)initAsO2 {
     self = [super init];
     if (self) {
         self.type = @"O2";

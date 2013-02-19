@@ -17,4 +17,9 @@
     return self;
 }
 
+- (void)inflate {
+    if (self.air)
+        self.inflated = YES;
+}
+
 @end

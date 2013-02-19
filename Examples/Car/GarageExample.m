@@ -26,16 +26,20 @@
         // Injector creates Cars and injects Wheels and Engine.
         Garage *garage = [injector getObject:[Garage class]];
 
+        // or use the macro
+        // Garage *garage = getObject([Garage class]);
+
         // This will happen:
         // - [injector getObject:[Garage class]];
-        // - getObject looks up type Garage -> no rule set -> Instantiate Garage and inject into object
+        // - getObject looks up type Garage -> no rule set -> Instantiate Garage with default initializer and inject into object
         // - Garage wants Cars
-        //     - Look up type Car -> no rule set -> Instantiate Car and inject into object
+        //   - Look up type Car -> no rule set -> Instantiate Car with default initializer and inject into object
         //     - Each Car wants Wheels
-        //         - Look up type Wheel -> no rule set -> Instantiate Wheel and inject into object
-        //     - Car wants <Engine>
+        //         - Look up type Wheel -> no rule set -> Instantiate Wheel with default initializer and inject into object
+        //     - Each Car wants <Engine>
         //         - Look up type <Engine> -> rule found: [HybridEngine class]
-        //         - Instantiate HybridEngine and inject into object
+        //         - Instantiate HybridEngine with default initializer and inject into object
+        //     - All dependencies of Car are now set. Call injection_complete selector (see Car.m)
         // Done
 
         NSLog(@"Garage is full with cars: %@", garage.isFull == 0 ? @"NO" : @"YES"); // YES, all dependencies set

@@ -22,10 +22,13 @@
         ExternalColoredBalloon *redBalloon = [injector getObject:[ExternalColoredBalloon class] withArgs:@[@"red"]];
         NSLog(@"redBalloon.color = %@", redBalloon.color);
         NSLog(@"redBalloon.air.type = %@", redBalloon.air.type);
+        NSLog(@"redBalloon.inflated = %d", redBalloon.inflated);
 
-        ExternalColoredBalloon *greenBalloon = [injector getObject:[ExternalColoredBalloon class] withArgs:@[@"green"]];
+        // or use macro
+        ExternalColoredBalloon *greenBalloon = getObjectWithArgs([ExternalColoredBalloon class], @[@"green"]);
         NSLog(@"greenBalloon.color = %@", greenBalloon.color);
         NSLog(@"greenBalloon.air.type = %@", greenBalloon.air.type);
+        NSLog(@"greenBalloon.inflated = %d", greenBalloon.inflated);
 
     }
 

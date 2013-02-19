@@ -8,5 +8,5 @@
 
 @interface ExternalAir : NSObject
 @property(nonatomic, copy) NSString *type;
-- (id)initDefaultInitializer;
+- (id)initAsO2;
 @end
