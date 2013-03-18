@@ -212,7 +212,7 @@ static GIInjector *sInjector;
         if (![object respondsToSelector:completeSelector])
             @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
                                            reason:[NSString stringWithFormat:@"Object '%@' does not respond to selector '%@'",
-                                                                             NSStringFromClass([object class]), NSStringFromSelector(completeSelector)]
+                                                   NSStringFromClass([object class]), NSStringFromSelector(completeSelector)]
                                          userInfo:nil];
         else
             [object performSelector:completeSelector];

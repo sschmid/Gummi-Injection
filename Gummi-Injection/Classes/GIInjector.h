@@ -22,7 +22,7 @@
 
 #define getObject(keyObject) [[GIInjector sharedInjector] getObject:keyObject]
 #define getObjectWithArgs(keyObject, args) [[GIInjector sharedInjector] getObject:keyObject withArgs:args]
-#define GIFactoryBlock(name) id (^name)(GIInjector *, NSArray *)
+#define GIFactoryBlock(name) id (^name)(GIInjector *injector, NSArray *args)
 
 @interface GIInjector : NSObject <GIInjectionMapper>
 
