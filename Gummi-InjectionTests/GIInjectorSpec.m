@@ -286,9 +286,22 @@ SPEC_BEGIN(GIInjectorSpec)
 
             context(@"when context has block mapped", ^{
 
-                it(@"executes block", ^{
+                it(@"executes block and has injector and args", ^{
                     GIFactoryBlock(factoryBlock) = ^(GIInjector *theInjector, NSArray *args) {
-                        return [theInjector getObject:[Car class]];
+                        return [theInjector getObject:args[0]];
+                    };
+
+                    [injector map:[HybridEngine class] to:@protocol(Engine)];
+                    [injector map:factoryBlock to:@protocol(Vehicle)];
+                    Car *car = [injector getObject:@protocol(Vehicle) withArgs:@[[Car class]]];
+
+                    [[car should] beKindOfClass:[Car class]];
+                    [[theValue(car.canDrive) should] beYes];
+                });
+
+                it(@"executes block and injects into object", ^{
+                    GIFactoryBlock(factoryBlock) = ^(GIInjector *theInjector, NSArray *args) {
+                        return [[Car alloc] init];
                     };
 
                     [injector map:[HybridEngine class] to:@protocol(Engine)];
@@ -297,6 +310,21 @@ SPEC_BEGIN(GIInjectorSpec)
 
                     [[car should] beKindOfClass:[Car class]];
                     [[theValue(car.canDrive) should] beYes];
+                });
+
+                it(@"returns block's return value as singleton", ^{
+                    GIFactoryBlock(factoryBlock) = ^(GIInjector *theInjector, NSArray *args) {
+                        return [[Car alloc] init];
+                    };
+
+                    [injector map:[HybridEngine class] to:@protocol(Engine)];
+                    [injector mapSingleton:factoryBlock to:@protocol(Vehicle)];
+                    Car *car1 = [injector getObject:@protocol(Vehicle)];
+                    Car *car2 = [injector getObject:@protocol(Vehicle)];
+
+                    [[car1 should] equal:car2];
+                    [[theValue(car1.canDrive) should] beYes];
+                    [[theValue(car2.canDrive) should] beYes];
                 });
 
             });

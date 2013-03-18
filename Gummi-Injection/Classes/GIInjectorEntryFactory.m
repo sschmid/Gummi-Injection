@@ -40,7 +40,7 @@
         return [[GIInjectorInstanceEntry alloc] initWithObject:object mappedTo:keyObject injector:self.injector];
 
     else if ([GRReflection isBlock:object])
-        return [[GIInjectorBlockEntry alloc] initWithObject:object mappedTo:keyObject injector:self.injector];
+        return [[GIInjectorBlockEntry alloc] initWithObject:object mappedTo:keyObject asSingleton:asSingleton injector:self.injector];
 
     return nil;
 }
