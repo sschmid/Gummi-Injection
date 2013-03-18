@@ -323,7 +323,6 @@
 				8D4DF9523D9B3B65D8724121 /* OtherBall.m */,
 				8D4DF502705C08373736D057 /* OtherBall.h */,
 			);
-			lastKnownFileType = text;
 			path = GetObjectWithArgs;
 			sourceTree = "<group>";
 		};
