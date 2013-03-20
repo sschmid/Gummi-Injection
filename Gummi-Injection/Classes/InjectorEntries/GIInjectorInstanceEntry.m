@@ -17,8 +17,6 @@
             @throw [NSException exceptionWithName:@"GIInjectorInstanceEntryException"
                                            reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", object, NSStringFromProtocol(keyObject)]
                                          userInfo:nil];
-
-        [_injector injectIntoObject:_object];
     }
 
     return self;

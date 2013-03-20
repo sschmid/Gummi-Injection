@@ -270,16 +270,10 @@ SPEC_BEGIN(GIInjectorSpec)
                     [[retrievedCar should] equal:mappedCar];
                 });
 
-                it(@"pulls object with all its dependecies set", ^{
-                    [[theValue(mappedCar.canDrive) should] beYes];
-                    [[theValue(retrievedCar.canDrive) should] beYes];
-                    [[theValue(garage.isFull) should] beYes];
-                });
-
-                it(@"sets dependencies of dependencies", ^{
-                    [[theValue(garage.audi.canDrive) should] beYes];
-                    [[theValue(garage.bmw.canDrive) should] beYes];
-                    [[theValue(garage.mercedes.canDrive) should] beYes];
+                it(@"pulls unchanged object without its dependecies set", ^{
+                    [[theValue(mappedCar.canDrive) should] beNo];
+                    [[theValue(retrievedCar.canDrive) should] beNo];
+                    [[theValue(garage.isFull) should] beNo];
                 });
 
             });
