@@ -9,6 +9,7 @@
 #import "BagOfBalls.h"
 #import "Ball.h"
 #import "OtherBall.h"
+#import "BrokenDefaultInitilaizerObject.h"
 
 SPEC_BEGIN(GetObjectWithArgsSpec)
 
@@ -21,6 +22,12 @@ SPEC_BEGIN(GetObjectWithArgsSpec)
 
             it(@"instantiates an injector", ^{
                 [[injector should] beKindOfClass:[GIInjector class]];
+            });
+
+            it(@"raises exception when defaultInitializer does not exist", ^{
+                [[theBlock(^{
+                    [injector getObject:[BrokenDefaultInitilaizerObject class]];
+                }) should] raiseWithName:@"GIInjectorException"];
             });
 
             it(@"returns instance with custom initializer (externally set)", ^{

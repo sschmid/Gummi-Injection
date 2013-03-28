@@ -58,6 +58,16 @@ SPEC_BEGIN(GIInjectorSpec)
                     [[wheel should] beKindOfClass:[Wheel class]];
                 });
 
+                it(@"dependencies of object from empty context are satisfied", ^{
+                    [injector map:[HybridEngine class] to:@protocol(Engine)];
+                    Car *car = [injector getObject:[Car class]];
+
+                    [[car.wheel1 should] beKindOfClass:[Wheel class]];
+                    [[car.wheel2 should] beKindOfClass:[Wheel class]];
+                    [[car.wheel3 should] beKindOfClass:[Wheel class]];
+                    [[car.wheel4 should] beKindOfClass:[Wheel class]];
+                });
+
                 it(@"raises exception when asking for unmapped protocol", ^{
                     [[theBlock(^{
                         [injector getObject:@protocol(Vehicle)];
@@ -66,8 +76,7 @@ SPEC_BEGIN(GIInjectorSpec)
 
             });
 
-
-            context(@"when invalid request are made", ^{
+            context(@"when invalid requests are made", ^{
 
                 it(@"raises exception when class does not conform to protocol", ^{
 

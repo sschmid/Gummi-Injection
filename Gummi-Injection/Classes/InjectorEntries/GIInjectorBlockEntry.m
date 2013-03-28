@@ -6,7 +6,6 @@
 
 #import "GIInjectorBlockEntry.h"
 #import "GIInjector.h"
-#import "GRReflection.h"
 
 @interface GIInjectorBlockEntry ()
 @property(nonatomic) BOOL asSingleton;

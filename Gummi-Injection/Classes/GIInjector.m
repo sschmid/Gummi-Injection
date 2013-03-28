@@ -77,11 +77,12 @@ static GIInjector *sInjector;
                                              protocol, protocol, protocol]
                                          userInfo:nil];
         }
-
         id instance = [self instantiateClass:keyObject withArgs:args];
         [self injectIntoObject:instance];
+
         return instance;
     }
+
     return [entry extractObjectWithArgs:args];
 }
 
@@ -94,6 +95,13 @@ static GIInjector *sInjector;
 
     SEL initializerForClass = [self initializerForClass:aClass];
     NSMethodSignature *methodSignature = [instance methodSignatureForSelector:initializerForClass];
+
+    if (!methodSignature)
+        @throw [NSException exceptionWithName:[NSString stringWithFormat:@"%@Exception", NSStringFromClass([self class])]
+                                       reason:[NSString stringWithFormat:@"The class %@ couldn't be initialized with selector %@",
+                                                                         NSStringFromClass(aClass), NSStringFromSelector(initializerForClass)]
+                                     userInfo:nil];
+
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
     invocation.target = instance;
     invocation.selector = initializerForClass;
@@ -105,6 +113,7 @@ static GIInjector *sInjector;
 
     [invocation invoke];
     [invocation getReturnValue:&instance];
+
     return instance;
 }
 

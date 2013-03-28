@@ -16,6 +16,9 @@
     self = [super init];
     if (self) {
 
+        // The sources of ExternalColoredBalloon do not contain any Gummi Injection code.
+        // ExternalColoredBalloon is configured externally in ExternalConfigExampleModule
+
         GIInjector *injector = [GIInjector sharedInjector];
         [injector addModule:[[ExternalConfigExampleModule alloc] init]];
 
